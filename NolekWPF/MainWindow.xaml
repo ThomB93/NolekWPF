@@ -6,8 +6,5 @@
         xmlns:local="clr-namespace:NolekWPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="109,87,0,0" VerticalAlignment="Top" Width="75"/>
-
-    </Grid>
+    <Grid />
 </Window>
