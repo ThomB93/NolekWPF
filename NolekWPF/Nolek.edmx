@@ -1,0 +1,346 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="wiki_nolek_dk_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Component">
+          <Key>
+            <PropertyRef Name="ComponentId" />
+          </Key>
+          <Property Name="ComponentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ComponentName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ComponentDescription" Type="nvarchar(max)" />
+          <Property Name="ComponentOrderNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="ComponentSerialNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ComponentQuantity" Type="int" Nullable="false" />
+          <Property Name="ComponentSupplyNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="EquipmentId" />
+          </Key>
+          <Property Name="EquipmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EquipmentDateCreated" Type="date" Nullable="false" />
+          <Property Name="EquipmentImagePath" Type="nvarchar(max)" />
+          <Property Name="EquipmentTypeID" Type="int" Nullable="false" />
+          <Property Name="EquipmentSerialnumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EquipmentMainEquipmentNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EquipmentConfigurationID" Type="int" Nullable="false" />
+          <Property Name="EquipmentStatus" Type="bit" Nullable="false" />
+          <Property Name="EquipmentCategory" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EquipmentComponent">
+          <Key>
+            <PropertyRef Name="ComponentID" />
+            <PropertyRef Name="EquipmentID" />
+          </Key>
+          <Property Name="ComponentID" Type="int" Nullable="false" />
+          <Property Name="EquipmentID" Type="int" Nullable="false" />
+          <Property Name="EquipmentComponentQuantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EquipmentConfiguration">
+          <Key>
+            <PropertyRef Name="EquipmentConfigurationId" />
+          </Key>
+          <Property Name="EquipmentConfigurationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EquipmentConfigurationDescription" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EquipmentType">
+          <Key>
+            <PropertyRef Name="EquipmentTypeID" />
+          </Key>
+          <Property Name="EquipmentTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EquipmentTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EquipmentTypeDescription" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Equipment__Compo__04AFB25B">
+          <End Role="Component" Type="Self.Component" Multiplicity="1" />
+          <End Role="EquipmentComponent" Type="Self.EquipmentComponent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Component">
+              <PropertyRef Name="ComponentId" />
+            </Principal>
+            <Dependent Role="EquipmentComponent">
+              <PropertyRef Name="ComponentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Equipment__Equip__01D345B0">
+          <End Role="EquipmentType" Type="Self.EquipmentType" Multiplicity="1" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EquipmentType">
+              <PropertyRef Name="EquipmentTypeID" />
+            </Principal>
+            <Dependent Role="Equipment">
+              <PropertyRef Name="EquipmentTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Equipment__Equip__02C769E9">
+          <End Role="EquipmentConfiguration" Type="Self.EquipmentConfiguration" Multiplicity="1" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EquipmentConfiguration">
+              <PropertyRef Name="EquipmentConfigurationId" />
+            </Principal>
+            <Dependent Role="Equipment">
+              <PropertyRef Name="EquipmentConfigurationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Equipment__Equip__05A3D694">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+          <End Role="EquipmentComponent" Type="Self.EquipmentComponent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="EquipmentId" />
+            </Principal>
+            <Dependent Role="EquipmentComponent">
+              <PropertyRef Name="EquipmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="wiki_nolek_dk_dbModelStoreContainer">
+          <EntitySet Name="Component" EntityType="Self.Component" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Equipment" EntityType="Self.Equipment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EquipmentComponent" EntityType="Self.EquipmentComponent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EquipmentConfiguration" EntityType="Self.EquipmentConfiguration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EquipmentType" EntityType="Self.EquipmentType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Equipment__Compo__04AFB25B" Association="Self.FK__Equipment__Compo__04AFB25B">
+            <End Role="Component" EntitySet="Component" />
+            <End Role="EquipmentComponent" EntitySet="EquipmentComponent" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Equipment__Equip__01D345B0" Association="Self.FK__Equipment__Equip__01D345B0">
+            <End Role="EquipmentType" EntitySet="EquipmentType" />
+            <End Role="Equipment" EntitySet="Equipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Equipment__Equip__02C769E9" Association="Self.FK__Equipment__Equip__02C769E9">
+            <End Role="EquipmentConfiguration" EntitySet="EquipmentConfiguration" />
+            <End Role="Equipment" EntitySet="Equipment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Equipment__Equip__05A3D694" Association="Self.FK__Equipment__Equip__05A3D694">
+            <End Role="Equipment" EntitySet="Equipment" />
+            <End Role="EquipmentComponent" EntitySet="EquipmentComponent" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="wiki_nolek_dk_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Component">
+          <Key>
+            <PropertyRef Name="ComponentId" />
+          </Key>
+          <Property Name="ComponentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ComponentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ComponentDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ComponentOrderNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ComponentSerialNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ComponentQuantity" Type="Int32" Nullable="false" />
+          <Property Name="ComponentSupplyNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="EquipmentComponents" Relationship="Self.FK__Equipment__Compo__04AFB25B" FromRole="Component" ToRole="EquipmentComponent" />
+        </EntityType>
+        <EntityType Name="Equipment">
+          <Key>
+            <PropertyRef Name="EquipmentId" />
+          </Key>
+          <Property Name="EquipmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EquipmentDateCreated" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EquipmentImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EquipmentTypeID" Type="Int32" Nullable="false" />
+          <Property Name="EquipmentSerialnumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EquipmentMainEquipmentNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EquipmentConfigurationID" Type="Int32" Nullable="false" />
+          <Property Name="EquipmentStatus" Type="Boolean" Nullable="false" />
+          <Property Name="EquipmentCategory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="EquipmentType" Relationship="Self.FK__Equipment__Equip__01D345B0" FromRole="Equipment" ToRole="EquipmentType" />
+          <NavigationProperty Name="EquipmentConfiguration" Relationship="Self.FK__Equipment__Equip__02C769E9" FromRole="Equipment" ToRole="EquipmentConfiguration" />
+          <NavigationProperty Name="EquipmentComponents" Relationship="Self.FK__Equipment__Equip__05A3D694" FromRole="Equipment" ToRole="EquipmentComponent" />
+        </EntityType>
+        <EntityType Name="EquipmentComponent">
+          <Key>
+            <PropertyRef Name="ComponentID" />
+            <PropertyRef Name="EquipmentID" />
+          </Key>
+          <Property Name="ComponentID" Type="Int32" Nullable="false" />
+          <Property Name="EquipmentID" Type="Int32" Nullable="false" />
+          <Property Name="EquipmentComponentQuantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Component" Relationship="Self.FK__Equipment__Compo__04AFB25B" FromRole="EquipmentComponent" ToRole="Component" />
+          <NavigationProperty Name="Equipment" Relationship="Self.FK__Equipment__Equip__05A3D694" FromRole="EquipmentComponent" ToRole="Equipment" />
+        </EntityType>
+        <EntityType Name="EquipmentConfiguration">
+          <Key>
+            <PropertyRef Name="EquipmentConfigurationId" />
+          </Key>
+          <Property Name="EquipmentConfigurationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EquipmentConfigurationDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Equipments" Relationship="Self.FK__Equipment__Equip__02C769E9" FromRole="EquipmentConfiguration" ToRole="Equipment" />
+        </EntityType>
+        <EntityType Name="EquipmentType">
+          <Key>
+            <PropertyRef Name="EquipmentTypeID" />
+          </Key>
+          <Property Name="EquipmentTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EquipmentTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EquipmentTypeDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Equipments" Relationship="Self.FK__Equipment__Equip__01D345B0" FromRole="EquipmentType" ToRole="Equipment" />
+        </EntityType>
+        <Association Name="FK__Equipment__Compo__04AFB25B">
+          <End Role="Component" Type="Self.Component" Multiplicity="1" />
+          <End Role="EquipmentComponent" Type="Self.EquipmentComponent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Component">
+              <PropertyRef Name="ComponentId" />
+            </Principal>
+            <Dependent Role="EquipmentComponent">
+              <PropertyRef Name="ComponentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Equipment__Equip__01D345B0">
+          <End Role="EquipmentType" Type="Self.EquipmentType" Multiplicity="1" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EquipmentType">
+              <PropertyRef Name="EquipmentTypeID" />
+            </Principal>
+            <Dependent Role="Equipment">
+              <PropertyRef Name="EquipmentTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Equipment__Equip__02C769E9">
+          <End Role="EquipmentConfiguration" Type="Self.EquipmentConfiguration" Multiplicity="1" />
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EquipmentConfiguration">
+              <PropertyRef Name="EquipmentConfigurationId" />
+            </Principal>
+            <Dependent Role="Equipment">
+              <PropertyRef Name="EquipmentConfigurationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Equipment__Equip__05A3D694">
+          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
+          <End Role="EquipmentComponent" Type="Self.EquipmentComponent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="EquipmentId" />
+            </Principal>
+            <Dependent Role="EquipmentComponent">
+              <PropertyRef Name="EquipmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="wiki_nolek_dk_dbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Components" EntityType="Self.Component" />
+          <EntitySet Name="Equipments" EntityType="Self.Equipment" />
+          <EntitySet Name="EquipmentComponents" EntityType="Self.EquipmentComponent" />
+          <EntitySet Name="EquipmentConfigurations" EntityType="Self.EquipmentConfiguration" />
+          <EntitySet Name="EquipmentTypes" EntityType="Self.EquipmentType" />
+          <AssociationSet Name="FK__Equipment__Compo__04AFB25B" Association="Self.FK__Equipment__Compo__04AFB25B">
+            <End Role="Component" EntitySet="Components" />
+            <End Role="EquipmentComponent" EntitySet="EquipmentComponents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Equipment__Equip__01D345B0" Association="Self.FK__Equipment__Equip__01D345B0">
+            <End Role="EquipmentType" EntitySet="EquipmentTypes" />
+            <End Role="Equipment" EntitySet="Equipments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Equipment__Equip__02C769E9" Association="Self.FK__Equipment__Equip__02C769E9">
+            <End Role="EquipmentConfiguration" EntitySet="EquipmentConfigurations" />
+            <End Role="Equipment" EntitySet="Equipments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Equipment__Equip__05A3D694" Association="Self.FK__Equipment__Equip__05A3D694">
+            <End Role="Equipment" EntitySet="Equipments" />
+            <End Role="EquipmentComponent" EntitySet="EquipmentComponents" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="wiki_nolek_dk_dbModelStoreContainer" CdmEntityContainer="wiki_nolek_dk_dbEntities">
+          <EntitySetMapping Name="Components">
+            <EntityTypeMapping TypeName="wiki_nolek_dk_dbModel.Component">
+              <MappingFragment StoreEntitySet="Component">
+                <ScalarProperty Name="ComponentId" ColumnName="ComponentId" />
+                <ScalarProperty Name="ComponentName" ColumnName="ComponentName" />
+                <ScalarProperty Name="ComponentDescription" ColumnName="ComponentDescription" />
+                <ScalarProperty Name="ComponentOrderNumber" ColumnName="ComponentOrderNumber" />
+                <ScalarProperty Name="ComponentSerialNumber" ColumnName="ComponentSerialNumber" />
+                <ScalarProperty Name="ComponentQuantity" ColumnName="ComponentQuantity" />
+                <ScalarProperty Name="ComponentSupplyNumber" ColumnName="ComponentSupplyNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Equipments">
+            <EntityTypeMapping TypeName="wiki_nolek_dk_dbModel.Equipment">
+              <MappingFragment StoreEntitySet="Equipment">
+                <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
+                <ScalarProperty Name="EquipmentDateCreated" ColumnName="EquipmentDateCreated" />
+                <ScalarProperty Name="EquipmentImagePath" ColumnName="EquipmentImagePath" />
+                <ScalarProperty Name="EquipmentTypeID" ColumnName="EquipmentTypeID" />
+                <ScalarProperty Name="EquipmentSerialnumber" ColumnName="EquipmentSerialnumber" />
+                <ScalarProperty Name="EquipmentMainEquipmentNumber" ColumnName="EquipmentMainEquipmentNumber" />
+                <ScalarProperty Name="EquipmentConfigurationID" ColumnName="EquipmentConfigurationID" />
+                <ScalarProperty Name="EquipmentStatus" ColumnName="EquipmentStatus" />
+                <ScalarProperty Name="EquipmentCategory" ColumnName="EquipmentCategory" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EquipmentComponents">
+            <EntityTypeMapping TypeName="wiki_nolek_dk_dbModel.EquipmentComponent">
+              <MappingFragment StoreEntitySet="EquipmentComponent">
+                <ScalarProperty Name="ComponentID" ColumnName="ComponentID" />
+                <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
+                <ScalarProperty Name="EquipmentComponentQuantity" ColumnName="EquipmentComponentQuantity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EquipmentConfigurations">
+            <EntityTypeMapping TypeName="wiki_nolek_dk_dbModel.EquipmentConfiguration">
+              <MappingFragment StoreEntitySet="EquipmentConfiguration">
+                <ScalarProperty Name="EquipmentConfigurationId" ColumnName="EquipmentConfigurationId" />
+                <ScalarProperty Name="EquipmentConfigurationDescription" ColumnName="EquipmentConfigurationDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EquipmentTypes">
+            <EntityTypeMapping TypeName="wiki_nolek_dk_dbModel.EquipmentType">
+              <MappingFragment StoreEntitySet="EquipmentType">
+                <ScalarProperty Name="EquipmentTypeID" ColumnName="EquipmentTypeID" />
+                <ScalarProperty Name="EquipmentTypeName" ColumnName="EquipmentTypeName" />
+                <ScalarProperty Name="EquipmentTypeDescription" ColumnName="EquipmentTypeDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
