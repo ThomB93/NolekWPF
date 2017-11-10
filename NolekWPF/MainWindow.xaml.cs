@@ -20,9 +20,16 @@ namespace NolekWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        private wiki_nolek_dk_dbEntities _context;
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            _context = new wiki_nolek_dk_dbEntities();
+            EquipDataGrid.ItemsSource = _context.Equipments.ToList();
         }
     }
 }

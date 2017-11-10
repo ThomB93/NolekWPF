@@ -5,6 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NolekWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid />
+        Title="Equipment CRUD"
+        Height="350"
+        Width="606.667"
+        ResizeMode='NoResize'
+        WindowStartupLocation='CenterScreen'
+        Loaded='Window_Loaded'>
+    <Grid>
+    <DataGrid Name='EquipDataGrid' HorizontalAlignment='Left'
+              Height='156'
+              Margin='10,10,0,0'
+              VerticalAlignment='Top'
+              Width='579' >
+      
+      </DataGrid>
+  </Grid>
 </Window>
