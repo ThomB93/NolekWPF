@@ -20,7 +20,6 @@ namespace NolekWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        private wiki_nolek_dk_dbEntities _context;
         public MainWindow()
         {
             InitializeComponent();
@@ -28,8 +27,17 @@ namespace NolekWPF
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _context = new wiki_nolek_dk_dbEntities();
-            EquipDataGrid.ItemsSource = _context.Equipments.ToList();
+            EquipDataGrid.ItemsSource = GetEquipment();
+        }
+
+        public List<Equipment> GetEquipment()
+        {
+            //eager loading, db is disposed after use
+            using (wiki_nolek_dk_dbEntities db = new wiki_nolek_dk_dbEntities())
+            {
+                db.Configuration.LazyLoadingEnabled = true;
+                return db.Equipments.ToList();
+            }
         }
     }
 }

@@ -6,18 +6,17 @@
         xmlns:local="clr-namespace:NolekWPF"
         mc:Ignorable="d"
         Title="Equipment CRUD"
-        Height="350"
-        Width="606.667"
+        Height="626"
+        Width="779.167"
         ResizeMode='NoResize'
         WindowStartupLocation='CenterScreen'
         Loaded='Window_Loaded'>
     <Grid>
     <DataGrid Name='EquipDataGrid' HorizontalAlignment='Left'
               Height='156'
+              AutoGenerateColumns="True"
               Margin='10,10,0,0'
               VerticalAlignment='Top'
-              Width='579' >
-      
-      </DataGrid>
+              Width='753' />
   </Grid>
 </Window>
