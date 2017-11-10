@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using NolekWPF.ViewModels;
 
 namespace NolekWPF
 {
@@ -36,6 +37,14 @@ namespace NolekWPF
             using (wiki_nolek_dk_dbEntities db = new wiki_nolek_dk_dbEntities())
             {
                 db.Configuration.LazyLoadingEnabled = true;
+
+                var query = from o in db.Equipments
+                    select new EquipmentViewModel
+                    {
+                        EquipmentTypeName = o.EquipmentType.EquipmentTypeName,
+                        EquipmentConfigurationDescription = o.EquipmentConfiguration.EquipmentConfigurationDescription
+                    };
+
                 return db.Equipments.ToList();
             }
         }

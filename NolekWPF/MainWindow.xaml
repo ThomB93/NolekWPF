@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:NolekWPF"
         mc:Ignorable="d"
         Title="Equipment CRUD"
-        Height="626"
+        Height="311"
         Width="779.167"
         ResizeMode='NoResize'
         WindowStartupLocation='CenterScreen'
@@ -14,9 +14,12 @@
     <Grid>
     <DataGrid Name='EquipDataGrid' HorizontalAlignment='Left'
               Height='156'
-              AutoGenerateColumns="True"
+              AutoGenerateColumns="False"
               Margin='10,10,0,0'
               VerticalAlignment='Top'
-              Width='753' />
+              Width='753' >
+      <DataGridTextColumn Binding="{Binding  }"
+                          Header="Type"/>
+    </DataGrid>
   </Grid>
 </Window>
