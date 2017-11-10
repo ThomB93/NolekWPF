@@ -31,21 +31,21 @@ namespace NolekWPF
             EquipDataGrid.ItemsSource = GetEquipment();
         }
 
-        public List<Equipment> GetEquipment()
+        public List<EquipmentView> GetEquipment()
         {
             //eager loading, db is disposed after use
             using (wiki_nolek_dk_dbEntities db = new wiki_nolek_dk_dbEntities())
             {
                 db.Configuration.LazyLoadingEnabled = true;
 
-                var query = from o in db.Equipments
+                /*var query = from o in db.Equipments
                     select new EquipmentViewModel
                     {
                         EquipmentTypeName = o.EquipmentType.EquipmentTypeName,
                         EquipmentConfigurationDescription = o.EquipmentConfiguration.EquipmentConfigurationDescription
-                    };
+                    };*/
 
-                return db.Equipments.ToList();
+                return db.EquipmentViews.ToList();
             }
         }
     }

@@ -12,14 +12,13 @@
         WindowStartupLocation='CenterScreen'
         Loaded='Window_Loaded'>
     <Grid>
-    <DataGrid Name='EquipDataGrid' HorizontalAlignment='Left'
+    <DataGrid Name='EquipDataGrid'
+              HorizontalAlignment='Left'
               Height='156'
-              AutoGenerateColumns="False"
+              AutoGenerateColumns="True"
               Margin='10,10,0,0'
               VerticalAlignment='Top'
-              Width='753' >
-      <DataGridTextColumn Binding="{Binding  }"
-                          Header="Type"/>
+              Width='753'>
     </DataGrid>
   </Grid>
 </Window>

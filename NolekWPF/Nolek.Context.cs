@@ -30,5 +30,6 @@ namespace NolekWPF
         public virtual DbSet<EquipmentComponent> EquipmentComponents { get; set; }
         public virtual DbSet<EquipmentConfiguration> EquipmentConfigurations { get; set; }
         public virtual DbSet<EquipmentType> EquipmentTypes { get; set; }
+        public virtual DbSet<EquipmentView> EquipmentViews { get; set; }
     }
 }
