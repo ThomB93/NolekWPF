@@ -66,6 +66,7 @@ warning 6002: The table/view 'wiki_nolek_dk_db.dbo.EquipmentView' does not have 
             <PropertyRef Name="EquipmentCategory" />
             <PropertyRef Name="EquipmentTypeName" />
             <PropertyRef Name="EquipmentConfigurationDescription" />
+            <PropertyRef Name="EquipmentId" />
           </Key>
           <Property Name="EquipmentDateCreated" Type="date" Nullable="false" />
           <Property Name="EquipmentImagePath" Type="nvarchar(max)" />
@@ -75,6 +76,7 @@ warning 6002: The table/view 'wiki_nolek_dk_db.dbo.EquipmentView' does not have 
           <Property Name="EquipmentCategory" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="EquipmentTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="EquipmentConfigurationDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="EquipmentId" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK__Equipment__Compo__04AFB25B">
           <End Role="Component" Type="Self.Component" Multiplicity="1" />
@@ -139,7 +141,8 @@ warning 6002: The table/view 'wiki_nolek_dk_db.dbo.EquipmentView' does not have 
     [EquipmentView].[EquipmentStatus] AS [EquipmentStatus], 
     [EquipmentView].[EquipmentCategory] AS [EquipmentCategory], 
     [EquipmentView].[EquipmentTypeName] AS [EquipmentTypeName], 
-    [EquipmentView].[EquipmentConfigurationDescription] AS [EquipmentConfigurationDescription]
+    [EquipmentView].[EquipmentConfigurationDescription] AS [EquipmentConfigurationDescription], 
+    [EquipmentView].[EquipmentId] AS [EquipmentId]
     FROM [dbo].[EquipmentView] AS [EquipmentView]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK__Equipment__Compo__04AFB25B" Association="Self.FK__Equipment__Compo__04AFB25B">
@@ -302,6 +305,7 @@ warning 6002: The table/view 'wiki_nolek_dk_db.dbo.EquipmentView' does not have 
             <PropertyRef Name="EquipmentCategory" />
             <PropertyRef Name="EquipmentTypeName" />
             <PropertyRef Name="EquipmentConfigurationDescription" />
+            <PropertyRef Name="EquipmentId" />
           </Key>
           <Property Name="EquipmentDateCreated" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="EquipmentImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
@@ -311,6 +315,7 @@ warning 6002: The table/view 'wiki_nolek_dk_db.dbo.EquipmentView' does not have 
           <Property Name="EquipmentCategory" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="EquipmentTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="EquipmentConfigurationDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EquipmentId" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -375,6 +380,7 @@ warning 6002: The table/view 'wiki_nolek_dk_db.dbo.EquipmentView' does not have 
           <EntitySetMapping Name="EquipmentViews">
             <EntityTypeMapping TypeName="wiki_nolek_dk_dbModel.EquipmentView">
               <MappingFragment StoreEntitySet="EquipmentView">
+                <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
                 <ScalarProperty Name="EquipmentConfigurationDescription" ColumnName="EquipmentConfigurationDescription" />
                 <ScalarProperty Name="EquipmentTypeName" ColumnName="EquipmentTypeName" />
                 <ScalarProperty Name="EquipmentCategory" ColumnName="EquipmentCategory" />

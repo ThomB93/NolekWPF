@@ -22,5 +22,6 @@ namespace NolekWPF
         public string EquipmentCategory { get; set; }
         public string EquipmentTypeName { get; set; }
         public string EquipmentConfigurationDescription { get; set; }
+        public int EquipmentId { get; set; }
     }
 }

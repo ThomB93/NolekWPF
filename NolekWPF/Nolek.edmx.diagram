@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="97435f22f8cf402caa25b02b1b9289e2" Name="Diagram1">
-        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.Component" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.Component" Width="1.5" PointX="7.125" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.Equipment" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.EquipmentComponent" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
         <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.EquipmentConfiguration" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
@@ -14,7 +14,7 @@
         <AssociationConnector Association="wiki_nolek_dk_dbModel.FK__Equipment__Equip__01D345B0" ManuallyRouted="false" />
         <AssociationConnector Association="wiki_nolek_dk_dbModel.FK__Equipment__Equip__02C769E9" ManuallyRouted="false" />
         <AssociationConnector Association="wiki_nolek_dk_dbModel.FK__Equipment__Equip__05A3D694" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.EquipmentView" Width="1.5" PointX="8.875" PointY="3.125" />
+        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.EquipmentView" Width="1.5" PointX="8.875" PointY="1.375" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
