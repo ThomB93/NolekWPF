@@ -4,6 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NolekWPF"
+        xmlns:views='clr-namespace:NolekWPF.UserControls.Equipment'
+        xmlns:equipment="clr-namespace:NolekWPF.UserControls.Equipment"
         mc:Ignorable="d"
         Title="Equipment CRUD"
         Height="311"
@@ -11,14 +13,28 @@
         ResizeMode='NoResize'
         WindowStartupLocation='CenterScreen'
         Loaded='Window_Loaded'>
-    <Grid>
-    <DataGrid Name='EquipDataGrid'
-              HorizontalAlignment='Left'
-              Height='156'
-              AutoGenerateColumns="True"
-              Margin='10,10,0,0'
-              VerticalAlignment='Top'
-              Width='753'>
-    </DataGrid>
-  </Grid>
+    <StackPanel>
+      <TabControl>
+        <TabItem Header="Overview">
+        <DataGrid Name='EquipDataGrid'
+                  HorizontalAlignment='Left'
+                  Height='156'
+                  AutoGenerateColumns="True"
+                  Margin='10,10,0,0'
+                  VerticalAlignment='Top'
+                  Width='753'>
+        </DataGrid>
+      </TabItem>
+      <TabItem Header="Create">
+        <views:EquipmentCreateView></views:EquipmentCreateView>
+      </TabItem>
+        <TabItem Header="Update">
+          <views:EquipmentUpdateView></views:EquipmentUpdateView>
+        </TabItem>
+        <TabItem Header="Delete">
+          <views:EquipmentDeleteView></views:EquipmentDeleteView>
+        </TabItem>
+    </TabControl>
+    
+  </StackPanel>
 </Window>

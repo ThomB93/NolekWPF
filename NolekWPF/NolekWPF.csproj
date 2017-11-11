@@ -65,6 +65,15 @@
     <Compile Include="EquipmentView.cs">
       <DependentUpon>Nolek.tt</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Equipment\EquipmentCreateView.xaml.cs">
+      <DependentUpon>EquipmentCreateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Equipment\EquipmentDeleteView.xaml.cs">
+      <DependentUpon>EquipmentDeleteView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Equipment\EquipmentUpdateView.xaml.cs">
+      <DependentUpon>EquipmentUpdateView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\EquipmentViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -93,6 +102,18 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UserControls\Equipment\EquipmentCreateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Equipment\EquipmentDeleteView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Equipment\EquipmentUpdateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Nolek.Context.cs">
