@@ -4,9 +4,29 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:NolekWPF.UserControls.Equipment"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-            
-    </Grid>
+             mc:Ignorable="d"
+            Height="498.6"
+            Width="1089.567" d:DesignWidth="300">
+    <StackPanel>
+        <TabControl Height='395' Loaded="Window_Loaded">
+            <TabItem>
+                <StackPanel Margin='0,0,-0.4,117.2'>
+                    <Label Content="Equipment" />
+                    <DataGrid Name='EquipDataGrid'
+                    HorizontalAlignment='Left'
+                    Height='250'
+                    AutoGenerateColumns="True"
+                    Margin='10,10,0,0'
+                    VerticalAlignment='Top'
+                    Width='1059' SelectionChanged="Selection_Changed"
+                    >
+                    </DataGrid>
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+        <Grid Height="100">
+            <TextBox x:Name="tbImagePath" HorizontalAlignment="Left" Height="23" Margin="22,23,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+            <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Margin="194,23,0,0" VerticalAlignment="Top" Width="75" Click="btnUpdate_Click"/>
+        </Grid>
+    </StackPanel>
 </UserControl>
