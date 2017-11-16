@@ -7,28 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NolekWPF
+namespace NolekWPF.DataAccess
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Component
+    public partial class EquipmentCategory
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Component()
+        public EquipmentCategory()
         {
-            this.EquipmentComponents = new HashSet<EquipmentComponent>();
+            this.Equipments = new HashSet<Equipment>();
         }
     
-        public int ComponentId { get; set; }
-        public string ComponentName { get; set; }
-        public string ComponentDescription { get; set; }
-        public string ComponentOrderNumber { get; set; }
-        public string ComponentSerialNumber { get; set; }
-        public int ComponentQuantity { get; set; }
-        public string ComponentSupplyNumber { get; set; }
+        public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EquipmentComponent> EquipmentComponents { get; set; }
+        public virtual ICollection<Equipment> Equipments { get; set; }
     }
 }

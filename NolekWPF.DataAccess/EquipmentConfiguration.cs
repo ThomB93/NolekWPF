@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NolekWPF
+namespace NolekWPF.DataAccess
 {
     using System;
     using System.Collections.Generic;

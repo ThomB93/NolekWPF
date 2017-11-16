@@ -7,18 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NolekWPF
+namespace NolekWPF.DataAccess
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class EquipmentComponent
+    public partial class sysdiagram
     {
-        public int ComponentID { get; set; }
-        public int EquipmentID { get; set; }
-        public int EquipmentComponentQuantity { get; set; }
-    
-        public virtual Component Component { get; set; }
-        public virtual Equipment Equipment { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NolekWPF
+namespace NolekWPF.DataAccess
 {
     using System;
     using System.Collections.Generic;
@@ -28,11 +28,12 @@ namespace NolekWPF
         public string EquipmentMainEquipmentNumber { get; set; }
         public int EquipmentConfigurationID { get; set; }
         public bool EquipmentStatus { get; set; }
-        public string EquipmentCategory { get; set; }
+        public int EquipmentCategoryId { get; set; }
     
-        public virtual EquipmentType EquipmentType { get; set; }
-        public virtual EquipmentConfiguration EquipmentConfiguration { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EquipmentComponent> EquipmentComponents { get; set; }
+        public virtual EquipmentCategory EquipmentCategory { get; set; }
+        public virtual EquipmentConfiguration EquipmentConfiguration { get; set; }
+        public virtual EquipmentType EquipmentType { get; set; }
     }
 }

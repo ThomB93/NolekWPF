@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NolekWPF
+namespace NolekWPF.DataAccess
 {
     using System;
     using System.Data.Entity;
@@ -27,9 +27,11 @@ namespace NolekWPF
     
         public virtual DbSet<Component> Components { get; set; }
         public virtual DbSet<Equipment> Equipments { get; set; }
+        public virtual DbSet<EquipmentCategory> EquipmentCategories { get; set; }
         public virtual DbSet<EquipmentComponent> EquipmentComponents { get; set; }
         public virtual DbSet<EquipmentConfiguration> EquipmentConfigurations { get; set; }
         public virtual DbSet<EquipmentType> EquipmentTypes { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<EquipmentView> EquipmentViews { get; set; }
     }
 }

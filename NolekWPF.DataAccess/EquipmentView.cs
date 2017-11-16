@@ -7,21 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NolekWPF
+namespace NolekWPF.DataAccess
 {
     using System;
     using System.Collections.Generic;
     
     public partial class EquipmentView
     {
+        public int EquipmentId { get; set; }
         public System.DateTime EquipmentDateCreated { get; set; }
         public string EquipmentImagePath { get; set; }
         public string EquipmentSerialnumber { get; set; }
         public string EquipmentMainEquipmentNumber { get; set; }
         public bool EquipmentStatus { get; set; }
-        public string EquipmentCategory { get; set; }
-        public string EquipmentTypeName { get; set; }
+        public string CategoryName { get; set; }
         public string EquipmentConfigurationDescription { get; set; }
-        public int EquipmentId { get; set; }
+        public string EquipmentTypeName { get; set; }
+        public string EquipmentTypeDescription { get; set; }
     }
 }

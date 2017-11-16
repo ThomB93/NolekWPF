@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NolekWPF", "NolekWPF\NolekWPF.csproj", "{5E0A3186-B289-416E-83C9-5A28DF847C9D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NolekWPF.UI", "NolekWPF\NolekWPF.UI.csproj", "{5E0A3186-B289-416E-83C9-5A28DF847C9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NolekWPF.DataAccess", "NolekWPF.DataAccess\NolekWPF.DataAccess.csproj", "{3B5215EC-76EA-4EB0-9B3C-99FC5662F62A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{5E0A3186-B289-416E-83C9-5A28DF847C9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E0A3186-B289-416E-83C9-5A28DF847C9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E0A3186-B289-416E-83C9-5A28DF847C9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B5215EC-76EA-4EB0-9B3C-99FC5662F62A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B5215EC-76EA-4EB0-9B3C-99FC5662F62A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B5215EC-76EA-4EB0-9B3C-99FC5662F62A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B5215EC-76EA-4EB0-9B3C-99FC5662F62A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
