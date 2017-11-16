@@ -13,7 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using NolekWPF.ViewModels;
 
 namespace NolekWPF
 {
@@ -26,61 +25,21 @@ namespace NolekWPF
         {
             InitializeComponent();
         }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void mnuEquipList_Click(object sender, RoutedEventArgs e)
         {
-            EquipDataGrid.ItemsSource = GetEquipment();
+            equipListView.Visibility = Visibility.Visible;
         }
-
-        public List<EquipmentView> GetEquipment()
+        private void mnuEquipCreate_Click(object sender, RoutedEventArgs e)
         {
-            //lazy loading, db is disposed after use
-            using (wiki_nolek_dk_dbEntities db = new wiki_nolek_dk_dbEntities())
-            {
-                db.Configuration.LazyLoadingEnabled = true;
-                return db.EquipmentViews.ToList();
-            }
+            equipCreateView.Visibility = Visibility.Visible;
         }
-
-        public IEnumerable<DataGridRow> GetDataGridRows(DataGrid grid)
+        private void mnuEquipUpdate_Click(object sender, RoutedEventArgs e)
         {
-            var itemsSource = grid.ItemsSource as IEnumerable;
-            if (null == itemsSource) yield return null;
-            foreach (var item in itemsSource)
-            {
-                var row = grid.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
-                if (null != row) yield return row;
-            }
+            equipUpdateView.Visibility = Visibility.Visible;
         }
-        private void EquipDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void mnuExit_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                var row_list = GetDataGridRows(EquipDataGrid);
-                foreach (DataGridRow single_row in row_list)
-                {
-                    if (single_row.IsSelected == true)
-                    {
-                        EquipmentView selectedEquipment = (EquipmentView)EquipDataGrid.SelectedItem;
-                        using (wiki_nolek_dk_dbEntities db = new wiki_nolek_dk_dbEntities())
-                        {
-                            db.Configuration.LazyLoadingEnabled = true;
-                            var equipmentRelation = db.EquipmentComponents.Where(c => c.EquipmentID == selectedEquipment.EquipmentId);
-                            var componentsForEquipment = new List<Component>();
-                            foreach (var row in equipmentRelation)
-                            {
-                                var component = db.Components.FirstOrDefault(c => c.ComponentId == row.ComponentID);
-                                componentsForEquipment.Add(component);
-                            }
-                            CompDataGrid.ItemsSource = componentsForEquipment;
-                        }
-                    }
-                }
-            }
-            catch
-            {
-                MessageBox.Show("Det valgte udstyr eksisterer ikke.");
-            }
+            System.Windows.Application.Current.Shutdown();
         }
     }
 }

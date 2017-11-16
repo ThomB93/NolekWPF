@@ -7,21 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NolekWPF.DataAccess
+namespace NolekWPF.Model
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class EquipmentCategory
+    public partial class EquipmentConfiguration
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public EquipmentCategory()
+        public EquipmentConfiguration()
         {
             this.Equipments = new HashSet<Equipment>();
         }
     
-        public int CategoryId { get; set; }
-        public string CategoryName { get; set; }
+        public int EquipmentConfigurationId { get; set; }
+        public string EquipmentConfigurationDescription { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Equipment> Equipments { get; set; }

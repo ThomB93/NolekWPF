@@ -12,6 +12,7 @@ namespace NolekWPF.DataAccess
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using NolekWPF.Model;
     
     public partial class wiki_nolek_dk_dbEntities : DbContext
     {

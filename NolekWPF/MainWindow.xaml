@@ -3,52 +3,28 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:NolekWPF"
-        xmlns:views='clr-namespace:NolekWPF.UserControls.Equipment'
         xmlns:equipment="clr-namespace:NolekWPF.UserControls.Equipment"
         mc:Ignorable="d"
-        Title="Equipment CRUD"
+        Title="Nolek"
         Height="656.6"
         Width="1089.567"
         ResizeMode='NoResize'
-        WindowStartupLocation='CenterScreen'
-        Loaded='Window_Loaded'>
-  <StackPanel>
-    <TabControl Height='733'
-                Margin='0,0,0.2,0'>
-      <TabItem Header="Overview">
-        <StackPanel Margin='0,0,-0.4,117.2'>
-          <Label Content="Equipment" />
-          <DataGrid Name='EquipDataGrid'
-                    HorizontalAlignment='Left'
-                    Height='250'
-                    AutoGenerateColumns="True"
-                    Margin='10,10,0,0'
-                    VerticalAlignment='Top'
-                    Width='1059'
-                    SelectionChanged='EquipDataGrid_SelectionChanged'>
-          </DataGrid>
-          <Label Content="Components for Equipment" />
-          <DataGrid Height='266'
-                    x:Name='CompDataGrid'
-                    HorizontalAlignment='Left'
-                    AutoGenerateColumns="True"
-                    VerticalAlignment='Top'
-                    Width='1059'
-                    Margin='10,0,0,0' />
-        </StackPanel>
-
-      </TabItem>
-      <TabItem Header="Create">
-        <views:EquipmentCreateView></views:EquipmentCreateView>
-      </TabItem>
-      <TabItem Header="Update">
-        <views:EquipmentUpdateView></views:EquipmentUpdateView>
-      </TabItem>
-      <TabItem Header="Delete">
-        <views:EquipmentDeleteView></views:EquipmentDeleteView>
-      </TabItem>
-    </TabControl>
-
-  </StackPanel>
+        WindowStartupLocation='CenterScreen'>
+    <StackPanel>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="Equipment">
+                    <MenuItem Header="_List" Click="mnuEquipList_Click" />
+                    <MenuItem Header="_Create" Click="mnuEquipCreate_Click" />
+                    <MenuItem Header="_Update" Click="mnuEquipUpdate_Click" />
+                </MenuItem>
+                <MenuItem Header="_Exit" Click="mnuExit_Click" />
+            </Menu>
+            <TextBox AcceptsReturn="True" />
+        </DockPanel>
+        <equipment:EquipmentListView Visibility="Hidden" x:Name="equipListView"></equipment:EquipmentListView>
+        <equipment:EquipmentCreateView Visibility="Hidden" x:Name="equipCreateView"></equipment:EquipmentCreateView>
+        <equipment:EquipmentUpdateView Visibility="Hidden" x:Name="equipUpdateView"></equipment:EquipmentUpdateView>
+    </StackPanel>
+    
 </Window>

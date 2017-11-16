@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4A816111-A67C-4589-B8B9-1BB38DB85943}</ProjectGuid>
+    <ProjectGuid>{D5DAAA93-E0C3-4B7F-B0E6-8DD284560DB4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NolekWPF.Model</RootNamespace>
     <AssemblyName>NolekWPF.Model</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,7 +41,46 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Component.cs">
+      <DependentUpon>Nolek.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Equipment.cs">
+      <DependentUpon>Nolek.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EquipmentCategory.cs">
+      <DependentUpon>Nolek.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EquipmentComponent.cs">
+      <DependentUpon>Nolek.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EquipmentConfiguration.cs">
+      <DependentUpon>Nolek.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EquipmentLookup.cs" />
+    <Compile Include="EquipmentType.cs">
+      <DependentUpon>Nolek.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EquipmentView.cs">
+      <DependentUpon>Nolek.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Nolek.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Nolek.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>Nolek.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Nolek.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Nolek.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
