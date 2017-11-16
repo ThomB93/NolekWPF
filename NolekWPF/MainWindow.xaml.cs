@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NolekWPF.ViewModels;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +22,20 @@ namespace NolekWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private MainViewModel _viewModel;
+        public MainWindow(MainViewModel viewModel)
         {
             InitializeComponent();
+            _viewModel = viewModel; //assign injected view model to local property
+            DataContext = viewModel; //set the data context for the view to the viewmodel
+            Loaded += MainWindow_Loaded; //event when the window first loads
         }
+
+        private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            await _viewModel.LoadAsync();
+        }
+
         private void mnuEquipList_Click(object sender, RoutedEventArgs e)
         {
             equipListView.Visibility = Visibility.Visible;

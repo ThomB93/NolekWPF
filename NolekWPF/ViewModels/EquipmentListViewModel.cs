@@ -23,6 +23,7 @@ namespace NolekWPF.ViewModels
 
         public async Task LoadAsync()
         {
+
             var lookup = await _equipmentLookupDataService.GetEquipmentLookupAsync();
             Equipments.Clear();
             foreach (var item in lookup)

@@ -20,10 +20,11 @@
                 </MenuItem>
                 <MenuItem Header="_Exit" Click="mnuExit_Click" />
             </Menu>
-            <TextBox AcceptsReturn="True" />
         </DockPanel>
-        <equipment:EquipmentListView Visibility="Hidden" x:Name="equipListView"></equipment:EquipmentListView>
+        <equipment:EquipmentListView DataContext="{Binding EquipmentListViewModel}" Visibility="Hidden" x:Name="equipListView"></equipment:EquipmentListView>
+        
         <equipment:EquipmentCreateView Visibility="Hidden" x:Name="equipCreateView"></equipment:EquipmentCreateView>
+        
         <equipment:EquipmentUpdateView Visibility="Hidden" x:Name="equipUpdateView"></equipment:EquipmentUpdateView>
     </StackPanel>
     

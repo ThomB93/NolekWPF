@@ -7,9 +7,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
+        <Label Grid.Column="0" Content="Equipment List"></Label>
         <ListView Grid.Column="0"
-              ItemsSource="{Binding Friends}"
-              SelectedItem="{Binding SelectedFriend, Mode=TwoWay}"
+              ItemsSource="{Binding Equipments}"
+              SelectedItem="{Binding SelectedEquipment, Mode=TwoWay}"
               
               DisplayMemberPath="DisplayMember"></ListView>
     </Grid>
