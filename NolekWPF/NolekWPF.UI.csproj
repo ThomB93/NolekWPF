@@ -89,8 +89,10 @@
     <Compile Include="UserControls\Equipment\EquipmentUpdateView.xaml.cs">
       <DependentUpon>EquipmentUpdateView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\EquipmentCreateViewModel.cs" />
     <Compile Include="ViewModels\EquipmentListItemViewModel.cs" />
     <Compile Include="ViewModels\EquipmentListViewModel.cs" />
+    <Compile Include="ViewModels\IEquipmentCreateViewModel.cs" />
     <Compile Include="ViewModels\IEquipmentListViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />

@@ -28,6 +28,7 @@ namespace NolekWPF.Startup
 
             //view models
             builder.RegisterType<EquipmentListViewModel>().As<IEquipmentListViewModel>();
+            builder.RegisterType<EquipmentCreateViewModel>().As<IEquipmentCreateViewModel>();
             builder.RegisterType<MainViewModel>().AsSelf();
 
             //register event aggregator

@@ -6,8 +6,8 @@
         xmlns:equipment="clr-namespace:NolekWPF.UserControls.Equipment"
         mc:Ignorable="d"
         Title="Nolek"
-        Height="656.6"
-        Width="1089.567"
+        Height="428.797"
+        Width="609.239"
         ResizeMode='NoResize'
         WindowStartupLocation='CenterScreen'>
     <StackPanel>
@@ -21,11 +21,11 @@
                 <MenuItem Header="_Exit" Click="mnuExit_Click" />
             </Menu>
         </DockPanel>
-        <equipment:EquipmentListView DataContext="{Binding EquipmentListViewModel}" Visibility="Hidden" x:Name="equipListView"></equipment:EquipmentListView>
-        
-        <equipment:EquipmentCreateView Visibility="Hidden" x:Name="equipCreateView"></equipment:EquipmentCreateView>
-        
-        <equipment:EquipmentUpdateView Visibility="Hidden" x:Name="equipUpdateView"></equipment:EquipmentUpdateView>
+        <equipment:EquipmentCreateView DataContext="{Binding EquipmentCreateViewModel}" Visibility="Collapsed " x:Name="equipCreateView"></equipment:EquipmentCreateView>
+
+        <equipment:EquipmentListView DataContext="{Binding EquipmentListViewModel}" Visibility="Collapsed " x:Name="equipListView"></equipment:EquipmentListView>
+
+        <equipment:EquipmentUpdateView Visibility="Collapsed " x:Name="equipUpdateView"></equipment:EquipmentUpdateView>
     </StackPanel>
     
 </Window>
