@@ -60,6 +60,7 @@
     <Compile Include="EquipmentType.cs">
       <DependentUpon>Nolek.tt</DependentUpon>
     </Compile>
+    <Compile Include="EquipmentTypeDto.cs" />
     <Compile Include="EquipmentView.cs">
       <DependentUpon>Nolek.tt</DependentUpon>
     </Compile>

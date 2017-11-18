@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NolekWPF.DataAccess;
+using NolekWPF.DataServices.Repositories;
 
 namespace NolekWPF.Startup
 {
@@ -26,11 +27,16 @@ namespace NolekWPF.Startup
             builder.RegisterType<EquipmentDataService>().As<IEquipmentDataService>();
             builder.RegisterType<EquipmentLookupDataService>().As<IEquipmentLookupDataService>();
 
+            //repositories
+            builder.RegisterType<EquipmentRepository>().As<IEquipmentRepository>();
+
             //view models
             builder.RegisterType<EquipmentListViewModel>().As<IEquipmentListViewModel>();
+            builder.RegisterType<EquipmentCreateViewModel>().As<IEquipmentCreateViewModel>();
             builder.RegisterType<MainViewModel>().AsSelf();
+            
 
-            //register event aggregator
+            //register event aggregators
 
             return builder.Build();
         }

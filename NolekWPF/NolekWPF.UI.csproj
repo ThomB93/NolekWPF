@@ -76,6 +76,8 @@
     <Compile Include="DataServices\EquipmentLookupDataService.cs" />
     <Compile Include="DataServices\IEquipmentDataService.cs" />
     <Compile Include="DataServices\IEquipmentLookupDataService.cs" />
+    <Compile Include="DataServices\Repositories\EquipmentRepository.cs" />
+    <Compile Include="DataServices\Repositories\IEquipmentRepository.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />
     <Compile Include="UserControls\Equipment\EquipmentCreateView.xaml.cs">
       <DependentUpon>EquipmentCreateView.xaml</DependentUpon>
@@ -89,8 +91,10 @@
     <Compile Include="UserControls\Equipment\EquipmentUpdateView.xaml.cs">
       <DependentUpon>EquipmentUpdateView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\EquipmentCreateViewModel.cs" />
     <Compile Include="ViewModels\EquipmentListItemViewModel.cs" />
     <Compile Include="ViewModels\EquipmentListViewModel.cs" />
+    <Compile Include="ViewModels\IEquipmentCreateViewModel.cs" />
     <Compile Include="ViewModels\IEquipmentListViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
@@ -142,6 +146,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\NolekWPF.Model.Equipment.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

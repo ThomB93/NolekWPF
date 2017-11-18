@@ -25,5 +25,18 @@ namespace NolekWPF.DataServices
                 return equipments;
             }
         }
+        public async Task<IEnumerable<EquipmentType>> GetTypesAsync()
+        {
+            using (var ctx = _contextCreator())
+            {
+                return await ctx.EquipmentTypes.AsNoTracking().Select(t => new EquipmentType()
+                {
+                    EquipmentTypeID = t.EquipmentTypeID,
+                    EquipmentTypeDescription = t.EquipmentTypeDescription,
+                    EquipmentTypeName = t.EquipmentTypeName
+
+                }).ToListAsync();
+            }
+        }
     }
 }
