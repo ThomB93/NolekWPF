@@ -23,12 +23,14 @@
         </DockPanel>
     <equipment:EquipmentListView DataContext="{Binding EquipmentListViewModel}"
                                  Visibility="Collapsed" x:Name="EquipListView"></equipment:EquipmentListView>
+        <equipment:EquipmentDetailView Grid.Column="1" DataContext="{Binding EquipmentDetailViewModel}"
+                                       Visibility="Collapsed" x:Name="EquipDetailView"></equipment:EquipmentDetailView>
 
-    <equipment:EquipmentCreateView Visibility="Collapsed"
+            <equipment:EquipmentCreateView Visibility="Collapsed"
                                    DataContext="{Binding EquipmentCreateViewModel}"
                                    x:Name="EquipCreateView"></equipment:EquipmentCreateView>
 
-    <equipment:EquipmentUpdateView Visibility="Collapsed" x:Name="EquipUpdateView"></equipment:EquipmentUpdateView>
+        <equipment:EquipmentUpdateView Visibility="Collapsed" x:Name="EquipUpdateView"></equipment:EquipmentUpdateView>
     </StackPanel>
     
 </Window>

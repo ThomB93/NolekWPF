@@ -6,44 +6,47 @@ using System.Threading.Tasks;
 using NolekWPF.Model;
 using NolekWPF.DataServices;
 using System.Collections.ObjectModel;
+using Prism.Events;
+using NolekWPF.Events;
 
 namespace NolekWPF.ViewModels
 {
     public class EquipmentListViewModel : ViewModelBase, IEquipmentListViewModel
     {
         private IEquipmentLookupDataService _equipmentLookupDataService;
-        public ObservableCollection<EquipmentListItemViewModel> Equipments { get; }
+        public ObservableCollection<EquipmentLookup> Equipments { get; }
+        private IEventAggregator _eventAggregator;
 
-        public EquipmentListViewModel(IEquipmentLookupDataService equipmentLookupDataService)
+        public EquipmentListViewModel(IEquipmentLookupDataService equipmentLookupDataService,
+            IEventAggregator eventAggregator)
         {
             _equipmentLookupDataService = equipmentLookupDataService;
-            Equipments = new ObservableCollection<EquipmentListItemViewModel>();
+            Equipments = new ObservableCollection<EquipmentLookup>();
             //initialize event aggregator
+            _eventAggregator = eventAggregator;
         }
 
         public async Task LoadAsync()
         {
-
             var lookup = await _equipmentLookupDataService.GetEquipmentLookupAsync();
-            Equipments.Clear();
             foreach (var item in lookup)
             {
-                Equipments.Add(new EquipmentListItemViewModel(item.EquipmentId, item.DisplayMember));
+                Equipments.Add(item);
             }
         }
 
-        private EquipmentListItemViewModel _selectedEquipment;
+        private EquipmentLookup _selectedEquipment;
 
-        public EquipmentListItemViewModel SelectedEquipment
+        public EquipmentLookup SelectedEquipment
         {
             get { return _selectedEquipment; }
             set
             {
                 _selectedEquipment = value;
-                OnPropertyChanged();
                 if (_selectedEquipment != null)
                 {
-                    //event publish
+                    _eventAggregator.GetEvent<OpenEquipmentDetailViewEvent>()
+                        .Publish(_selectedEquipment.EquipmentId);
                 }
             }
         }
