@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using NolekWPF.DataServices;
 using NolekWPF.DataServices.Repositories;
 using NolekWPF.Model;
+using NolekWPF.Model.Dto;
 using Prism.Commands;
 
 namespace NolekWPF.ViewModels
@@ -14,8 +16,8 @@ namespace NolekWPF.ViewModels
     public class EquipmentCreateViewModel : ViewModelBase, IEquipmentCreateViewModel
     {
         private Equipment _equipment;
-        private IEnumerable<EquipmentCategory> _equipmentCategory;
-        private IEnumerable<EquipmentConfiguration> _equipmentConfiguration;
+        private IEnumerable<EquipmentCategoryDto> _equipmentCategory;
+        private IEnumerable<EquipmentConfigurationDto> _equipmentConfiguration;
         private IEnumerable<EquipmentTypeDto> _equipmentType;
         private IEquipmentRepository _equipmentRepository;
         private bool _hasChanges;
@@ -28,10 +30,21 @@ namespace NolekWPF.ViewModels
             
         }
 
+        //load up data for the combo boxes
         public async Task LoadTypesAsync()
         {
-            var types = await _equipmentRepository.GetEquipmentTypes();
+            var types = await _equipmentRepository.GetEquipmentTypesAsync();
             EquipmentTypes = types;
+        }
+        public async Task LoadConfigurationsAsync()
+        {
+            var configurations = await _equipmentRepository.GetEquipmentConfigurationsAsync();
+            EquipmentConfigurations = configurations;
+        }
+        public async Task LoadCategoriesAsync()
+        {
+            var categories = await _equipmentRepository.GetEquipmentCategoriesAsync();
+            EquipmentCategories = categories;
         }
 
         public Equipment Equipment
@@ -52,7 +65,7 @@ namespace NolekWPF.ViewModels
                 OnPropertyChanged();
             }
         }
-        public IEnumerable<EquipmentCategory> EquipmentCategories
+        public IEnumerable<EquipmentCategoryDto> EquipmentCategories
         {
             get { return _equipmentCategory; }
             private set
@@ -61,7 +74,7 @@ namespace NolekWPF.ViewModels
                 OnPropertyChanged();
             }
         }
-        public IEnumerable<EquipmentConfiguration> EquipmentConfigurations
+        public IEnumerable<EquipmentConfigurationDto> EquipmentConfigurations
         {
             get { return _equipmentConfiguration; }
             private set
@@ -70,7 +83,6 @@ namespace NolekWPF.ViewModels
                 OnPropertyChanged();
             }
         }
-        
 
         private bool OnEquipmentCreateCanExecute()
         {
@@ -79,8 +91,9 @@ namespace NolekWPF.ViewModels
 
         private async void OnCreateEquipmentExecute()
         {
-           
-            await _equipmentRepository.SaveAsync(); 
+            MessageBox.Show("Equipment was successfully created.");
+            await _equipmentRepository.SaveAsync();
+            Equipment = CreateNewEquipment();
         }
 
         public ICommand CreateEquipmentCommand { get; }
@@ -102,16 +115,13 @@ namespace NolekWPF.ViewModels
         private Equipment CreateNewEquipment() //calls the add method in the repository to insert new equipment and return it
         {
             var equipment = new Equipment();
+
+            //default values
             equipment.EquipmentStatus = false;
-            equipment.EquipmentCategoryId = 2;
-            equipment.EquipmentConfigurationID = 2;
-            //equipment.EquipmentTypeID = 2;
-            //equipment.EquipmentCategoryId = 2;
-            //equipment.EquipmentConfigurationID = 3;
-            //equipment.EquipmentImagePath = "somepath.url";
-            //equipment.EquipmentMainEquipmentNumber = "54874562";
-            //equipment.EquipmentStatus = false;
-            //equipment.EquipmentTypeID = 2;
+            equipment.EquipmentCategoryId = 1;
+            equipment.EquipmentConfigurationID = 1;
+            equipment.EquipmentTypeID = 1;
+            
             _equipmentRepository.Add(equipment); //context is aware of the equipment to add
             return equipment;
         }

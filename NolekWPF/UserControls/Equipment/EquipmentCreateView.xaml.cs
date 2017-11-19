@@ -46,10 +46,20 @@ namespace NolekWPF.UserControls.Equipment
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            ClearAllFields();
+        }
+
+        private void ClearAllFields()
+        {
             txtImagePath.Text = String.Empty;
-            txtMainNumber.Text =  String.Empty;
+            txtMainNumber.Text = String.Empty;
             txtSerial.Text = String.Empty;
             dpDateCreated.Text = String.Empty;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

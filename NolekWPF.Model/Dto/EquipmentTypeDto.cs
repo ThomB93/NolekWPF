@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NolekWPF.Model
+namespace NolekWPF.Model.Dto
 {
     public class EquipmentTypeDto
     {

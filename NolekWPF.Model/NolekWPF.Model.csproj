@@ -44,6 +44,8 @@
     <Compile Include="Component.cs">
       <DependentUpon>Nolek.tt</DependentUpon>
     </Compile>
+    <Compile Include="Dto\EquipmentCategoryDto.cs" />
+    <Compile Include="Dto\EquipmentConfigurationDto.cs" />
     <Compile Include="Equipment.cs">
       <DependentUpon>Nolek.tt</DependentUpon>
     </Compile>
@@ -60,7 +62,7 @@
     <Compile Include="EquipmentType.cs">
       <DependentUpon>Nolek.tt</DependentUpon>
     </Compile>
-    <Compile Include="EquipmentTypeDto.cs" />
+    <Compile Include="Dto\EquipmentTypeDto.cs" />
     <Compile Include="EquipmentView.cs">
       <DependentUpon>Nolek.tt</DependentUpon>
     </Compile>

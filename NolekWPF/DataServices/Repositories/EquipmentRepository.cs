@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NolekWPF.DataAccess;
 using NolekWPF.Model;
+using NolekWPF.Model.Dto;
 
 namespace NolekWPF.DataServices.Repositories
 {
@@ -27,7 +28,7 @@ namespace NolekWPF.DataServices.Repositories
         {
             return await _context.Equipments.SingleAsync(f => f.EquipmentId == equipId); //return equipement with the id
         }
-        public async Task<IEnumerable<EquipmentTypeDto>> GetEquipmentTypes()
+        public async Task<IEnumerable<EquipmentTypeDto>> GetEquipmentTypesAsync()
         {
             return await _context.EquipmentTypes.Select(t => new EquipmentTypeDto()
             {
@@ -35,6 +36,23 @@ namespace NolekWPF.DataServices.Repositories
                 EquipmentTypeDescription = t.EquipmentTypeDescription,
                 EquipmentTypeName = t.EquipmentTypeName
 
+            }).ToListAsync();
+        }
+        public async Task<IEnumerable<EquipmentConfigurationDto>> GetEquipmentConfigurationsAsync()
+        {
+            return await _context.EquipmentConfigurations.Select(c => new EquipmentConfigurationDto()
+            {
+                EquipmentConfigurationId = c.EquipmentConfigurationId,
+                EquipmentConfigurationDescription = c.EquipmentConfigurationDescription
+
+            }).ToListAsync();
+        }
+        public async Task<IEnumerable<EquipmentCategoryDto>> GetEquipmentCategoriesAsync()
+        {
+            return await _context.EquipmentCategories.Select(c => new EquipmentCategoryDto()
+            {
+                CategoryId = c.CategoryId,
+                CategoryName = c.CategoryName
             }).ToListAsync();
         }
 

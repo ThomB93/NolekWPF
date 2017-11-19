@@ -23,6 +23,8 @@ namespace NolekWPF.ViewModels
             }*/
             await EquipmentListViewModel.LoadAsync(); //load up the list to the left
             await EquipmentCreateViewModel.LoadTypesAsync();
+            await EquipmentCreateViewModel.LoadConfigurationsAsync();
+            await EquipmentCreateViewModel.LoadCategoriesAsync();
         }
     }
 }
