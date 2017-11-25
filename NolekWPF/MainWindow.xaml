@@ -21,16 +21,27 @@
                 <MenuItem Header="_Exit" Click="mnuExit_Click" />
             </Menu>
         </DockPanel>
-    <equipment:EquipmentListView DataContext="{Binding EquipmentListViewModel}"
+        <Border Padding="5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <equipment:EquipmentListView DataContext="{Binding EquipmentListViewModel}"
                                  Visibility="Collapsed" x:Name="EquipListView"></equipment:EquipmentListView>
-        <equipment:EquipmentDetailView Grid.Column="1" DataContext="{Binding EquipmentDetailViewModel}"
+
+                <equipment:EquipmentDetailView Grid.Column="1" DataContext="{Binding EquipmentDetailViewModel}"
                                        Visibility="Collapsed" x:Name="EquipDetailView"></equipment:EquipmentDetailView>
 
-            <equipment:EquipmentCreateView Visibility="Collapsed"
+                <equipment:EquipmentCreateView Visibility="Collapsed"
                                    DataContext="{Binding EquipmentCreateViewModel}"
                                    x:Name="EquipCreateView"></equipment:EquipmentCreateView>
 
-        <equipment:EquipmentUpdateView Visibility="Collapsed" x:Name="EquipUpdateView"></equipment:EquipmentUpdateView>
+                <equipment:EquipmentUpdateView Visibility="Collapsed" x:Name="EquipUpdateView"></equipment:EquipmentUpdateView>
+
+            </Grid>
+        </Border>
     </StackPanel>
     
 </Window>

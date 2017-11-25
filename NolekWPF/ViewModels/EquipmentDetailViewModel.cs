@@ -31,12 +31,12 @@ namespace NolekWPF.ViewModels
 
         public async Task LoadAsync(int equipmentId)
         {
-            Equipment = await _dataService.GetByIdAsync(equipmentId);
+            Equipment = await _dataService.GetViewByIdAsync(equipmentId);
         }
 
-        private Equipment _equipment;
+        private EquipmentView _equipment;    
 
-        public Equipment Equipment
+        public EquipmentView Equipment
         {
             get { return _equipment; }
             private set
@@ -45,5 +45,6 @@ namespace NolekWPF.ViewModels
                 OnPropertyChanged();
             }
         }
+
     }
 }

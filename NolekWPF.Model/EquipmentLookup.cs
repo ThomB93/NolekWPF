@@ -10,6 +10,6 @@ namespace NolekWPF.Model
     {
         public int EquipmentId { get; set; }
         public string DisplayMember { get; set; }
-        public string EquipmentImagePath { get; set; }
+        public string TypeName { get; set; }
     }
 }

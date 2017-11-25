@@ -7,6 +7,6 @@ namespace NolekWPF.DataServices
     public interface IEquipmentDataService
     {
         Task<Equipment> GetByIdAsync(int equipmentId);
-        Task<IEnumerable<EquipmentType>> GetTypesAsync();
+        Task<EquipmentView> GetViewByIdAsync(int equipmentId);
     }
 }

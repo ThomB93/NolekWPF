@@ -24,6 +24,14 @@ namespace NolekWPF.DataServices
                 return await ctx.Equipments.AsNoTracking().SingleAsync(f => f.EquipmentId == equipmentId); 
             }
         }
+        public async Task<EquipmentView> GetViewByIdAsync(int equipmentId)
+        {
+            using (var ctx = _contextCreator())
+            {
+                return await ctx.EquipmentViews.AsNoTracking().SingleAsync(
+                    f => f.EquipmentId == equipmentId);
+            }
+        }
         public async Task<IEnumerable<EquipmentType>> GetTypesAsync()
         {
             using (var ctx = _contextCreator())

@@ -26,7 +26,7 @@ namespace NolekWPF.DataServices
                 {
                     EquipmentId = f.EquipmentId,
                     DisplayMember = f.EquipmentSerialnumber,
-                    EquipmentImagePath = f.EquipmentImagePath
+                    TypeName = f.EquipmentType.EquipmentTypeName
 
                 }).ToListAsync();
             }

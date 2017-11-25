@@ -6,12 +6,20 @@
              xmlns:local="clr-namespace:NolekWPF.UserControls.Equipment"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <Label Grid.Column="0" Content="Equipment List"></Label>
-        <ListView Grid.Column="0"
-              ItemsSource="{Binding Equipments}"
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <TextBox Padding="2" Margin="10 0 100 0" Text="Search..."></TextBox>
+
+                <ListBox Height="200" Width="150" ItemsSource="{Binding Equipments}"
               SelectedItem="{Binding SelectedEquipment, Mode=TwoWay}"
               
-              DisplayMemberPath="DisplayMember"></ListView>
-    </Grid>
+              DisplayMemberPath="DisplayMember"></ListBox>
+            </StackPanel>
+        </Grid>
+
 </UserControl>

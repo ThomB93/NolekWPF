@@ -26,8 +26,7 @@ namespace NolekWPF.ViewModels
         {
             CreateEquipmentCommand = new DelegateCommand(OnCreateEquipmentExecute, OnEquipmentCreateCanExecute);
             _equipmentRepository = equipmentRepository;
-            Equipment = CreateNewEquipment(); //assign the equipment to add to the Equipment property
-            
+            Equipment = CreateNewEquipment(); //assign the equipment to add to the Equipment property           
         }
 
         //load up data for the combo boxes
