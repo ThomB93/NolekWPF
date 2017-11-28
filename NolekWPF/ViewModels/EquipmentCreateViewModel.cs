@@ -10,12 +10,13 @@ using NolekWPF.DataServices.Repositories;
 using NolekWPF.Model;
 using NolekWPF.Model.Dto;
 using Prism.Commands;
+using NolekWPF.Wrappers;
 
 namespace NolekWPF.ViewModels
 {
     public class EquipmentCreateViewModel : ViewModelBase, IEquipmentCreateViewModel
     {
-        private Equipment _equipment;
+        private EquipmentWrapper _equipment;
         private IEnumerable<EquipmentCategoryDto> _equipmentCategory;
         private IEnumerable<EquipmentConfigurationDto> _equipmentConfiguration;
         private IEnumerable<EquipmentTypeDto> _equipmentType;
@@ -46,7 +47,7 @@ namespace NolekWPF.ViewModels
             EquipmentCategories = categories;
         }
 
-        public Equipment Equipment
+        public EquipmentWrapper Equipment
         {
             get { return _equipment; }
             private set
@@ -111,17 +112,18 @@ namespace NolekWPF.ViewModels
             }
         }
 
-        private Equipment CreateNewEquipment() //calls the add method in the repository to insert new equipment and return it
+        private EquipmentWrapper CreateNewEquipment() //calls the add method in the repository to insert new equipment and return it
         {
-            var equipment = new Equipment();
+            var equipment = new EquipmentWrapper(new Equipment());
 
             //default values
             equipment.EquipmentStatus = false;
+            equipment.EquipmentDateCreated = DateTime.Now;
             equipment.EquipmentCategoryId = 1;
             equipment.EquipmentConfigurationID = 1;
             equipment.EquipmentTypeID = 1;
             
-            _equipmentRepository.Add(equipment); //context is aware of the equipment to add
+            _equipmentRepository.Add(equipment.Model); //context is aware of the equipment to add
             return equipment;
         }
     }

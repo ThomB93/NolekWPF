@@ -11,7 +11,8 @@ namespace NolekWPF.Model
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Equipment
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,15 +20,24 @@ namespace NolekWPF.Model
         {
             this.EquipmentComponents = new HashSet<EquipmentComponent>();
         }
-    
+        [Required]
         public int EquipmentId { get; set; }
+        [Required]
         public System.DateTime EquipmentDateCreated { get; set; }
+
         public string EquipmentImagePath { get; set; }
+
+        [Required]
         public int EquipmentTypeID { get; set; }
+        [Required]
         public string EquipmentSerialnumber { get; set; }
+        [Required]
         public string EquipmentMainEquipmentNumber { get; set; }
+        [Required]
         public int EquipmentConfigurationID { get; set; }
+        [Required]
         public bool EquipmentStatus { get; set; }
+        [Required]
         public int EquipmentCategoryId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

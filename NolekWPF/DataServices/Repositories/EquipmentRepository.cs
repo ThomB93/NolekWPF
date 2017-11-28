@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using NolekWPF.DataAccess;
 using NolekWPF.Model;
 using NolekWPF.Model.Dto;
+using NolekWPF.Wrappers;
 
 namespace NolekWPF.DataServices.Repositories
 {

@@ -23,6 +23,7 @@ namespace NolekWPF.UserControls.Equipment
         public EquipmentCreateView()
         {
             InitializeComponent();
+            dpDateCreated.Text = DateTime.Now.Date.ToString();
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

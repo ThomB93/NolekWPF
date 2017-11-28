@@ -11,35 +11,35 @@
              Loaded='UserControl_Loaded'>
 
   <StackPanel Orientation="Vertical">
-    <StackPanel Orientation="Horizontal">
+    <StackPanel Orientation="Horizontal" Margin="0 0 0 12">
       <Label Width="150">Serial Number:</Label>
       <TextBox x:Name='txtSerial'
-               Width='150'
+               Width='150' Padding="2"
                Text="{Binding Equipment.EquipmentSerialnumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
     </StackPanel>
     <StackPanel Orientation="
-               Horizontal">
+               Horizontal" Margin="0 0 0 12">
       <Label Width="150">Date Created:</Label>
       <DatePicker x:Name='dpDateCreated'
-                  Width="200"
+                  Width="150" Padding="2"
                   SelectedDate="{Binding Equipment.EquipmentDateCreated, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
     </StackPanel>
     <StackPanel Orientation="
-               Horizontal">
+               Horizontal" Margin="0 0 0 12">
       <Label Width="150">Image Path:</Label>
       <TextBox x:Name='txtImagePath'
-               Width='150'
+               Width='150' Padding="2"
                Text="{Binding Equipment.EquipmentImagePath, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
     </StackPanel>
     <StackPanel Orientation="
-               Horizontal">
+               Horizontal" Margin="0 0 0 12">
       <Label Width="150">Main Number:</Label>
       <TextBox x:Name='txtMainNumber'
-               Width='150'
+               Width='150' Padding="2"
                Text="{Binding Equipment.EquipmentMainEquipmentNumber, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
     </StackPanel>
     <StackPanel Orientation="
-               Horizontal">
+               Horizontal" Margin="0 0 0 12">
       <Label Width="150">Type:</Label>
       <ComboBox Width='100' ItemsSource="{Binding EquipmentTypes}" DisplayMemberPath="EquipmentTypeName"
                 SelectedValuePath="EquipmentTypeID"
@@ -48,7 +48,7 @@
       </ComboBox>
     </StackPanel>
     <StackPanel Orientation="
-               Horizontal">
+               Horizontal" Margin="0 0 0 12">
       <Label Width="150">Configuration:</Label>
       <ComboBox Width='150'
                 ItemsSource="{Binding EquipmentConfigurations}"
@@ -59,7 +59,7 @@
       </ComboBox>
     </StackPanel>
     <StackPanel Orientation="
-               Horizontal">
+               Horizontal" Margin="0 0 0 12">
       <Label Width="150">Category:</Label>
       <ComboBox Width='100'
                 ItemsSource="{Binding EquipmentCategories}"

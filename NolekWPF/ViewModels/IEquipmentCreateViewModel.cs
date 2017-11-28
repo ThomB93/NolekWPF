@@ -2,13 +2,14 @@
 using System.Threading.Tasks;
 using System.Windows.Input;
 using NolekWPF.Model;
+using NolekWPF.Wrappers;
 
 namespace NolekWPF.ViewModels
 {
     public interface IEquipmentCreateViewModel
     {
         ICommand CreateEquipmentCommand { get; }
-        Equipment Equipment { get; }
+        EquipmentWrapper Equipment { get; }
         Task LoadTypesAsync();
         Task LoadConfigurationsAsync();
         Task LoadCategoriesAsync();
