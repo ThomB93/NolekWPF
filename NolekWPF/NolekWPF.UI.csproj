@@ -80,20 +80,23 @@
     <Compile Include="DataServices\Repositories\IEquipmentRepository.cs" />
     <Compile Include="Events\OpenEquipmentDetailViewEvent.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />
+    <Compile Include="UserControls\Component\ComponentCreateView.xaml.cs">
+      <DependentUpon>ComponentCreateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Component\ComponentDetailView.xaml.cs">
+      <DependentUpon>ComponentDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Component\ComponentListView.xaml.cs">
+      <DependentUpon>ComponentListView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Equipment\EquipmentCreateView.xaml.cs">
       <DependentUpon>EquipmentCreateView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\Equipment\EquipmentDeleteView.xaml.cs">
-      <DependentUpon>EquipmentDeleteView.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Equipment\EquipmentDetailView.xaml.cs">
       <DependentUpon>EquipmentDetailView.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Equipment\EquipmentListView.xaml.cs">
       <DependentUpon>EquipmentListView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserControls\Equipment\EquipmentUpdateView.xaml.cs">
-      <DependentUpon>EquipmentUpdateView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\EquipmentCreateViewModel.cs" />
     <Compile Include="ViewModels\EquipmentDetailViewModel.cs" />
@@ -115,11 +118,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="UserControls\Equipment\EquipmentCreateView.xaml">
+    <Page Include="UserControls\Component\ComponentCreateView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Equipment\EquipmentDeleteView.xaml">
+    <Page Include="UserControls\Component\ComponentDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Component\ComponentListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Equipment\EquipmentCreateView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -128,10 +139,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Equipment\EquipmentListView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\Equipment\EquipmentUpdateView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -177,8 +184,6 @@
       <Name>NolekWPF.Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UserControls\Component\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

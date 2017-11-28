@@ -34,32 +34,6 @@ namespace NolekWPF
         private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             await _viewModel.LoadAsync();
-        }
-
-        private void mnuEquipList_Click(object sender, RoutedEventArgs e)
-        {
-            EquipListView.Visibility = Visibility.Visible;
-            EquipDetailView.Visibility = Visibility.Visible;
-            EquipCreateView.Visibility = Visibility.Collapsed;
-            EquipUpdateView.Visibility = Visibility.Collapsed;
-        }
-        private void mnuEquipCreate_Click(object sender, RoutedEventArgs e)
-        {
-            EquipCreateView.Visibility = Visibility.Visible;
-            EquipDetailView.Visibility = Visibility.Collapsed;
-            EquipListView.Visibility = Visibility.Collapsed;
-            EquipUpdateView.Visibility = Visibility.Collapsed;
-        }
-        private void mnuEquipUpdate_Click(object sender, RoutedEventArgs e)
-        {
-            EquipUpdateView.Visibility = Visibility.Visible;
-            EquipDetailView.Visibility = Visibility.Collapsed;
-            EquipCreateView.Visibility = Visibility.Collapsed;
-            EquipListView.Visibility = Visibility.Collapsed;
-        }
-        private void mnuExit_Click(object sender, RoutedEventArgs e)
-        {
-            System.Windows.Application.Current.Shutdown();
-        }
+        }    
     }
 }

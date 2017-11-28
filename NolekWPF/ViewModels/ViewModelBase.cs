@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace NolekWPF.ViewModels
 {
+    //base class that incapsulates INPC
     public class ViewModelBase : INotifyPropertyChanged //use this as the base class instead of Inotifypropertychanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -16,6 +17,5 @@ namespace NolekWPF.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
     }
 }

@@ -16,14 +16,17 @@ namespace NolekWPF.ViewModels
         private IEquipmentLookupDataService _equipmentLookupDataService;
         public ObservableCollection<EquipmentLookup> Equipments { get; }
         private IEventAggregator _eventAggregator;
+        public Func<IEquipmentDetailViewModel> EquipmentDetailViewModelCreator;
+        public IEquipmentDetailViewModel EquipmentDetailViewModel;
 
         public EquipmentListViewModel(IEquipmentLookupDataService equipmentLookupDataService,
-            IEventAggregator eventAggregator)
+            IEventAggregator eventAggregator, Func<IEquipmentDetailViewModel> equipmentDetailViewModelCreator)
         {
             _equipmentLookupDataService = equipmentLookupDataService;
             Equipments = new ObservableCollection<EquipmentLookup>();
             //initialize event aggregator
             _eventAggregator = eventAggregator;
+            EquipmentDetailViewModelCreator = equipmentDetailViewModelCreator;
         }
 
         public async Task LoadAsync()
@@ -45,6 +48,7 @@ namespace NolekWPF.ViewModels
                 _selectedEquipment = value;
                 if (_selectedEquipment != null)
                 {
+                    _equipmentDetailViewModel = EquipmentDetailViewModelCreator();
                     _eventAggregator.GetEvent<OpenEquipmentDetailViewEvent>()
                         .Publish(_selectedEquipment.EquipmentId);
                 }

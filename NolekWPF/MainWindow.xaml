@@ -4,42 +4,63 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:equipment="clr-namespace:NolekWPF.UserControls.Equipment"
+        xmlns:viewModels="clr-namespace:NolekWPF.ViewModels"
         mc:Ignorable="d"
         Title="Nolek"
-        Height="500"
-        Width="750"
+        Height="386"
+        Width="518"
         ResizeMode='NoResize'
         WindowStartupLocation='CenterScreen'>
+    <!--Equipment data templates-->
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModels:EquipmentListViewModel}">
+            <equipment:EquipmentListView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:EquipmentDetailViewModel}">
+            <equipment:EquipmentDetailView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:EquipmentCreateViewModel}">
+            <equipment:EquipmentCreateView />
+        </DataTemplate>
+    </Window.Resources>
+    
     <StackPanel>
+        <!--Top menu-->
         <DockPanel>
             <Menu DockPanel.Dock="Top">
-                <MenuItem Header="Equipment">
-                    <MenuItem Header="_List" Click="mnuEquipList_Click" />
-                    <MenuItem Header="_Create" Click="mnuEquipCreate_Click" />
-                    <MenuItem Header="_Update" Click="mnuEquipUpdate_Click" />
+                <MenuItem Header="User">
+                    <MenuItem Header="_Log out"></MenuItem>
+                    <MenuItem Header="_Exit"></MenuItem>
                 </MenuItem>
-                <MenuItem Header="_Exit" Click="mnuExit_Click" />
+                <MenuItem Header="Equipment">
+                    <MenuItem Header="_List / Update" Command="{Binding NavCommand}" CommandParameter="equipList"></MenuItem>
+                    <MenuItem Header="_New Equipment" Command="{Binding NavCommand}" CommandParameter="equipCreate"></MenuItem>
+                    <MenuItem Header="_Add / Remove Components"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Component">
+                    <MenuItem Header="_List / Update"></MenuItem>
+                    <MenuItem Header="_New Component"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Customers">
+                    <MenuItem Header="_List / Update"></MenuItem>
+                    <MenuItem Header="_New Customer"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="_Service Reports">
+                    <MenuItem Header="_View history"></MenuItem>
+                    <MenuItem Header="_New Report"></MenuItem>
+                </MenuItem>
             </Menu>
         </DockPanel>
+        
         <Border Padding="5">
+
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-
-                <equipment:EquipmentListView DataContext="{Binding EquipmentListViewModel}"
-                                 Visibility="Collapsed" x:Name="EquipListView"></equipment:EquipmentListView>
-
-                <equipment:EquipmentDetailView Grid.Column="1" DataContext="{Binding EquipmentDetailViewModel}"
-                                       Visibility="Collapsed" x:Name="EquipDetailView"></equipment:EquipmentDetailView>
-
-                <equipment:EquipmentCreateView Visibility="Collapsed"
-                                   DataContext="{Binding EquipmentCreateViewModel}"
-                                   x:Name="EquipCreateView"></equipment:EquipmentCreateView>
-
-                <equipment:EquipmentUpdateView Visibility="Collapsed" x:Name="EquipUpdateView"></equipment:EquipmentUpdateView>
-
+                
+                <ContentControl Content="{Binding CurrentViewModel}" />
             </Grid>
         </Border>
     </StackPanel>

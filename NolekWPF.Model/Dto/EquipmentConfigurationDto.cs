@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NolekWPF.Model.Dto
 {
-   public  class EquipmentConfigurationDto
+   public class EquipmentConfigurationDto
     {
         public int EquipmentConfigurationId { get; set; }
         public string EquipmentConfigurationDescription { get; set; }
