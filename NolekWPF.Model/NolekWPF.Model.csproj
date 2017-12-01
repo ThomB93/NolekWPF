@@ -67,6 +67,9 @@
     <Compile Include="EquipmentView.cs">
       <DependentUpon>Nolek.tt</DependentUpon>
     </Compile>
+    <Compile Include="Error.cs">
+      <DependentUpon>Nolek.tt</DependentUpon>
+    </Compile>
     <Compile Include="Nolek.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

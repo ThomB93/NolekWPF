@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace NolekWPF.ViewModels
 {
@@ -14,14 +15,17 @@ namespace NolekWPF.ViewModels
     {
         private IEquipmentDataService _dataService;
         private IEventAggregator _eventAggregator;
+        private EquipmentView _equipment;
+        private IErrorDataService _errorDataService;
 
         public EquipmentDetailViewModel(IEquipmentDataService dataService,
-            IEventAggregator eventAggregator)
+            IEventAggregator eventAggregator, IErrorDataService errorDataService)
         {
             _dataService = dataService;
             _eventAggregator = eventAggregator;
             _eventAggregator.GetEvent<OpenEquipmentDetailViewEvent>()
                 .Subscribe(OnOpenEquipmentDetailView);
+            _errorDataService = errorDataService;
         }
 
         private async void OnOpenEquipmentDetailView(int equipmentId)
@@ -31,10 +35,24 @@ namespace NolekWPF.ViewModels
 
         public async Task LoadAsync(int equipmentId)
         {
-            Equipment = await _dataService.GetViewByIdAsync(equipmentId);
-        }
+            try
+            {
+                Equipment = await _dataService.GetViewByIdAsync(equipmentId);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "An error occurred", MessageBoxButton.OK, MessageBoxImage.Warning);
+                //create new error object from the exception and add to DB
+                Error error = new Error
+                {
+                    ErrorMessage = e.Message,
+                    ErrorTimeStamp = DateTime.Now,
+                    ErrorStackTrace = e.StackTrace
+                };
+                await _errorDataService.AddError(error);
+            }
 
-        private EquipmentView _equipment;    
+        }
 
         public EquipmentView Equipment
         {

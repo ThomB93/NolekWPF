@@ -28,7 +28,7 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <equipment:EquipmentListView DataContext="{Binding EquipmentListViewModel}"
+                <equipment:EquipmentListView Grid.Column="0" DataContext="{Binding EquipmentListViewModel}"
                                  Visibility="Collapsed" x:Name="EquipListView"></equipment:EquipmentListView>
 
                 <equipment:EquipmentDetailView Grid.Column="1" DataContext="{Binding EquipmentDetailViewModel}"
@@ -37,9 +37,6 @@
                 <equipment:EquipmentCreateView Visibility="Collapsed"
                                    DataContext="{Binding EquipmentCreateViewModel}"
                                    x:Name="EquipCreateView"></equipment:EquipmentCreateView>
-
-                <equipment:EquipmentUpdateView Visibility="Collapsed" x:Name="EquipUpdateView"></equipment:EquipmentUpdateView>
-
             </Grid>
         </Border>
     </StackPanel>

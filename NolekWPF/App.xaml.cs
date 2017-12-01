@@ -1,4 +1,6 @@
 ﻿using Autofac;
+using NolekWPF.DataServices;
+using NolekWPF.Model;
 using NolekWPF.Startup;
 using System;
 using System.Collections.Generic;
@@ -7,6 +9,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using NolekWPF.DataAccess;
 
 namespace NolekWPF
 {
@@ -15,6 +18,7 @@ namespace NolekWPF
     /// </summary>
     public partial class App : Application
     {
+        //private IErrorDataService _errorDataService;
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
             var bootstrapper = new Bootstrapper();
@@ -25,7 +29,15 @@ namespace NolekWPF
         }
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
-            MessageBox.Show(e.Exception.Message, "Exception Caught", MessageBoxButton.OK, MessageBoxImage.Error); e.Handled = true;
+            MessageBox.Show(e.Exception.Message, "Exception Caught", MessageBoxButton.OK, MessageBoxImage.Error); e.Handled = true;        
+
+            Error error = new Error
+            {
+                ErrorMessage = e.Exception.Message,
+                ErrorTimeStamp = DateTime.Now,
+                ErrorStackTrace = e.Exception.StackTrace
+            };
+            //await _errorDataService.AddError(error);
         }
     }
 }

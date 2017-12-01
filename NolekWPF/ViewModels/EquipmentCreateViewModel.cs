@@ -11,6 +11,8 @@ using NolekWPF.Model;
 using NolekWPF.Model.Dto;
 using Prism.Commands;
 using NolekWPF.Wrappers;
+using Prism.Events;
+using NolekWPF.Events;
 
 namespace NolekWPF.ViewModels
 {
@@ -21,13 +23,17 @@ namespace NolekWPF.ViewModels
         private IEnumerable<EquipmentConfigurationDto> _equipmentConfiguration;
         private IEnumerable<EquipmentTypeDto> _equipmentType;
         private IEquipmentRepository _equipmentRepository;
+        private IErrorDataService _errorDataService;
+        private IEventAggregator _eventAggregator;
         private bool _hasChanges;
 
-        public EquipmentCreateViewModel(IEquipmentRepository equipmentRepository)
+        public EquipmentCreateViewModel(IEquipmentRepository equipmentRepository, IErrorDataService errorDataService, IEventAggregator eventAggregator)
         {
             CreateEquipmentCommand = new DelegateCommand(OnCreateEquipmentExecute, OnEquipmentCreateCanExecute);
             _equipmentRepository = equipmentRepository;
-            Equipment = CreateNewEquipment(); //assign the equipment to add to the Equipment property           
+            _errorDataService = errorDataService;
+            Equipment = CreateNewEquipment(); //assign the equipment to add to the Equipment property   
+            _eventAggregator = eventAggregator;
         }
 
         //load up data for the combo boxes
@@ -54,9 +60,11 @@ namespace NolekWPF.ViewModels
             {
                 _equipment = value;
                 OnPropertyChanged();
-               
             }
         }
+
+        
+
         public IEnumerable<EquipmentTypeDto> EquipmentTypes
         {
             get { return _equipmentType; }
@@ -87,14 +95,31 @@ namespace NolekWPF.ViewModels
 
         private bool OnEquipmentCreateCanExecute()
         {
+            //validate fields to disable/enable buton
             return Equipment != null && !Equipment.HasErrors;
         }
 
         private async void OnCreateEquipmentExecute()
         {
-            MessageBox.Show("Equipment was successfully created.");
-            await _equipmentRepository.SaveAsync();
-            Equipment = CreateNewEquipment();
+            try
+            {
+                await _equipmentRepository.SaveAsync();
+                Equipment = CreateNewEquipment();
+                MessageBox.Show("Equipment was successfully created.");
+                _eventAggregator.GetEvent<AfterEquipmentCreated>().Publish();
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.Message, "An error occurred", MessageBoxButton.OK, MessageBoxImage.Warning);
+                //create new error object from the exception and add to DB
+                Error error = new Error
+                {
+                    ErrorMessage = e.Message,
+                    ErrorTimeStamp = DateTime.Now,
+                    ErrorStackTrace = e.StackTrace
+                };
+                await _errorDataService.AddError(error);
+            }
         }
 
         public ICommand CreateEquipmentCommand { get; }
@@ -127,6 +152,7 @@ namespace NolekWPF.ViewModels
             ((DelegateCommand)CreateEquipmentCommand).RaiseCanExecuteChanged();
 
             //default values
+            equipment.EquipmentSerialnumber = "";
             equipment.EquipmentStatus = false;
             equipment.EquipmentDateCreated = DateTime.Now;
             equipment.EquipmentCategoryId = 1;

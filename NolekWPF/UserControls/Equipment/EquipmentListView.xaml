@@ -7,19 +7,14 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0">
-                <TextBox Padding="2" Margin="10 0 100 0" Text="Search..."></TextBox>
+    <StackPanel>
 
-                <ListBox Height="200" Width="150" ItemsSource="{Binding Equipments}"
+        <ListBox Height="300" Width="150" ItemsSource="{Binding Equipments}"
               SelectedItem="{Binding SelectedEquipment, Mode=TwoWay}"
               
               DisplayMemberPath="DisplayMember"></ListBox>
-            </StackPanel>
-        </Grid>
+
+
+    </StackPanel>
 
 </UserControl>

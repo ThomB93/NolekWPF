@@ -27,6 +27,7 @@ namespace NolekWPF.Startup
             //data services
             builder.RegisterType<EquipmentDataService>().As<IEquipmentDataService>();
             builder.RegisterType<EquipmentLookupDataService>().As<IEquipmentLookupDataService>();
+            builder.RegisterType<ErrorDataService>().As<IErrorDataService>();
 
             //repositories
             builder.RegisterType<EquipmentRepository>().As<IEquipmentRepository>();

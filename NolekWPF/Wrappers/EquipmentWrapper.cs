@@ -124,6 +124,10 @@ namespace NolekWPF.Wrappers
                     {
                         AddError(propertyName, "Serial Number may not include any spaces.");
                     }
+                    if (EquipmentSerialnumber.ToString().Length < 1)
+                    {
+                        AddError(propertyName, "Serial Number is required.");
+                    }
                     break;
                 case nameof(EquipmentMainEquipmentNumber):
                     if(Regex.Matches(EquipmentMainEquipmentNumber, @"[a-zA-Z]").Count != 0)

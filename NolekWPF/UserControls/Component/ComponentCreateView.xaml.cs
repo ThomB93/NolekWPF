@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace NolekWPF.UserControls.Equipment
+namespace NolekWPF.UserControls.Component
 {
     /// <summary>
-    /// Interaction logic for EquipmentDeleteView.xaml
+    /// Interaction logic for ComponentCreateView.xaml
     /// </summary>
-    public partial class EquipmentDeleteView : UserControl
+    public partial class ComponentCreateView : UserControl
     {
-        public EquipmentDeleteView()
+        public ComponentCreateView()
         {
             InitializeComponent();
         }
