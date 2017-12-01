@@ -18,6 +18,7 @@
         <AssociationConnector Association="wiki_nolek_dk_dbModel.FK_Equipment_EquipmentCategory" ManuallyRouted="false" />
         <AssociationConnector Association="wiki_nolek_dk_dbModel.FK_Equipment_EquipmentConfiguration" ManuallyRouted="false" />
         <AssociationConnector Association="wiki_nolek_dk_dbModel.FK_Equipment_EquipmentType" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.Error" Width="1.5" PointX="8.25" PointY="1.375" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

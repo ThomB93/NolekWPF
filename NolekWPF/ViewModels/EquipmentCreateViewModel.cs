@@ -54,6 +54,7 @@ namespace NolekWPF.ViewModels
             {
                 _equipment = value;
                 OnPropertyChanged();
+               
             }
         }
         public IEnumerable<EquipmentTypeDto> EquipmentTypes
@@ -86,7 +87,7 @@ namespace NolekWPF.ViewModels
 
         private bool OnEquipmentCreateCanExecute()
         {
-            return true; //need validation
+            return Equipment != null && !Equipment.HasErrors;
         }
 
         private async void OnCreateEquipmentExecute()
@@ -107,7 +108,6 @@ namespace NolekWPF.ViewModels
                 {
                     _hasChanges = value;
                     OnPropertyChanged();
-                    ((DelegateCommand)CreateEquipmentCommand).RaiseCanExecuteChanged();
                 }
             }
         }
@@ -116,13 +116,23 @@ namespace NolekWPF.ViewModels
         {
             var equipment = new EquipmentWrapper(new Equipment());
 
+            //when property in equipment changes, and it has errors, disable the create button
+            equipment.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == nameof(Equipment.HasErrors))
+                {
+                    ((DelegateCommand)CreateEquipmentCommand).RaiseCanExecuteChanged();
+                }
+            };
+            ((DelegateCommand)CreateEquipmentCommand).RaiseCanExecuteChanged();
+
             //default values
             equipment.EquipmentStatus = false;
             equipment.EquipmentDateCreated = DateTime.Now;
             equipment.EquipmentCategoryId = 1;
             equipment.EquipmentConfigurationID = 1;
             equipment.EquipmentTypeID = 1;
-            
+
             _equipmentRepository.Add(equipment.Model); //context is aware of the equipment to add
             return equipment;
         }

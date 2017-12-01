@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="wiki_nolek_dk_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="wiki_nolek_dk_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Component">
           <Key>
             <PropertyRef Name="ComponentId" />
@@ -61,6 +61,15 @@
           <Property Name="EquipmentTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EquipmentTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="EquipmentTypeDescription" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Error">
+          <Key>
+            <PropertyRef Name="ErrorId" />
+          </Key>
+          <Property Name="ErrorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ErrorMessage" Type="nvarchar" MaxLength="250" />
+          <Property Name="ErrorTimeStamp" Type="datetime" />
+          <Property Name="ErrorStackTrace" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -163,6 +172,7 @@ warning 6002: The table/view 'wiki_nolek_dk_db.dbo.EquipmentView' does not have 
           <EntitySet Name="EquipmentComponent" EntityType="Self.EquipmentComponent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EquipmentConfiguration" EntityType="Self.EquipmentConfiguration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EquipmentType" EntityType="Self.EquipmentType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Error" EntityType="Self.Error" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EquipmentView" EntityType="Self.EquipmentView" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -199,8 +209,7 @@ warning 6002: The table/view 'wiki_nolek_dk_db.dbo.EquipmentView' does not have 
             <End Role="Equipment" EntitySet="Equipment" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="wiki_nolek_dk_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -392,7 +401,17 @@ warning 6002: The table/view 'wiki_nolek_dk_db.dbo.EquipmentView' does not have 
             <End Role="EquipmentType" EntitySet="EquipmentTypes" />
             <End Role="Equipment" EntitySet="Equipments" />
           </AssociationSet>
+          <EntitySet Name="Errors" EntityType="wiki_nolek_dk_dbModel.Error" />
         </EntityContainer>
+        <EntityType Name="Error">
+          <Key>
+            <PropertyRef Name="ErrorId" />
+          </Key>
+          <Property Name="ErrorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ErrorMessage" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ErrorTimeStamp" Type="DateTime" Precision="3" />
+          <Property Name="ErrorStackTrace" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -485,6 +504,16 @@ warning 6002: The table/view 'wiki_nolek_dk_db.dbo.EquipmentView' does not have 
                 <ScalarProperty Name="EquipmentConfigurationDescription" ColumnName="EquipmentConfigurationDescription" />
                 <ScalarProperty Name="EquipmentTypeName" ColumnName="EquipmentTypeName" />
                 <ScalarProperty Name="EquipmentTypeDescription" ColumnName="EquipmentTypeDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Errors">
+            <EntityTypeMapping TypeName="wiki_nolek_dk_dbModel.Error">
+              <MappingFragment StoreEntitySet="Error">
+                <ScalarProperty Name="ErrorStackTrace" ColumnName="ErrorStackTrace" />
+                <ScalarProperty Name="ErrorTimeStamp" ColumnName="ErrorTimeStamp" />
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+                <ScalarProperty Name="ErrorId" ColumnName="ErrorId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -70,6 +70,7 @@ namespace NolekWPF.Wrappers
             set
             {
                 Model.EquipmentMainEquipmentNumber = value; OnPropertyChanged();
+                ValidateProperty(nameof(EquipmentMainEquipmentNumber));
             }
         }
         [Required]
@@ -119,6 +120,16 @@ namespace NolekWPF.Wrappers
                     {
                         AddError(propertyName, "Serial Number must consist of numbers only.");
                     }
+                    if (EquipmentSerialnumber.Contains(" "))
+                    {
+                        AddError(propertyName, "Serial Number may not include any spaces.");
+                    }
+                    break;
+                case nameof(EquipmentMainEquipmentNumber):
+                    if(Regex.Matches(EquipmentMainEquipmentNumber, @"[a-zA-Z]").Count != 0)
+                    {
+                        AddError(propertyName, "Main Equipment Number must consist of numbers only.");
+                    }
                     break;
                 //...
                 default:
@@ -144,6 +155,7 @@ namespace NolekWPF.Wrappers
         private void OnErrorsChanged(string propertyName)
         {
             ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+            OnPropertyChanged(nameof(HasErrors));
         }
 
         //will add a new error to a property
