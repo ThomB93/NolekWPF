@@ -92,6 +92,9 @@
     <Compile Include="UserControls\Component\ComponentListView.xaml.cs">
       <DependentUpon>ComponentListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Equipment\EquipmentComponentView.xaml.cs">
+      <DependentUpon>EquipmentComponentView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Equipment\EquipmentCreateView.xaml.cs">
       <DependentUpon>EquipmentCreateView.xaml</DependentUpon>
     </Compile>
@@ -132,6 +135,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Component\ComponentListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Equipment\EquipmentComponentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

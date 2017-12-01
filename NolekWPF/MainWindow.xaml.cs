@@ -50,18 +50,9 @@ namespace NolekWPF
             EquipListView.Visibility = Visibility.Collapsed;
             
         }
-        private void mnuEquipUpdate_Click(object sender, RoutedEventArgs e)
-        {
-           
-            EquipDetailView.Visibility = Visibility.Collapsed;
-            EquipCreateView.Visibility = Visibility.Collapsed;
-            EquipListView.Visibility = Visibility.Collapsed;
-        }
         private void mnuExit_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
         }
-
-        
     }
 }

@@ -7,10 +7,10 @@
              x:Class="NolekWPF.UserControls.Equipment.EquipmentCreateView"
              mc:Ignorable="d"
              d:DesignHeight="300"
-             d:DesignWidth="300"
+             d:DesignWidth="350"
              Loaded='UserControl_Loaded'>
 
-  <StackPanel Orientation="Vertical" Grid.ColumnSpan="2">
+  <StackPanel Orientation="Vertical">
     <StackPanel Orientation="Horizontal" Margin="0 0 0 12">
       <Label Width="150">* Serial Number:</Label>
       <TextBox x:Name='txtSerial'

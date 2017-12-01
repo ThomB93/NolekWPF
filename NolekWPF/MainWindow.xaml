@@ -7,18 +7,33 @@
         mc:Ignorable="d"
         Title="Nolek"
         Height="500"
-        Width="750"
+        Width="600"
         ResizeMode='NoResize'
         WindowStartupLocation='CenterScreen'>
     <StackPanel>
         <DockPanel>
             <Menu DockPanel.Dock="Top">
-                <MenuItem Header="Equipment">
-                    <MenuItem Header="_List" Click="mnuEquipList_Click" />
-                    <MenuItem Header="_Create" Click="mnuEquipCreate_Click" />
-                    <MenuItem Header="_Update" Click="mnuEquipUpdate_Click" />
+                <MenuItem Header="User">
+                    <MenuItem Header="_Log out"></MenuItem>
+                    <MenuItem x:Name="mnuExit" Header="_Exit" Click="mnuExit_Click"></MenuItem>
                 </MenuItem>
-                <MenuItem Header="_Exit" Click="mnuExit_Click" />
+                <MenuItem Header="Equipment">
+                    <MenuItem x:Name="mnuEquipList" Header="_List / Update" Click="mnuEquipList_Click"></MenuItem>
+                    <MenuItem x:Name="mnuEquipCreate" Header="_New Equipment" Click="mnuEquipCreate_Click"></MenuItem>
+                    <MenuItem Header="_Add / Remove Components"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Component">
+                    <MenuItem Header="_List / Update"></MenuItem>
+                    <MenuItem Header="_New Component"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="Customers">
+                    <MenuItem Header="_List / Update"></MenuItem>
+                    <MenuItem Header="_New Customer"></MenuItem>
+                </MenuItem>
+                <MenuItem Header="_Service Reports">
+                    <MenuItem Header="_View history"></MenuItem>
+                    <MenuItem Header="_New Report"></MenuItem>
+                </MenuItem>
             </Menu>
         </DockPanel>
         <Border Padding="5">
@@ -34,7 +49,7 @@
                 <equipment:EquipmentDetailView Grid.Column="1" DataContext="{Binding EquipmentDetailViewModel}"
                                        Visibility="Collapsed" x:Name="EquipDetailView"></equipment:EquipmentDetailView>
 
-                <equipment:EquipmentCreateView Visibility="Collapsed"
+                <equipment:EquipmentCreateView Grid.ColumnSpan="2" Visibility="Collapsed"
                                    DataContext="{Binding EquipmentCreateViewModel}"
                                    x:Name="EquipCreateView"></equipment:EquipmentCreateView>
             </Grid>
