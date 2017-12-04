@@ -45,7 +45,8 @@
                 Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></TextBox>
             </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Button Padding="5" KeyboardNavigation.TabIndex="7" Margin="0 10 0 0" Content="Save Changes" HorizontalAlignment="Right"></Button>
+            <Button Padding="5" KeyboardNavigation.TabIndex="7" Margin="0 10 0 0" Content="Save Changes" HorizontalAlignment="Right"
+                    Click='Button_Click'></Button>
         </StackPanel>
             
             

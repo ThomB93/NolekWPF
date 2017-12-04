@@ -79,7 +79,9 @@
     <Compile Include="DataServices\IEquipmentLookupDataService.cs" />
     <Compile Include="DataServices\IErrorDataService.cs" />
     <Compile Include="DataServices\Repositories\EquipmentRepository.cs" />
+    <Compile Include="DataServices\Repositories\ErrorRepository.cs" />
     <Compile Include="DataServices\Repositories\IEquipmentRepository.cs" />
+    <Compile Include="DataServices\Repositories\IErrorRepository.cs" />
     <Compile Include="Events\AfterEquipmentCreated.cs" />
     <Compile Include="Events\OpenEquipmentDetailViewEvent.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />

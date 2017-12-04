@@ -63,8 +63,6 @@ namespace NolekWPF.ViewModels
             }
         }
 
-        
-
         public IEnumerable<EquipmentTypeDto> EquipmentTypes
         {
             get { return _equipmentType; }

@@ -24,5 +24,10 @@ namespace NolekWPF.UserControls.Equipment
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            throw new UnauthorizedAccessException();
+        }
     }
 }

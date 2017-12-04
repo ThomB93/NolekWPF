@@ -31,6 +31,7 @@ namespace NolekWPF.Startup
 
             //repositories
             builder.RegisterType<EquipmentRepository>().As<IEquipmentRepository>();
+            builder.RegisterType<ErrorRepository>().As<IErrorRepository>();
 
             //view models
             builder.RegisterType<EquipmentListViewModel>().As<IEquipmentListViewModel>();

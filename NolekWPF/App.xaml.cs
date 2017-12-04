@@ -10,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using NolekWPF.DataAccess;
+using NolekWPF.DataServices.Repositories;
 
 namespace NolekWPF
 {
@@ -19,6 +20,7 @@ namespace NolekWPF
     public partial class App : Application
     {
         //private IErrorDataService _errorDataService;
+        private IErrorRepository errorRepository;
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
             var bootstrapper = new Bootstrapper();
@@ -29,15 +31,19 @@ namespace NolekWPF
         }
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
-            MessageBox.Show(e.Exception.Message, "Exception Caught", MessageBoxButton.OK, MessageBoxImage.Error); e.Handled = true;        
+            MessageBox.Show(e.Exception.Message, "Unhandled Exception", MessageBoxButton.OK, MessageBoxImage.Error); e.Handled = false;
+            errorRepository = new ErrorRepository(new wiki_nolek_dk_dbEntities());
 
+            //add the error to database
             Error error = new Error
             {
                 ErrorMessage = e.Exception.Message,
                 ErrorTimeStamp = DateTime.Now,
                 ErrorStackTrace = e.Exception.StackTrace
             };
-            //await _errorDataService.AddError(error);
+            
+            errorRepository.Add(error);
+            errorRepository.SaveAsync();
         }
     }
 }

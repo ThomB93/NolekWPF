@@ -49,10 +49,11 @@
                 <equipment:EquipmentDetailView Grid.Column="1" DataContext="{Binding EquipmentDetailViewModel}"
                                        Visibility="Collapsed" x:Name="EquipDetailView"></equipment:EquipmentDetailView>
 
-                <equipment:EquipmentCreateView Grid.ColumnSpan="2" Visibility="Collapsed"
+                <equipment:EquipmentCreateView Grid.Column="0" Grid.ColumnSpan="2" Visibility="Collapsed"
                                    DataContext="{Binding EquipmentCreateViewModel}"
                                    x:Name="EquipCreateView"></equipment:EquipmentCreateView>
             </Grid>
+          
         </Border>
     </StackPanel>
     

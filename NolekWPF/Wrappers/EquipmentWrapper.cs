@@ -110,10 +110,7 @@ namespace NolekWPF.Wrappers
             switch (propertyName)
             {
                 case nameof(EquipmentDateCreated):
-                    if(EquipmentDateCreated == null)
-                    {
-                        AddError(propertyName, "Created Date is required.");
-                    }
+                    
                     break;
                 case nameof(EquipmentSerialnumber):
                     if (Regex.Matches(EquipmentSerialnumber, @"[a-zA-Z]").Count != 0)
@@ -133,6 +130,10 @@ namespace NolekWPF.Wrappers
                     if(Regex.Matches(EquipmentMainEquipmentNumber, @"[a-zA-Z]").Count != 0)
                     {
                         AddError(propertyName, "Main Equipment Number must consist of numbers only.");
+                    }
+                    if (EquipmentMainEquipmentNumber.ToString().Length < 1)
+                    {
+                        AddError(propertyName, "Main Equip. No. is required.");
                     }
                     break;
                 //...

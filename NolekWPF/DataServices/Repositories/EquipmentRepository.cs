@@ -71,5 +71,11 @@ namespace NolekWPF.DataServices.Repositories
         {
             await _context.SaveChangesAsync(); //save all changes to the current context
         }
+
+        public async void AddError(Error error)
+        {
+            _context.Errors.Add(error);
+            await SaveAsync();
+        }
     }
 }
