@@ -32,6 +32,7 @@ namespace NolekWPF.DataServices
                     f => f.EquipmentId == equipmentId);
             }
         }
+
         public async Task<IEnumerable<EquipmentType>> GetTypesAsync()
         {
             using (var ctx = _contextCreator())

@@ -29,6 +29,7 @@ namespace NolekWPF.DataServices.Repositories
         {
             return await _context.Equipments.SingleAsync(f => f.EquipmentId == equipId); //return equipement with the id
         }
+
         public async Task<IEnumerable<EquipmentTypeDto>> GetEquipmentTypesAsync()
         {
             return await _context.EquipmentTypes.Select(t => new EquipmentTypeDto()
@@ -70,6 +71,16 @@ namespace NolekWPF.DataServices.Repositories
         public async Task SaveAsync()
         {
             await _context.SaveChangesAsync(); //save all changes to the current context
+        }
+
+        public void Update(Equipment model)
+        {
+            var Entity = _context.Equipments.Find(model.EquipmentId);
+            if(Entity == null)
+            {
+                return;
+            }
+            _context.Entry(model).CurrentValues.SetValues(model);
         }
     }
 }

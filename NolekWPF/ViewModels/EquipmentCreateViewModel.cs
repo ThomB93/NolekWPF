@@ -61,9 +61,7 @@ namespace NolekWPF.ViewModels
                 _equipment = value;
                 OnPropertyChanged();
             }
-        }
-
-        
+        }        
 
         public IEnumerable<EquipmentTypeDto> EquipmentTypes
         {

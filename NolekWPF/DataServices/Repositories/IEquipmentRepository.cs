@@ -15,5 +15,6 @@ namespace NolekWPF.DataServices.Repositories
         Task<IEnumerable<EquipmentTypeDto>> GetEquipmentTypesAsync();
         Task<IEnumerable<EquipmentConfigurationDto>> GetEquipmentConfigurationsAsync();
         Task<IEnumerable<EquipmentCategoryDto>> GetEquipmentCategoriesAsync();
+        void Update(Equipment model);
     }
 }
