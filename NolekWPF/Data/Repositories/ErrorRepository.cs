@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using NolekWPF.DataAccess;
 using NolekWPF.Model;
 
-namespace NolekWPF.DataServices.Repositories
+namespace NolekWPF.Data.Repositories
 {
     public class ErrorRepository : IErrorRepository
     {

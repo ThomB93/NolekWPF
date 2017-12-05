@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using NolekWPF.DataServices;
+
 using NolekWPF.Model;
 using NolekWPF.Startup;
 using System;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using NolekWPF.DataAccess;
-using NolekWPF.DataServices.Repositories;
+using NolekWPF.Data.Repositories;
 
 namespace NolekWPF
 {

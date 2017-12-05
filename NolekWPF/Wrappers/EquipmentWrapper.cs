@@ -14,12 +14,12 @@ namespace NolekWPF.Wrappers
 {
     public class EquipmentWrapper : ViewModelBase, INotifyDataErrorInfo
     {
-        public EquipmentWrapper(Equipment model)
+        public EquipmentWrapper(Model.Equipment model)
         {
             Model = model;
         }
 
-        public Equipment Model { get; }
+        public Model.Equipment Model { get; }
 
         [Required]
         public int EquipmentId { get { return Model.EquipmentId; } }

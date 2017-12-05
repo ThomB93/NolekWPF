@@ -1,33 +1,33 @@
-﻿using System;
+﻿using NolekWPF.Data.DataServices;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NolekWPF.Model;
-using NolekWPF.DataServices;
 using System.Collections.ObjectModel;
 using Prism.Events;
 using NolekWPF.Events;
 using System.Windows;
 
-namespace NolekWPF.ViewModels
+namespace NolekWPF.ViewModels.Component
 {
-    public class EquipmentListViewModel : ViewModelBase, IEquipmentListViewModel
+    public class ComponentListViewModel : ViewModelBase, IComponentListViewModel
     {
-        private IEquipmentLookupDataService _equipmentLookupDataService;
-        public ObservableCollection<EquipmentLookup> Equipments { get; }
+        private IComponentDataService _componentDataService;
+        public ObservableCollection<Model.Component> Components { get; }
         private IEventAggregator _eventAggregator;
         private IErrorDataService _errorDataService;
 
-        public EquipmentListViewModel(IEquipmentLookupDataService equipmentLookupDataService,
+        public ComponentListViewModel(IComponentDataService componentDataService,
             IEventAggregator eventAggregator, IErrorDataService errorDataService)
         {
-            _equipmentLookupDataService = equipmentLookupDataService;
-            Equipments = new ObservableCollection<EquipmentLookup>();
+            _componentDataService = componentDataService;
+            Components = new ObservableCollection<Model.Component>();
             //initialize event aggregator
             _eventAggregator = eventAggregator;
             _errorDataService = errorDataService;
-            _eventAggregator.GetEvent<AfterEquipmentCreated>().Subscribe(RefreshList);
+            _eventAggregator.GetEvent<AfterComponentCreated>().Subscribe(RefreshList);
         }
 
         private async void RefreshList()
@@ -39,10 +39,10 @@ namespace NolekWPF.ViewModels
         {
             try
             {
-                var lookup = await _equipmentLookupDataService.GetEquipmentLookupAsync();
+                var lookup = await _componentDataService.GetComponentLookupAsync();
                 foreach (var item in lookup)
                 {
-                    Equipments.Add(item);
+                    Components.Add(item);
                 }
             }
             catch (Exception e)
@@ -59,18 +59,18 @@ namespace NolekWPF.ViewModels
             }
         }
 
-        private EquipmentLookup _selectedEquipment;
+        private Model.Component _selectedComponent;
 
-        public EquipmentLookup SelectedEquipment
+        public Model.Component SelectedComponent
         {
-            get { return _selectedEquipment; }
+            get { return _selectedComponent; }
             set
             {
-                _selectedEquipment = value;
-                if (_selectedEquipment != null)
+                _selectedComponent = value;
+                if (_selectedComponent != null)
                 {
-                    _eventAggregator.GetEvent<OpenEquipmentDetailViewEvent>()
-                        .Publish(_selectedEquipment.EquipmentId);
+                    _eventAggregator.GetEvent<OpenComponentDetailViewEvent>()
+                        .Publish(_selectedComponent.ComponentId);
                 }
             }
         }

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using NolekWPF.Model;
 
-namespace NolekWPF.DataServices.Repositories
+namespace NolekWPF.Data.Repositories
 {
     public interface IErrorRepository
     {

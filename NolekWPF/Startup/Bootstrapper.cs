@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using NolekWPF.DataServices;
 using NolekWPF.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -7,8 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NolekWPF.DataAccess;
-using NolekWPF.DataServices.Repositories;
 using Prism.Events;
+using NolekWPF.Data.DataServices;
+using NolekWPF.Data.Repositories;
+using NolekWPF.Equipment.ViewModels;
+using NolekWPF.ViewModels.Component;
 
 namespace NolekWPF.Startup
 {
@@ -37,6 +39,11 @@ namespace NolekWPF.Startup
             builder.RegisterType<EquipmentListViewModel>().As<IEquipmentListViewModel>();
             builder.RegisterType<EquipmentCreateViewModel>().As<IEquipmentCreateViewModel>();
             builder.RegisterType<EquipmentDetailViewModel>().As<IEquipmentDetailViewModel>();
+
+            builder.RegisterType<ComponentListViewModel>().As<IComponentListViewModel>();
+            builder.RegisterType<ComponentCreateViewModel>().As<IComponentCreateViewModel>();
+            builder.RegisterType<ComponentDetailViewModel>().As<IComponentDetailViewModel>();
+
             builder.RegisterType<MainViewModel>().AsSelf();
 
             //register event aggregators

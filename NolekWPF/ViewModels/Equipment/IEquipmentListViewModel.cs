@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace NolekWPF.ViewModels
+namespace NolekWPF.Equipment.ViewModels
 {
     public interface IEquipmentListViewModel
     {

@@ -4,7 +4,7 @@ using System.Windows.Input;
 using NolekWPF.Model;
 using NolekWPF.Wrappers;
 
-namespace NolekWPF.ViewModels
+namespace NolekWPF.Equipment.ViewModels
 {
     public interface IEquipmentCreateViewModel
     {

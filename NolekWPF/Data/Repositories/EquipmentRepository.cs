@@ -9,7 +9,7 @@ using NolekWPF.Model;
 using NolekWPF.Model.Dto;
 using NolekWPF.Wrappers;
 
-namespace NolekWPF.DataServices.Repositories
+namespace NolekWPF.Data.Repositories
 {
     public class EquipmentRepository : IEquipmentRepository
     {
@@ -20,12 +20,12 @@ namespace NolekWPF.DataServices.Repositories
             _context = context; //context is kept alive throughout the application lifetime
         }
 
-        public void Add(Equipment equipment)
+        public void Add(Model.Equipment equipment)
         {
             _context.Equipments.Add(equipment); //call insert to add new equipement to table
         }
 
-        public async Task<Equipment> GetByIdAsync(int equipId)
+        public async Task<Model.Equipment> GetByIdAsync(int equipId)
         {
             return await _context.Equipments.SingleAsync(f => f.EquipmentId == equipId); //return equipement with the id
         }
@@ -62,20 +62,24 @@ namespace NolekWPF.DataServices.Repositories
             return _context.ChangeTracker.HasChanges(); //return true if current equipement has changes
         }
 
-        public void Remove(Equipment model)
+        public void Remove(Model.Equipment model)
         {
             _context.Equipments.Remove(model); //delete equipment from the db
+        }
+
+        public void Update(Model.Equipment model)
+        {
+            var Entity = _context.Equipments.Find(model.EquipmentId);
+            if (Entity == null)
+            {
+                return;
+            }
+            _context.Entry(model).CurrentValues.SetValues(model);
         }
 
         public async Task SaveAsync()
         {
             await _context.SaveChangesAsync(); //save all changes to the current context
-        }
-
-        public async void AddError(Error error)
-        {
-            _context.Errors.Add(error);
-            await SaveAsync();
         }
     }
 }

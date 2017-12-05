@@ -7,7 +7,7 @@ using NolekWPF.DataAccess;
 using NolekWPF.Model;
 using System.Data.Entity;
 
-namespace NolekWPF.DataServices
+namespace NolekWPF.Data.DataServices
 {
     public class EquipmentDataService : IEquipmentDataService
     {
@@ -17,7 +17,7 @@ namespace NolekWPF.DataServices
         {
             _contextCreator = contextCreator;
         }
-        public async Task<Equipment> GetByIdAsync(int equipmentId) 
+        public async Task<Model.Equipment> GetByIdAsync(int equipmentId) 
         {
             using (var ctx = _contextCreator()) 
             {

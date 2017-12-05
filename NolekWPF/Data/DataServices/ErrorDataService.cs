@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NolekWPF.DataServices
+namespace NolekWPF.Data.DataServices
 {
     public class ErrorDataService : IErrorDataService
     {

@@ -72,17 +72,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DataServices\EquipmentDataService.cs" />
-    <Compile Include="DataServices\EquipmentLookupDataService.cs" />
-    <Compile Include="DataServices\ErrorDataService.cs" />
-    <Compile Include="DataServices\IEquipmentDataService.cs" />
-    <Compile Include="DataServices\IEquipmentLookupDataService.cs" />
-    <Compile Include="DataServices\IErrorDataService.cs" />
-    <Compile Include="DataServices\Repositories\EquipmentRepository.cs" />
-    <Compile Include="DataServices\Repositories\ErrorRepository.cs" />
-    <Compile Include="DataServices\Repositories\IEquipmentRepository.cs" />
-    <Compile Include="DataServices\Repositories\IErrorRepository.cs" />
+    <Compile Include="Data\DataServices\ComponentDataService.cs" />
+    <Compile Include="Data\DataServices\EquipmentDataService.cs" />
+    <Compile Include="Data\DataServices\EquipmentLookupDataService.cs" />
+    <Compile Include="Data\DataServices\ErrorDataService.cs" />
+    <Compile Include="Data\DataServices\IComponentDataService.cs" />
+    <Compile Include="Data\DataServices\IEquipmentDataService.cs" />
+    <Compile Include="Data\DataServices\IEquipmentLookupDataService.cs" />
+    <Compile Include="Data\DataServices\IErrorDataService.cs" />
+    <Compile Include="Data\Repositories\ComponentRepository.cs" />
+    <Compile Include="Data\Repositories\EquipmentRepository.cs" />
+    <Compile Include="Data\Repositories\ErrorRepository.cs" />
+    <Compile Include="Data\Repositories\IComponentRepository.cs" />
+    <Compile Include="Data\Repositories\IEquipmentRepository.cs" />
+    <Compile Include="Data\Repositories\IErrorRepository.cs" />
+    <Compile Include="Events\AfterComponentCreated.cs" />
     <Compile Include="Events\AfterEquipmentCreated.cs" />
+    <Compile Include="Events\OpenComponentDetailViewEvent.cs" />
     <Compile Include="Events\OpenEquipmentDetailViewEvent.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />
     <Compile Include="UserControls\Component\ComponentCreateView.xaml.cs">
@@ -106,12 +112,18 @@
     <Compile Include="UserControls\Equipment\EquipmentListView.xaml.cs">
       <DependentUpon>EquipmentListView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\EquipmentCreateViewModel.cs" />
-    <Compile Include="ViewModels\EquipmentDetailViewModel.cs" />
-    <Compile Include="ViewModels\EquipmentListViewModel.cs" />
-    <Compile Include="ViewModels\IEquipmentCreateViewModel.cs" />
-    <Compile Include="ViewModels\IEquipmentDetailViewModel.cs" />
-    <Compile Include="ViewModels\IEquipmentListViewModel.cs" />
+    <Compile Include="ViewModels\Component\ComponentCreateViewModel.cs" />
+    <Compile Include="ViewModels\Component\ComponentDetailViewModel.cs" />
+    <Compile Include="ViewModels\Component\ComponentListViewModel.cs" />
+    <Compile Include="ViewModels\Component\IComponentCreateViewModel.cs" />
+    <Compile Include="ViewModels\Component\IComponentDetailViewModel.cs" />
+    <Compile Include="ViewModels\Component\IComponentListViewModel.cs" />
+    <Compile Include="ViewModels\Equipment\EquipmentCreateViewModel.cs" />
+    <Compile Include="ViewModels\Equipment\EquipmentDetailViewModel.cs" />
+    <Compile Include="ViewModels\Equipment\EquipmentListViewModel.cs" />
+    <Compile Include="ViewModels\Equipment\IEquipmentCreateViewModel.cs" />
+    <Compile Include="ViewModels\Equipment\IEquipmentDetailViewModel.cs" />
+    <Compile Include="ViewModels\Equipment\IEquipmentListViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Wrappers\ComponentWrapper.cs" />

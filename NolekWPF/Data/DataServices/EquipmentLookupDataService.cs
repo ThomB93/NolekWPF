@@ -7,7 +7,7 @@ using NolekWPF.DataAccess;
 using NolekWPF.Model;
 using System.Data.Entity;
 
-namespace NolekWPF.DataServices
+namespace NolekWPF.Data.DataServices
 {
     public class EquipmentLookupDataService : IEquipmentLookupDataService
     {

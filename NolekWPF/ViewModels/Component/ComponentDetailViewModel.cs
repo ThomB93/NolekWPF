@@ -1,4 +1,4 @@
-﻿using NolekWPF.DataServices;
+﻿using NolekWPF.Data.DataServices;
 using NolekWPF.Events;
 using NolekWPF.Model;
 using Prism.Events;
@@ -9,40 +9,38 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace NolekWPF.ViewModels
+namespace NolekWPF.ViewModels.Component
 {
-    public class EquipmentDetailViewModel : ViewModelBase, IEquipmentDetailViewModel
+    public class ComponentDetailViewModel : ViewModelBase, IComponentDetailViewModel
     {
-        private IEquipmentDataService _dataService;
+        private IComponentDataService _dataService;
         private IEventAggregator _eventAggregator;
-        private EquipmentView _equipment;
         private IErrorDataService _errorDataService;
 
-        public EquipmentDetailViewModel(IEquipmentDataService dataService,
+        public ComponentDetailViewModel(IComponentDataService dataService,
             IEventAggregator eventAggregator, IErrorDataService errorDataService)
         {
             _dataService = dataService;
             _eventAggregator = eventAggregator;
-            _eventAggregator.GetEvent<OpenEquipmentDetailViewEvent>()
-                .Subscribe(OnOpenEquipmentDetailView);
+            _eventAggregator.GetEvent<OpenComponentDetailViewEvent>()
+                .Subscribe(OnOpenComponentDetailView);
             _errorDataService = errorDataService;
         }
 
-        private async void OnOpenEquipmentDetailView(int equipmentId)
+        private async void OnOpenComponentDetailView(int componentId)
         {
-            await LoadAsync(equipmentId);
+            await LoadAsync(componentId);
         }
 
-        public async Task LoadAsync(int equipmentId)
+        public async Task LoadAsync(int componentId)
         {
             try
             {
-                Equipment = await _dataService.GetViewByIdAsync(equipmentId);
+                Component = await _dataService.GetByIdAsync(componentId);
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message, "An error occurred", MessageBoxButton.OK, MessageBoxImage.Warning);
-                //create new error object from the exception and add to DB
                 Error error = new Error
                 {
                     ErrorMessage = e.Message,
@@ -51,18 +49,17 @@ namespace NolekWPF.ViewModels
                 };
                 await _errorDataService.AddError(error);
             }
-
         }
 
-        public EquipmentView Equipment
+        private Model.Component _component;
+        public Model.Component Component
         {
-            get { return _equipment; }
+            get { return _component; }
             private set
             {
-                _equipment = value;
+                _component = value;
                 OnPropertyChanged();
             }
         }
-
     }
 }

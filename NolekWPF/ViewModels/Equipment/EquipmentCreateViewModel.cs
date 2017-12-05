@@ -5,16 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using NolekWPF.DataServices;
-using NolekWPF.DataServices.Repositories;
 using NolekWPF.Model;
 using NolekWPF.Model.Dto;
 using Prism.Commands;
 using NolekWPF.Wrappers;
 using Prism.Events;
 using NolekWPF.Events;
+using NolekWPF.ViewModels;
+using NolekWPF.Data.Repositories;
+using NolekWPF.Data.DataServices;
 
-namespace NolekWPF.ViewModels
+namespace NolekWPF.Equipment.ViewModels
 {
     public class EquipmentCreateViewModel : ViewModelBase, IEquipmentCreateViewModel
     {
@@ -137,7 +138,7 @@ namespace NolekWPF.ViewModels
 
         private EquipmentWrapper CreateNewEquipment() //calls the add method in the repository to insert new equipment and return it
         {
-            var equipment = new EquipmentWrapper(new Equipment());
+            var equipment = new EquipmentWrapper(new Model.Equipment());
 
             //when property in equipment changes, and it has errors, disable the create button
             equipment.PropertyChanged += (s, e) =>

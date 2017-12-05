@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using NolekWPF.Equipment.ViewModels;
+using System.Threading.Tasks;
 
 namespace NolekWPF.ViewModels
 {
@@ -20,9 +21,14 @@ namespace NolekWPF.ViewModels
         public async Task LoadAsync() //method must be async when loading in async data and return a task
         {
             await EquipmentListViewModel.LoadAsync();
+
             await EquipmentCreateViewModel.LoadTypesAsync();
             await EquipmentCreateViewModel.LoadConfigurationsAsync();
             await EquipmentCreateViewModel.LoadCategoriesAsync();
+
+            await EquipmentDetailViewModel.LoadTypesAsync();
+            await EquipmentDetailViewModel.LoadConfigurationsAsync();
+            await EquipmentDetailViewModel.LoadCategoriesAsync();
         }
     }
 }
