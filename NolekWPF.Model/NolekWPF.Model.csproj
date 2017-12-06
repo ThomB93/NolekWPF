@@ -45,6 +45,7 @@
     <Compile Include="Component.cs">
       <DependentUpon>Nolek.tt</DependentUpon>
     </Compile>
+    <Compile Include="Dto\ComponentDto.cs" />
     <Compile Include="Dto\EquipmentCategoryDto.cs" />
     <Compile Include="Dto\EquipmentConfigurationDto.cs" />
     <Compile Include="Equipment.cs">

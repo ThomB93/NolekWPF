@@ -9,25 +9,28 @@ using System.Collections.ObjectModel;
 using Prism.Events;
 using NolekWPF.Events;
 using System.Windows;
+using NolekWPF.Model.Dto;
 
 namespace NolekWPF.ViewModels.Component
 {
     public class ComponentListViewModel : ViewModelBase, IComponentListViewModel
     {
         private IComponentDataService _componentDataService;
-        public ObservableCollection<Model.Component> Components { get; }
+        public ObservableCollection<ComponentDto> Components { get; }
         private IEventAggregator _eventAggregator;
         private IErrorDataService _errorDataService;
+        public IComponentDetailViewModel ComponentDetailViewModel { get; }
 
         public ComponentListViewModel(IComponentDataService componentDataService,
-            IEventAggregator eventAggregator, IErrorDataService errorDataService)
+            IEventAggregator eventAggregator, IErrorDataService errorDataService, IComponentDetailViewModel componentDetailViewModel)
         {
             _componentDataService = componentDataService;
-            Components = new ObservableCollection<Model.Component>();
+            Components = new ObservableCollection<ComponentDto>();
             //initialize event aggregator
             _eventAggregator = eventAggregator;
             _errorDataService = errorDataService;
             _eventAggregator.GetEvent<AfterComponentCreated>().Subscribe(RefreshList);
+            ComponentDetailViewModel = componentDetailViewModel;
         }
 
         private async void RefreshList()
@@ -59,9 +62,9 @@ namespace NolekWPF.ViewModels.Component
             }
         }
 
-        private Model.Component _selectedComponent;
+        private ComponentDto _selectedComponent;
 
-        public Model.Component SelectedComponent
+        public ComponentDto SelectedComponent
         {
             get { return _selectedComponent; }
             set
@@ -74,5 +77,7 @@ namespace NolekWPF.ViewModels.Component
                 }
             }
         }
+
+        
     }
 }

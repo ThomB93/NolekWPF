@@ -23,7 +23,7 @@
                     <MenuItem Header="_Add / Remove Components"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Component">
-                    <MenuItem Header="_List / Update"></MenuItem>
+                    <MenuItem x:Name="compList" Header="_List / Update" Click="compList_Click" ></MenuItem>
                     <MenuItem Header="_New Component"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Customers">
@@ -40,20 +40,14 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    
                 </Grid.ColumnDefinitions>
+                <Frame x:Name="mainframe">
 
-                <equipment:EquipmentListView Grid.Column="0" DataContext="{Binding EquipmentListViewModel}"
-                                 Visibility="Collapsed" x:Name="EquipListView"></equipment:EquipmentListView>
+                </Frame>
 
-                <equipment:EquipmentDetailView Grid.Column="1" DataContext="{Binding EquipmentDetailViewModel}"
-                                       Visibility="Collapsed" x:Name="EquipDetailView"></equipment:EquipmentDetailView>
-
-                <equipment:EquipmentCreateView Grid.Column="0" Grid.ColumnSpan="2" Visibility="Collapsed"
-                                   DataContext="{Binding EquipmentCreateViewModel}"
-                                   x:Name="EquipCreateView"></equipment:EquipmentCreateView>
             </Grid>
-          
+            
         </Border>
     </StackPanel>
     

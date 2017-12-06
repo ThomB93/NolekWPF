@@ -20,9 +20,10 @@ namespace NolekWPF.Equipment.ViewModels
         public ObservableCollection<EquipmentLookup> Equipments { get; }
         private IEventAggregator _eventAggregator;
         private IErrorDataService _errorDataService;
+        public IEquipmentDetailViewModel EquipmentDetailViewModel { get; }
 
         public EquipmentListViewModel(IEquipmentLookupDataService equipmentLookupDataService,
-            IEventAggregator eventAggregator, IErrorDataService errorDataService)
+            IEventAggregator eventAggregator, IErrorDataService errorDataService, IEquipmentDetailViewModel equipmentDetailViewModel)
         {
             _equipmentLookupDataService = equipmentLookupDataService;
             Equipments = new ObservableCollection<EquipmentLookup>();
@@ -30,6 +31,14 @@ namespace NolekWPF.Equipment.ViewModels
             _eventAggregator = eventAggregator;
             _errorDataService = errorDataService;
             _eventAggregator.GetEvent<AfterEquipmentCreated>().Subscribe(RefreshList);
+            EquipmentDetailViewModel = equipmentDetailViewModel;
+            LoadDetailData();
+        }
+        private async void LoadDetailData()
+        {
+            await EquipmentDetailViewModel.LoadCategoriesAsync();
+            await EquipmentDetailViewModel.LoadConfigurationsAsync();
+            await EquipmentDetailViewModel.LoadTypesAsync();
         }
 
         private async void RefreshList()
@@ -76,5 +85,7 @@ namespace NolekWPF.Equipment.ViewModels
                 }
             }
         }
+
+        
     }
 }

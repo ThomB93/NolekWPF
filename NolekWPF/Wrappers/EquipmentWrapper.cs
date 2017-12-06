@@ -19,7 +19,7 @@ namespace NolekWPF.Wrappers
             Model = model;
         }
 
-        public Model.Equipment Model { get; }
+        public Model.Equipment Model { get; set; }
 
         [Required]
         public int EquipmentId { get { return Model.EquipmentId; } }

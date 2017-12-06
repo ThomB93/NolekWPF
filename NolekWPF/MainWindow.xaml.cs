@@ -1,4 +1,5 @@
-﻿using NolekWPF.ViewModels;
+﻿using NolekWPF.Pages;
+using NolekWPF.ViewModels;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -38,21 +39,20 @@ namespace NolekWPF
 
         private void mnuEquipList_Click(object sender, RoutedEventArgs e)
         {
-            EquipListView.Visibility = Visibility.Visible;
-            EquipDetailView.Visibility = Visibility.Visible;
-            EquipCreateView.Visibility = Visibility.Collapsed;
-            
+            mainframe.Navigate(new ListEquipmentPage(_viewModel.EquipmentListViewModel));
         }
         private void mnuEquipCreate_Click(object sender, RoutedEventArgs e)
         {
-            EquipCreateView.Visibility = Visibility.Visible;
-            EquipDetailView.Visibility = Visibility.Collapsed;
-            EquipListView.Visibility = Visibility.Collapsed;
-            
+            mainframe.Navigate(new CreateEquipmentPage(_viewModel.EquipmentCreateViewModel));
         }
         private void mnuExit_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
+        }
+
+        private void compList_Click(object sender, RoutedEventArgs e)
+        {
+            mainframe.Navigate(new ListComponentPage(_viewModel.ComponentListViewModel));
         }
     }
 }

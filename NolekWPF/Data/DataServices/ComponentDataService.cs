@@ -1,5 +1,6 @@
 ﻿using NolekWPF.DataAccess;
 using NolekWPF.Model;
+using NolekWPF.Model.Dto;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -25,11 +26,11 @@ namespace NolekWPF.Data.DataServices
             }
         }
 
-        public async Task<IEnumerable<Component>> GetComponentLookupAsync()
+        public async Task<IEnumerable<ComponentDto>> GetComponentLookupAsync()
         {
             using (var ctx = _contextCreator())
             {
-                return await ctx.Components.AsNoTracking().Select(f => new Component
+                return await ctx.Components.AsNoTracking().Select(f => new ComponentDto
                 {
                     ComponentId = f.ComponentId,
                     ComponentDescription = f.ComponentDescription,
@@ -37,9 +38,7 @@ namespace NolekWPF.Data.DataServices
                     ComponentOrderNumber = f.ComponentOrderNumber,
                     ComponentQuantity = f.ComponentQuantity,
                     ComponentSerialNumber = f.ComponentSerialNumber,
-                    ComponentSupplyNumber = f.ComponentSupplyNumber,
-                    EquipmentComponents = f.EquipmentComponents
-
+                    ComponentSupplyNumber = f.ComponentSupplyNumber
                 }).ToListAsync();
             }
         }

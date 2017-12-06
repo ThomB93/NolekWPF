@@ -36,8 +36,21 @@ namespace NolekWPF.Equipment.ViewModels
 
         private async void OnUpdateExecute()
         {
-            await _equipmentRepository.SaveAsync();
-            Equipment = UpdateEquipment();
+            try
+            {
+                await _equipmentRepository.SaveAsync();
+                Equipment = UpdateEquipment();
+            }
+            catch (Exception e)
+            {
+                Error error = new Error
+                {
+                    ErrorMessage = e.Message,
+                    ErrorTimeStamp = DateTime.Now,
+                    ErrorStackTrace = e.StackTrace
+                };
+                await _errorDataService.AddError(error);
+            }
         }
 
         private async void OnOpenEquipmentDetailView(int equipmentId)
