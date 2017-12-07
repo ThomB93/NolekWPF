@@ -1,5 +1,6 @@
 ﻿using NolekWPF.Equipment.ViewModels;
 using NolekWPF.ViewModels.Component;
+using NolekWPF.ViewModels.Login;
 using System.Threading.Tasks;
 
 namespace NolekWPF.ViewModels
@@ -12,11 +13,13 @@ namespace NolekWPF.ViewModels
         public IComponentListViewModel ComponentListViewModel { get; }
         public IComponentDetailViewModel ComponentDetailViewModel { get; }
         public IComponentCreateViewModel ComponentCreateViewModel { get; }
+        public ILoginViewModel LoginViewModel { get; }
 
         public MainViewModel(IEquipmentListViewModel equipmentListViewModel,
             IEquipmentCreateViewModel equipmentCreateViewModel,
             IEquipmentDetailViewModel equipmentDetailViewModel, IComponentDetailViewModel componentDetailViewModel,
-            IComponentCreateViewModel componentCreateViewModel, IComponentListViewModel componentListViewModel)
+            IComponentCreateViewModel componentCreateViewModel, IComponentListViewModel componentListViewModel,
+            ILoginViewModel loginViewModel)
         {
             EquipmentListViewModel = equipmentListViewModel;
             EquipmentCreateViewModel = equipmentCreateViewModel;
@@ -24,6 +27,7 @@ namespace NolekWPF.ViewModels
             ComponentListViewModel = componentListViewModel;
             ComponentDetailViewModel = componentDetailViewModel;
             ComponentCreateViewModel = componentCreateViewModel;
+            LoginViewModel = loginViewModel;
         }
 
         public async Task LoadAsync() //method must be async when loading in async data and return a task
@@ -39,6 +43,11 @@ namespace NolekWPF.ViewModels
             await EquipmentDetailViewModel.LoadTypesAsync();
             await EquipmentDetailViewModel.LoadConfigurationsAsync();
             await EquipmentDetailViewModel.LoadCategoriesAsync();
+        }
+
+        public bool Login()
+        {
+            return LoginViewModel.Login();         
         }
     }
 }

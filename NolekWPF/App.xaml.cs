@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using NolekWPF.DataAccess;
 using NolekWPF.Data.Repositories;
+using NolekWPF.Pages.Login;
+
 
 namespace NolekWPF
 {
@@ -25,7 +27,15 @@ namespace NolekWPF
         {
             var bootstrapper = new Bootstrapper();
             var container = bootstrapper.Bootstrap();
-            var mainWindow = container.Resolve<MainWindow>(); //the main window must have the view model passed to its constructor, and the viewmodel needs the data access passed to its constructor
+
+            //var myLoginView = container.Resolve<LoginView>();
+            var mainWindow = container.Resolve<MainWindow>();
+
+            //myLoginView.ShowDialog();
+
+            //var LoginView = container.Resolve<LoginView>();
+            //LoginView.Show();
+             //the main window must have the view model passed to its constructor, and the viewmodel needs the data access passed to its constructor
             //resolve will automatically inject all required object to constructors 
             mainWindow.Show();
         }

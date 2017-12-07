@@ -27,10 +27,23 @@ namespace NolekWPF
         public MainWindow(MainViewModel viewModel)
         {
             InitializeComponent();
+            Menu.Visibility = Visibility.Collapsed;
             _viewModel = viewModel; //assign injected view model to local property
             DataContext = viewModel; //set the data context for the view to the viewmodel
             Loaded += MainWindow_Loaded; //event when the window first loads
         }
+
+        //public LoginViewModel ViewModel
+        //{
+        //    get
+        //    {
+        //        return this.DataContext as LoginViewModel;
+        //    }
+        //    set
+        //    {
+        //        this.DataContext = value;
+        //    }
+        //}
 
         private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
@@ -53,6 +66,12 @@ namespace NolekWPF
         private void compList_Click(object sender, RoutedEventArgs e)
         {
             mainframe.Navigate(new ListComponentPage(_viewModel.ComponentListViewModel));
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //LoginLayer.Visibility = Visibility.Collapsed;
+            //Menu.Visibility = Visibility.Visible;
         }
     }
 }

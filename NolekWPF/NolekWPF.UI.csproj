@@ -72,6 +72,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Data\DataServices\ComponentDataService.cs" />
     <Compile Include="Data\DataServices\EquipmentDataService.cs" />
     <Compile Include="Data\DataServices\EquipmentLookupDataService.cs" />
@@ -80,6 +81,8 @@
     <Compile Include="Data\DataServices\IEquipmentDataService.cs" />
     <Compile Include="Data\DataServices\IEquipmentLookupDataService.cs" />
     <Compile Include="Data\DataServices\IErrorDataService.cs" />
+    <Compile Include="Data\DataServices\IUserDataService.cs" />
+    <Compile Include="Data\DataServices\UserDataService.cs" />
     <Compile Include="Data\Repositories\ComponentRepository.cs" />
     <Compile Include="Data\Repositories\EquipmentRepository.cs" />
     <Compile Include="Data\Repositories\ErrorRepository.cs" />
@@ -127,6 +130,9 @@
     <Compile Include="UserControls\Equipment\EquipmentListView.xaml.cs">
       <DependentUpon>EquipmentListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Login\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\Component\ComponentCreateViewModel.cs" />
     <Compile Include="ViewModels\Component\ComponentDetailViewModel.cs" />
     <Compile Include="ViewModels\Component\ComponentListViewModel.cs" />
@@ -139,6 +145,8 @@
     <Compile Include="ViewModels\Equipment\IEquipmentCreateViewModel.cs" />
     <Compile Include="ViewModels\Equipment\IEquipmentDetailViewModel.cs" />
     <Compile Include="ViewModels\Equipment\IEquipmentListViewModel.cs" />
+    <Compile Include="ViewModels\Login\ILoginViewModel.cs" />
+    <Compile Include="ViewModels\Login\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Wrappers\ComponentWrapper.cs" />
@@ -200,6 +208,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Equipment\EquipmentListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Login\LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

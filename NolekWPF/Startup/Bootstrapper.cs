@@ -11,6 +11,8 @@ using NolekWPF.Data.DataServices;
 using NolekWPF.Data.Repositories;
 using NolekWPF.Equipment.ViewModels;
 using NolekWPF.ViewModels.Component;
+using NolekWPF.ViewModels.Login;
+using NolekWPF.Pages.Login;
 
 namespace NolekWPF.Startup
 {
@@ -22,6 +24,7 @@ namespace NolekWPF.Startup
 
             //views
             builder.RegisterType<MainWindow>().AsSelf();
+            builder.RegisterType<LoginView>().AsSelf();
 
             //db context
             builder.RegisterType<wiki_nolek_dk_dbEntities>().AsSelf(); //create new context when it is needed
@@ -31,6 +34,7 @@ namespace NolekWPF.Startup
             builder.RegisterType<EquipmentLookupDataService>().As<IEquipmentLookupDataService>();
             builder.RegisterType<ErrorDataService>().As<IErrorDataService>();
             builder.RegisterType<ComponentDataService>().As<IComponentDataService>();
+            builder.RegisterType<UserDataService>().As<IUserDataService>();
 
             //repositories
             builder.RegisterType<EquipmentRepository>().As<IEquipmentRepository>();
@@ -46,7 +50,10 @@ namespace NolekWPF.Startup
             builder.RegisterType<ComponentCreateViewModel>().As<IComponentCreateViewModel>();
             builder.RegisterType<ComponentDetailViewModel>().As<IComponentDetailViewModel>();
 
+            builder.RegisterType<LoginViewModel>().As<ILoginViewModel>();
+
             builder.RegisterType<MainViewModel>().AsSelf();
+            
 
             //register event aggregators
             builder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();
