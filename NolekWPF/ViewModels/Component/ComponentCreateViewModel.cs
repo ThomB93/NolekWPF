@@ -56,7 +56,7 @@ namespace NolekWPF.ViewModels.Component
             {
                 await _componentRepository.SaveAsync();
                 Component = CreateNewComponent();
-                MessageBox.Show("Equipment was successfully created.");
+                MessageBox.Show("Component was successfully created.");
                 _eventAggregator.GetEvent<AfterComponentCreated>().Publish();
             }
             catch (Exception e)
@@ -103,7 +103,10 @@ namespace NolekWPF.ViewModels.Component
             ((DelegateCommand)CreateComponentCommand).RaiseCanExecuteChanged();
 
             //default values
-            
+            component.ComponentName = "";
+            component.ComponentSupplyNumber = "";
+            component.ComponentSerialNumber = "";
+            component.ComponentQuantity = 0;
 
             _componentRepository.Add(component.Model); //context is aware of the equipment to add
             return component;

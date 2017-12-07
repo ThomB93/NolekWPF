@@ -51,6 +51,7 @@ namespace NolekWPF.Equipment.ViewModels
             try
             {
                 var lookup = await _equipmentLookupDataService.GetEquipmentLookupAsync();
+                Equipments.Clear();
                 foreach (var item in lookup)
                 {
                     Equipments.Add(item);

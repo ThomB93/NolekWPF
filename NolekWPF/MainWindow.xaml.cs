@@ -54,5 +54,10 @@ namespace NolekWPF
         {
             mainframe.Navigate(new ListComponentPage(_viewModel.ComponentListViewModel));
         }
+
+        private void mnuCreateComp_Click(object sender, RoutedEventArgs e)
+        {
+            mainframe.Navigate(new CreateComponentPage(_viewModel.ComponentCreateViewModel));
+        }
     }
 }

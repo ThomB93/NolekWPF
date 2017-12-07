@@ -43,6 +43,7 @@ namespace NolekWPF.ViewModels.Component
             try
             {
                 var lookup = await _componentDataService.GetComponentLookupAsync();
+                Components.Clear();
                 foreach (var item in lookup)
                 {
                     Components.Add(item);

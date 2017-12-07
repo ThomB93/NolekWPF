@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace NolekWPF.Wrappers
@@ -33,6 +34,7 @@ namespace NolekWPF.Wrappers
             set
             {
                 Model.ComponentName = value; OnPropertyChanged();
+                ValidateProperty(nameof(ComponentName));
             }
         }
         public string ComponentDescription
@@ -41,6 +43,7 @@ namespace NolekWPF.Wrappers
             set
             {
                 Model.ComponentDescription = value; OnPropertyChanged();
+                ValidateProperty(nameof(ComponentDescription));
             }
         }
         public string ComponentOrderNumber
@@ -49,6 +52,7 @@ namespace NolekWPF.Wrappers
             set
             {
                 Model.ComponentOrderNumber = value; OnPropertyChanged();
+                ValidateProperty(nameof(ComponentOrderNumber));
             }
         }
         public string ComponentSerialNumber
@@ -57,6 +61,7 @@ namespace NolekWPF.Wrappers
             set
             {
                 Model.ComponentSerialNumber = value; OnPropertyChanged();
+                ValidateProperty(nameof(ComponentSerialNumber));
             }
         }
         public int ComponentQuantity
@@ -65,6 +70,7 @@ namespace NolekWPF.Wrappers
             set
             {
                 Model.ComponentQuantity = value; OnPropertyChanged();
+                ValidateProperty(nameof(ComponentQuantity));
             }
         }
         public string ComponentSupplyNumber
@@ -73,6 +79,7 @@ namespace NolekWPF.Wrappers
             set
             {
                 Model.ComponentSupplyNumber = value; OnPropertyChanged();
+                ValidateProperty(nameof(ComponentSupplyNumber));
             }
         }
 
@@ -82,7 +89,48 @@ namespace NolekWPF.Wrappers
             ClearErrors(propertyName);
             switch (propertyName)
             {
-                //...validation
+                case nameof(ComponentQuantity):
+                    if(Regex.Matches(ComponentQuantity.ToString(), @"[a-zA-Z]").Count != 0)
+                    {
+                        AddError(propertyName, "Quantity must be a whole number.");
+                    }
+                    break;
+                case nameof(ComponentName):
+                    if(ComponentName.Length > 50)
+                    {
+                        AddError(propertyName, "Name cannot exceeed 50 characters.");
+                    }
+                    if (ComponentName.ToString().Length < 1)
+                    {
+                        AddError(propertyName, "Name is required.");
+                    }
+                    break;
+                case nameof(ComponentOrderNumber):
+                    if (ComponentOrderNumber.Length > 50)
+                    {
+                        AddError(propertyName, "Order No. cannot exceeed 50 characters.");
+                    }
+                    break;
+                case nameof(ComponentSerialNumber):
+                    if (ComponentSerialNumber.Length > 50)
+                    {
+                        AddError(propertyName, "Serial No. cannot exceeed 50 characters.");
+                    }
+                    if (ComponentSerialNumber.ToString().Length < 1)
+                    {
+                        AddError(propertyName, "Serial No. is required.");
+                    }
+                    break;
+                case nameof(ComponentSupplyNumber):
+                    if (ComponentSupplyNumber.Length > 50)
+                    {
+                        AddError(propertyName, "Supply No. cannot exceeed 50 characters.");
+                    }
+                    if (ComponentSupplyNumber.ToString().Length < 1)
+                    {
+                        AddError(propertyName, "Supply No. is required.");
+                    }
+                    break;
                 default:
                     break;
             }
