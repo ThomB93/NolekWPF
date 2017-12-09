@@ -59,5 +59,11 @@ namespace NolekWPF
         {
             mainframe.Navigate(new CreateComponentPage(_viewModel.ComponentCreateViewModel));
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            txtName.Text = String.Empty;
+            txtPassword.Text = String.Empty;
+        }
     }
 }

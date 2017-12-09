@@ -80,6 +80,8 @@
     <Compile Include="Data\DataServices\IEquipmentDataService.cs" />
     <Compile Include="Data\DataServices\IEquipmentLookupDataService.cs" />
     <Compile Include="Data\DataServices\IErrorDataService.cs" />
+    <Compile Include="Data\DataServices\IUserDataService.cs" />
+    <Compile Include="Data\DataServices\UserDataService.cs" />
     <Compile Include="Data\Repositories\ComponentRepository.cs" />
     <Compile Include="Data\Repositories\EquipmentRepository.cs" />
     <Compile Include="Data\Repositories\ErrorRepository.cs" />
@@ -90,6 +92,7 @@
     <Compile Include="Events\AfterEquipmentCreated.cs" />
     <Compile Include="Events\OpenComponentDetailViewEvent.cs" />
     <Compile Include="Events\OpenEquipmentDetailViewEvent.cs" />
+    <Compile Include="Helpers\BoolToVisibleOrCollapsed.cs" />
     <Compile Include="Pages\CreateComponentPage.xaml.cs">
       <DependentUpon>CreateComponentPage.xaml</DependentUpon>
     </Compile>

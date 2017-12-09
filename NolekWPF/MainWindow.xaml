@@ -3,16 +3,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:equipment="clr-namespace:NolekWPF.UserControls.Equipment"
         mc:Ignorable="d"
         Title="Nolek"
         Height="500"
         Width="600"
         ResizeMode='NoResize'
         WindowStartupLocation='CenterScreen'>
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </Window.Resources>
     <StackPanel>
         <DockPanel>
-            <Menu DockPanel.Dock="Top">
+            <Menu x:Name="Menu" DockPanel.Dock="Top" Visibility="{Binding MenuVisibility, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                 <MenuItem Header="User">
                     <MenuItem Header="_Log out"></MenuItem>
                     <MenuItem x:Name="mnuExit" Header="_Exit" Click="mnuExit_Click"></MenuItem>
@@ -23,8 +25,8 @@
                     <MenuItem Header="_Add / Remove Components"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Component">
-                    <MenuItem x:Name="compList" Header="_List / Update" Click="compList_Click" ></MenuItem>
-                    <MenuItem x:Name="mnuCreateComp" Header="_New Component" Click="mnuCreateComp_Click"></MenuItem>
+                    <MenuItem x:Name="compList" Header="_List / Update" Click="compList_Click"></MenuItem>
+                    <MenuItem Header="_New Component"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Customers">
                     <MenuItem Header="_List / Update"></MenuItem>
@@ -40,15 +42,34 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
-                    
+
                 </Grid.ColumnDefinitions>
                 <Frame x:Name="mainframe">
-
                 </Frame>
-
             </Grid>
-            
         </Border>
+        <Grid x:Name="LoginLayer" Background="#FFFFFFFF" Grid.RowSpan="2" 
+              Visibility="{Binding Visibility, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Background="LightBlue">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Log in" Grid.ColumnSpan="2" FontWeight="Bold" HorizontalAlignment="Center" Margin="5" FontSize="20"/>
+                <TextBlock Text="Name" Grid.Row="1" Margin="3"/>
+                <TextBox x:Name="txtName" Grid.Row="1" Grid.Column="1" Margin="3" MinWidth="100" HorizontalAlignment="Left"
+                     Text="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Text="Password" Grid.Row="2" Margin="3"/>
+                <TextBox x:Name="txtPassword"  Grid.Column="1" Grid.Row="2" Margin="3" MinWidth="100" HorizontalAlignment="Left" 
+                     Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Command="{Binding LoginCommand}" Click="Button_Click" Content="Log in" Grid.Row="3" Grid.Column="1" Margin="3"/>
+            </Grid>
+        </Grid>
     </StackPanel>
-    
 </Window>

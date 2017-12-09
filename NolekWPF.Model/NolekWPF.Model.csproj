@@ -80,6 +80,7 @@
     <Compile Include="sysdiagram.cs">
       <DependentUpon>Nolek.tt</DependentUpon>
     </Compile>
+    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Nolek.tt">
