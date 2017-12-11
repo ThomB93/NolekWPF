@@ -60,10 +60,10 @@ namespace NolekWPF
             mainframe.Navigate(new CreateComponentPage(_viewModel.ComponentCreateViewModel));
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void mnuLogout_Click(object sender, RoutedEventArgs e)
         {
-            txtName.Text = String.Empty;
-            txtPassword.Text = String.Empty;
+            _viewModel.MenuVisibility = "Collapsed";
+            _viewModel.Visibility = "Visible";
         }
     }
 }

@@ -16,6 +16,7 @@ namespace NolekWPF.ViewModels
         private bool _isAuthenticated;
         private string _visibility;
         private string _menuvisibility;
+        private string _Cvisibility;
         private User _currentuser;
 
         public IEquipmentListViewModel EquipmentListViewModel { get; }
@@ -42,11 +43,11 @@ namespace NolekWPF.ViewModels
             _userDataService = userDataService;
             
             MenuVisibility = "Collapsed";
-            Btvoc = new BoolToVisibleOrCollapsed();
-
+            Username = "UserAdmin";
+            Password = "123";
+            
             LoginCommand = new DelegateCommand(Login);
         }
-        public BoolToVisibleOrCollapsed Btvoc;
 
         public async Task LoadAsync() //method must be async when loading in async data and return a task
         {
@@ -85,7 +86,7 @@ namespace NolekWPF.ViewModels
                 OnPropertyChanged();
             }
         }
-
+        
         public string Visibility
         {
             get { return _visibility; }
@@ -101,6 +102,15 @@ namespace NolekWPF.ViewModels
             set
             {
                 _menuvisibility = value;
+                OnPropertyChanged();
+            }
+        }
+        public string ComponentVisibility
+        {
+            get { return _Cvisibility; }
+            set
+            {
+                _Cvisibility = value;
                 OnPropertyChanged();
             }
         }
@@ -140,6 +150,19 @@ namespace NolekWPF.ViewModels
                     isAuthenticated = true;
                     Visibility = "Collapsed";
                     MenuVisibility = "Visible";
+                    Username = string.Empty;
+                    Password = string.Empty;
+
+                    //Very not smart way to do user permissions
+                    if(user.Role == "Admin")
+                    {
+                        ComponentVisibility = "Visible";
+                    }
+                    else
+                    {
+                        ComponentVisibility = "Collapsed";
+                    }
+
                     //MessageBox.Show("Good job");
                     break;
                 }
@@ -147,6 +170,8 @@ namespace NolekWPF.ViewModels
             if (isAuthenticated == false)
             {
                 MessageBox.Show("Wrong username/password");
+                Username = string.Empty;
+                Password = string.Empty;
             }
         }
 

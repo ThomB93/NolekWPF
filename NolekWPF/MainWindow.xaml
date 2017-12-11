@@ -16,7 +16,7 @@
         <DockPanel>
             <Menu x:Name="Menu" DockPanel.Dock="Top" Visibility="{Binding MenuVisibility, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                 <MenuItem Header="User">
-                    <MenuItem Header="_Log out"></MenuItem>
+                    <MenuItem Header="_Log out" Click="mnuLogout_Click"></MenuItem>
                     <MenuItem x:Name="mnuExit" Header="_Exit" Click="mnuExit_Click"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Equipment">
@@ -24,7 +24,7 @@
                     <MenuItem x:Name="mnuEquipCreate" Header="_New Equipment" Click="mnuEquipCreate_Click"></MenuItem>
                     <MenuItem Header="_Add / Remove Components"></MenuItem>
                 </MenuItem>
-                <MenuItem Header="Component">
+                <MenuItem Header="Component" Visibility="{Binding ComponentVisibility}">
                     <MenuItem x:Name="compList" Header="_List / Update" Click="compList_Click"></MenuItem>
                     <MenuItem Header="_New Component"></MenuItem>
                 </MenuItem>
@@ -68,7 +68,7 @@
                 <TextBlock Text="Password" Grid.Row="2" Margin="3"/>
                 <TextBox x:Name="txtPassword"  Grid.Column="1" Grid.Row="2" Margin="3" MinWidth="100" HorizontalAlignment="Left" 
                      Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <Button Command="{Binding LoginCommand}" Click="Button_Click" Content="Log in" Grid.Row="3" Grid.Column="1" Margin="3"/>
+                <Button Command="{Binding LoginCommand}" Content="Log in" Grid.Row="3" Grid.Column="1" Margin="3"/>
             </Grid>
         </Grid>
     </StackPanel>

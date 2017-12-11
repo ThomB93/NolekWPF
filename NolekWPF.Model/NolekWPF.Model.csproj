@@ -61,10 +61,10 @@
       <DependentUpon>Nolek.tt</DependentUpon>
     </Compile>
     <Compile Include="EquipmentLookup.cs" />
+    <Compile Include="Dto\EquipmentTypeDto.cs" />
     <Compile Include="EquipmentType.cs">
       <DependentUpon>Nolek.tt</DependentUpon>
     </Compile>
-    <Compile Include="Dto\EquipmentTypeDto.cs" />
     <Compile Include="EquipmentView.cs">
       <DependentUpon>Nolek.tt</DependentUpon>
     </Compile>
@@ -72,9 +72,9 @@
       <DependentUpon>Nolek.tt</DependentUpon>
     </Compile>
     <Compile Include="Nolek.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>Nolek.tt</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="sysdiagram.cs">
@@ -83,13 +83,13 @@
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Nolek.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Nolek.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
