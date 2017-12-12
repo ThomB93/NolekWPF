@@ -7,16 +7,13 @@
         Title="Nolek"
         Height="500"
         Width="600"
-        ResizeMode='NoResize'
+        ResizeMode='CanResize'
         WindowStartupLocation='CenterScreen'>
-    <Window.Resources>
-        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
-    </Window.Resources>
     <StackPanel>
         <DockPanel>
             <Menu x:Name="Menu" DockPanel.Dock="Top" Visibility="{Binding MenuVisibility, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                 <MenuItem Header="User">
-                    <MenuItem Header="_Log out" Click="mnuLogout_Click"></MenuItem>
+                    <MenuItem Header="_Log out" Click="mnuLogout_Click" Command="{Binding LogoutCommand}"></MenuItem>
                     <MenuItem x:Name="mnuExit" Header="_Exit" Click="mnuExit_Click"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Equipment">
@@ -44,7 +41,7 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
 
                 </Grid.ColumnDefinitions>
-                <Frame x:Name="mainframe">
+                <Frame x:Name="mainframe" Visibility="{Binding FrameVisibility}">
                 </Frame>
             </Grid>
         </Border>
@@ -68,7 +65,7 @@
                 <TextBlock Text="Password" Grid.Row="2" Margin="3"/>
                 <TextBox x:Name="txtPassword"  Grid.Column="1" Grid.Row="2" Margin="3" MinWidth="100" HorizontalAlignment="Left" 
                      Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <Button Command="{Binding LoginCommand}" Content="Log in" Grid.Row="3" Grid.Column="1" Margin="3"/>
+                <Button Command="{Binding LoginCommand}"  Content="Log in" Grid.Row="3" Grid.Column="1" Margin="3"/>
             </Grid>
         </Grid>
     </StackPanel>

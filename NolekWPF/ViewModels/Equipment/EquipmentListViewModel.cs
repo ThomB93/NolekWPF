@@ -11,6 +11,8 @@ using NolekWPF.Events;
 using System.Windows;
 using NolekWPF.ViewModels;
 using NolekWPF.Data.DataServices;
+using NolekWPF.Helpers;
+using System.Drawing;
 
 namespace NolekWPF.Equipment.ViewModels
 {
@@ -31,26 +33,37 @@ namespace NolekWPF.Equipment.ViewModels
             _eventAggregator = eventAggregator;
             _errorDataService = errorDataService;
             _eventAggregator.GetEvent<AfterEquipmentCreated>().Subscribe(RefreshList);
+            _eventAggregator.GetEvent<AfterUserLogin>().Subscribe(OnLogin);
             EquipmentDetailViewModel = equipmentDetailViewModel;
-            LoadDetailData();
+            LoadDetailData();            
         }
+
         private async void LoadDetailData()
         {
             await EquipmentDetailViewModel.LoadCategoriesAsync();
             await EquipmentDetailViewModel.LoadConfigurationsAsync();
             await EquipmentDetailViewModel.LoadTypesAsync();
         }
+        
 
         private async void RefreshList()
         {
             await LoadAsync();
         }
 
+        private void OnLogin(User user)
+        {
+            CurrentUser = user;
+        }
+
+        public User CurrentUser { get; set; }      
+
         public async Task LoadAsync()
         {
             try
             {
                 var lookup = await _equipmentLookupDataService.GetEquipmentLookupAsync();
+                
                 Equipments.Clear();
                 foreach (var item in lookup)
                 {
@@ -79,7 +92,7 @@ namespace NolekWPF.Equipment.ViewModels
             set
             {
                 _selectedEquipment = value;
-                if (_selectedEquipment != null)
+                if (_selectedEquipment != null && CurrentUser.SecurityLevel == 1)
                 {
                     _eventAggregator.GetEvent<OpenEquipmentDetailViewEvent>()
                         .Publish(_selectedEquipment.EquipmentId);

@@ -31,11 +31,18 @@ namespace NolekWPF.Pages
         private void PlaceholdersListBox_OnPreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             var item = ItemsControl.ContainerFromElement(sender as ListBox, e.OriginalSource as DependencyObject) as ListBoxItem;
-            if (item != null)
+            if (item != null && _viewmodel.CurrentUser.SecurityLevel == 1)
             {
                 this.NavigationService.Navigate(new DetailEquipmentPage(_viewmodel.EquipmentDetailViewModel));
             }
         }
+        private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if(_viewmodel.CurrentUser.SecurityLevel == 1)
+            {
+                this.NavigationService.Navigate(new DetailEquipmentPage(_viewmodel.EquipmentDetailViewModel));
+            }        
+        }    
 
     }
 }

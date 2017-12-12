@@ -4,15 +4,31 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:NolekWPF.Pages"
+      xmlns:helpers="clr-namespace:NolekWPF.Helpers"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="ListEquipmentPage">
-
+    <Page.Resources>
+        <helpers:ConvertTextToImage x:Key="convert"/>
+    </Page.Resources>
     <StackPanel>
-        <ListBox Height="300" Width="200" ItemsSource="{Binding Equipments}"
-              SelectedItem="{Binding SelectedEquipment, Mode=TwoWay}"
-              DisplayMemberPath="DisplayMember" PreviewMouseDown="PlaceholdersListBox_OnPreviewMouseDown">
-            
-        </ListBox>
+        <DataGrid Height="300" Width="auto" ItemsSource="{Binding Equipments}"
+                  SelectedItem="{Binding SelectedEquipment, Mode=TwoWay}"
+                  IsReadOnly="True">
+            <DataGrid.ItemContainerStyle>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick"/>
+                </Style>
+            </DataGrid.ItemContainerStyle>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Image">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Height="25" Width="50" Source="{Binding Converter={StaticResource convert}}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </StackPanel>
 </Page>

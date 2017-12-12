@@ -90,9 +90,15 @@
     <Compile Include="Data\Repositories\IErrorRepository.cs" />
     <Compile Include="Events\AfterComponentCreated.cs" />
     <Compile Include="Events\AfterEquipmentCreated.cs" />
+    <Compile Include="Events\AfterUserLogin.cs" />
     <Compile Include="Events\OpenComponentDetailViewEvent.cs" />
     <Compile Include="Events\OpenEquipmentDetailViewEvent.cs" />
+    <Compile Include="Helpers\AccessLevelToVisibilityConverter.cs" />
     <Compile Include="Helpers\BoolToVisibleOrCollapsed.cs" />
+    <Compile Include="Helpers\ConvertTextToImage.cs" />
+    <Compile Include="LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\CreateComponentPage.xaml.cs">
       <DependentUpon>CreateComponentPage.xaml</DependentUpon>
     </Compile>
@@ -145,10 +151,15 @@
     <Compile Include="ViewModels\Equipment\IEquipmentCreateViewModel.cs" />
     <Compile Include="ViewModels\Equipment\IEquipmentDetailViewModel.cs" />
     <Compile Include="ViewModels\Equipment\IEquipmentListViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Wrappers\ComponentWrapper.cs" />
     <Compile Include="Wrappers\EquipmentWrapper.cs" />
+    <Page Include="LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

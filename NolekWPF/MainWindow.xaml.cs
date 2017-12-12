@@ -3,6 +3,7 @@ using NolekWPF.ViewModels;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -64,6 +65,8 @@ namespace NolekWPF
         {
             _viewModel.MenuVisibility = "Collapsed";
             _viewModel.Visibility = "Visible";
+            Process.Start(Application.ResourceAssembly.Location);
+            Application.Current.Shutdown();
         }
     }
 }

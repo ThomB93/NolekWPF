@@ -9,7 +9,8 @@ namespace NolekWPF.Model
     public class EquipmentLookup
     {
         public int EquipmentId { get; set; }
-        public string DisplayMember { get; set; }
+        public string SerialNumber { get; set; }
         public string TypeName { get; set; }
+        public string ImagePath { get; set; }
     }
 }

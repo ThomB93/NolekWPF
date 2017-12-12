@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using NolekWPF.Helpers;
+using Prism.Events;
+using NolekWPF.Events;
 
 namespace NolekWPF.ViewModels
 {
@@ -17,6 +19,7 @@ namespace NolekWPF.ViewModels
         private string _visibility;
         private string _menuvisibility;
         private string _Cvisibility;
+        private string _Framevisibility;
         private User _currentuser;
 
         public IEquipmentListViewModel EquipmentListViewModel { get; }
@@ -26,12 +29,13 @@ namespace NolekWPF.ViewModels
         public IComponentDetailViewModel ComponentDetailViewModel { get; }
         public IComponentCreateViewModel ComponentCreateViewModel { get; }
         private IUserDataService _userDataService;
+        private IEventAggregator _eventAggregator;
 
         public MainViewModel(IEquipmentListViewModel equipmentListViewModel,
             IEquipmentCreateViewModel equipmentCreateViewModel,
             IEquipmentDetailViewModel equipmentDetailViewModel, IComponentDetailViewModel componentDetailViewModel,
             IComponentCreateViewModel componentCreateViewModel, IComponentListViewModel componentListViewModel,
-            IUserDataService userDataService)
+            IUserDataService userDataService, IEventAggregator eventAggregator)
         {
             EquipmentListViewModel = equipmentListViewModel;
             EquipmentCreateViewModel = equipmentCreateViewModel;
@@ -40,13 +44,19 @@ namespace NolekWPF.ViewModels
             ComponentDetailViewModel = componentDetailViewModel;
             ComponentCreateViewModel = componentCreateViewModel;
 
+            _eventAggregator = eventAggregator;
+
             _userDataService = userDataService;
             
             MenuVisibility = "Collapsed";
             Username = "UserAdmin";
             Password = "123";
-            
+
+            AccessLevelToVisibilityConverter AccLevel = new AccessLevelToVisibilityConverter();
+
+
             LoginCommand = new DelegateCommand(Login);
+            LogoutCommand = new DelegateCommand(Logout);
         }
 
         public async Task LoadAsync() //method must be async when loading in async data and return a task
@@ -114,6 +124,15 @@ namespace NolekWPF.ViewModels
                 OnPropertyChanged();
             }
         }
+        public string FrameVisibility
+        {
+            get { return _Framevisibility; }
+            set
+            {
+                _Framevisibility = value;
+                OnPropertyChanged();
+            }
+        }
 
         private string _username;
         public string Username
@@ -137,6 +156,14 @@ namespace NolekWPF.ViewModels
         }
 
         public ICommand LoginCommand { get; }
+        public ICommand LogoutCommand { get; }
+
+        public void Logout()
+        {
+            FrameVisibility = "Collapsed";
+            _currentuser = null;
+           
+        }
 
         public void Login()
         {
@@ -150,11 +177,10 @@ namespace NolekWPF.ViewModels
                     isAuthenticated = true;
                     Visibility = "Collapsed";
                     MenuVisibility = "Visible";
-                    Username = string.Empty;
-                    Password = string.Empty;
+                    FrameVisibility = "Visible";
 
                     //Very not smart way to do user permissions
-                    if(user.Role == "Admin")
+                    if (user.SecurityLevel == 1)
                     {
                         ComponentVisibility = "Visible";
                     }
@@ -172,6 +198,14 @@ namespace NolekWPF.ViewModels
                 MessageBox.Show("Wrong username/password");
                 Username = string.Empty;
                 Password = string.Empty;
+            }
+            else if (isAuthenticated == true)
+            {
+                _currentuser = _userDataService.GetUserInstance(Username);
+                _eventAggregator.GetEvent<AfterUserLogin>()
+                        .Publish(_currentuser);
+                Username = string.Empty;
+                Password = string.Empty;             
             }
         }
 

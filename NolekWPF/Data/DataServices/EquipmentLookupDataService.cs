@@ -25,9 +25,10 @@ namespace NolekWPF.Data.DataServices
                 return await ctx.Equipments.AsNoTracking().Select(f => new EquipmentLookup
                 {
                     EquipmentId = f.EquipmentId,
-                    DisplayMember = f.EquipmentSerialnumber,
-                    TypeName = f.EquipmentType.EquipmentTypeName
-
+                    SerialNumber = f.EquipmentSerialnumber,
+                    TypeName = f.EquipmentType.EquipmentTypeName,
+                    ImagePath =  f.EquipmentImagePath
+                    
                 }).ToListAsync();
             }
         }
