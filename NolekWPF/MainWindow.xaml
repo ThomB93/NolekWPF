@@ -23,7 +23,7 @@
                 </MenuItem>
                 <MenuItem Header="Component" Visibility="{Binding ComponentVisibility}">
                     <MenuItem x:Name="compList" Header="_List / Update" Click="compList_Click"></MenuItem>
-                    <MenuItem Header="_New Component"></MenuItem>
+                    <MenuItem Header="_New Component" Click="mnuCreateComp_Click"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="Customers">
                     <MenuItem Header="_List / Update"></MenuItem>

@@ -20,7 +20,7 @@ namespace NolekWPF.ViewModels
         private string _menuvisibility;
         private string _Cvisibility;
         private string _Framevisibility;
-        private User _currentuser;
+        private Login _currentuser;
 
         public IEquipmentListViewModel EquipmentListViewModel { get; }
         public IEquipmentCreateViewModel EquipmentCreateViewModel { get; }
@@ -28,6 +28,7 @@ namespace NolekWPF.ViewModels
         public IComponentListViewModel ComponentListViewModel { get; }
         public IComponentDetailViewModel ComponentDetailViewModel { get; }
         public IComponentCreateViewModel ComponentCreateViewModel { get; }
+        private IUserLookupDataService _userLookupDataService;
         private IUserDataService _userDataService;
         private IEventAggregator _eventAggregator;
 
@@ -35,7 +36,7 @@ namespace NolekWPF.ViewModels
             IEquipmentCreateViewModel equipmentCreateViewModel,
             IEquipmentDetailViewModel equipmentDetailViewModel, IComponentDetailViewModel componentDetailViewModel,
             IComponentCreateViewModel componentCreateViewModel, IComponentListViewModel componentListViewModel,
-            IUserDataService userDataService, IEventAggregator eventAggregator)
+            IUserLookupDataService userLookupDataService, IEventAggregator eventAggregator, IUserDataService userDataService)
         {
             EquipmentListViewModel = equipmentListViewModel;
             EquipmentCreateViewModel = equipmentCreateViewModel;
@@ -46,14 +47,12 @@ namespace NolekWPF.ViewModels
 
             _eventAggregator = eventAggregator;
 
+            _userLookupDataService = userLookupDataService;
             _userDataService = userDataService;
-            
-            //MenuVisibility = "Collapsed";
-            Username = "UserAdmin";
+
+            MenuVisibility = "Collapsed";
+            Username = "UserSecretary";
             Password = "123";
-
-            AccessLevelToVisibilityConverter AccLevel = new AccessLevelToVisibilityConverter();
-
 
             LoginCommand = new DelegateCommand(Login);
             LogoutCommand = new DelegateCommand(Logout);
@@ -87,7 +86,7 @@ namespace NolekWPF.ViewModels
             }
         }
 
-        public User CurrentUser
+        public Login CurrentUser
         {
             get { return _currentuser; }
             set
@@ -161,22 +160,25 @@ namespace NolekWPF.ViewModels
         public void Logout()
         {
             FrameVisibility = "Collapsed";
-            _currentuser = null;
-           
+            MenuVisibility = "Collapsed";
+            _currentuser = null;      
         }
 
-        public void Login()
+        public async void Login()
         {
             //TODO check username and password vs database here.
             //If using membershipprovider then just call Membership.ValidateUser(UserName, Password)
-            List<User> Users = _userDataService.GetUser();
-            foreach (var user in Users)
+            var lookup = await _userLookupDataService.GetUserLookupAsync();
+
+            //List<User> Users = _userDataService.GetUser();
+            foreach (var user in lookup)
             {
                 if (user.Username == Username && user.Password == Password)
                 {
                     isAuthenticated = true;
                     Visibility = "Collapsed";
                     FrameVisibility = "Visible";
+                    MenuVisibility = "Visible";
                     break;
                 }
             }
@@ -188,7 +190,7 @@ namespace NolekWPF.ViewModels
             }
             else if (isAuthenticated == true)
             {
-                _currentuser = _userDataService.GetUserInstance(Username);
+                _currentuser = await _userDataService.GetByNameAsync(Username);
                 _eventAggregator.GetEvent<AfterUserLogin>()
                         .Publish(_currentuser);
                 Username = string.Empty;

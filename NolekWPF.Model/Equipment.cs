@@ -18,6 +18,7 @@ namespace NolekWPF.Model
         public Equipment()
         {
             this.EquipmentComponents = new HashSet<EquipmentComponent>();
+            this.Customers = new HashSet<Customer>();
         }
     
         public int EquipmentId { get; set; }
@@ -35,5 +36,7 @@ namespace NolekWPF.Model
         public virtual EquipmentCategory EquipmentCategory { get; set; }
         public virtual EquipmentConfiguration EquipmentConfiguration { get; set; }
         public virtual EquipmentType EquipmentType { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Customer> Customers { get; set; }
     }
 }

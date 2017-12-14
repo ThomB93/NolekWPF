@@ -9,11 +9,11 @@
 
 namespace NolekWPF.DataAccess
 {
-    using NolekWPF.Model;
+    using Model;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class wiki_nolek_dk_dbEntities : DbContext
     {
         public wiki_nolek_dk_dbEntities()
@@ -35,5 +35,12 @@ namespace NolekWPF.DataAccess
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<EquipmentView> EquipmentViews { get; set; }
         public virtual DbSet<Error> Errors { get; set; }
+        public virtual DbSet<ContactPerson> ContactPersons { get; set; }
+        public virtual DbSet<Country> Countries { get; set; }
+        public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<CustomerDepartment> CustomerDepartments { get; set; }
+        public virtual DbSet<Login> Logins { get; set; }
+        public virtual DbSet<Nolek> Noleks { get; set; }
+        public virtual DbSet<Technician> Technicians { get; set; }
     }
 }

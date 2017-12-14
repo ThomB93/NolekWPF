@@ -19,6 +19,21 @@
         <AssociationConnector Association="wiki_nolek_dk_dbModel.FK_Equipment_EquipmentConfiguration" ManuallyRouted="false" />
         <AssociationConnector Association="wiki_nolek_dk_dbModel.FK_Equipment_EquipmentType" ManuallyRouted="false" />
         <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.Error" Width="1.5" PointX="8.25" PointY="1.375" />
+        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.ContactPerson" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.Country" Width="1.5" PointX="0.75" PointY="16.375" />
+        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.Customer" Width="1.5" PointX="2.875" PointY="5.625" />
+        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.CustomerDepartment" Width="1.5" PointX="5.25" PointY="4.625" />
+        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.Login" Width="1.5" PointX="3" PointY="17.375" />
+        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.Nolek" Width="1.5" PointX="3" PointY="2.75" />
+        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.Technician" Width="1.5" PointX="6.25" PointY="0.625" />
+        <AssociationConnector Association="wiki_nolek_dk_dbModel.FK_Customer_ContactPerson" />
+        <AssociationConnector Association="wiki_nolek_dk_dbModel.FK_Nolek_ContactPerson" />
+        <AssociationConnector Association="wiki_nolek_dk_dbModel.FK_CustomerDepartment_Country" />
+        <AssociationConnector Association="wiki_nolek_dk_dbModel.FK_Nolek_Country" />
+        <AssociationConnector Association="wiki_nolek_dk_dbModel.FK_CustomerDepartment_Customer" />
+        <AssociationConnector Association="wiki_nolek_dk_dbModel.FK_Technician_Login" />
+        <AssociationConnector Association="wiki_nolek_dk_dbModel.FK_Technician_Nolek" />
+        <AssociationConnector Association="wiki_nolek_dk_dbModel.CustomerEquipment" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

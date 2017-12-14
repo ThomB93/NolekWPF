@@ -27,7 +27,7 @@ namespace NolekWPF.Equipment.ViewModels
         private IErrorDataService _errorDataService;
         private IEventAggregator _eventAggregator;
         private bool _hasChanges;
-        public User CurrentUser { get; set; }
+        public Login CurrentUser { get; set; }
 
         public EquipmentCreateViewModel(IEquipmentRepository equipmentRepository, IErrorDataService errorDataService, IEventAggregator eventAggregator)
         {
@@ -39,7 +39,7 @@ namespace NolekWPF.Equipment.ViewModels
             _eventAggregator.GetEvent<AfterUserLogin>().Subscribe(OnLogin);
         }
 
-        private void OnLogin(User user)
+        private void OnLogin(Login user)
         {
             CurrentUser = user;
         }

@@ -81,7 +81,9 @@
     <Compile Include="Data\DataServices\IEquipmentLookupDataService.cs" />
     <Compile Include="Data\DataServices\IErrorDataService.cs" />
     <Compile Include="Data\DataServices\IUserDataService.cs" />
+    <Compile Include="Data\DataServices\IUserLookupDataService.cs" />
     <Compile Include="Data\DataServices\UserDataService.cs" />
+    <Compile Include="Data\DataServices\UserLookupDataService.cs" />
     <Compile Include="Data\Repositories\ComponentRepository.cs" />
     <Compile Include="Data\Repositories\EquipmentRepository.cs" />
     <Compile Include="Data\Repositories\ErrorRepository.cs" />
@@ -96,9 +98,6 @@
     <Compile Include="Helpers\AccessLevelToVisibilityConverter.cs" />
     <Compile Include="Helpers\BoolToVisibleOrCollapsed.cs" />
     <Compile Include="Helpers\ConvertTextToImage.cs" />
-    <Compile Include="LoginView.xaml.cs">
-      <DependentUpon>LoginView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Pages\CreateComponentPage.xaml.cs">
       <DependentUpon>CreateComponentPage.xaml</DependentUpon>
     </Compile>
@@ -151,15 +150,10 @@
     <Compile Include="ViewModels\Equipment\IEquipmentCreateViewModel.cs" />
     <Compile Include="ViewModels\Equipment\IEquipmentDetailViewModel.cs" />
     <Compile Include="ViewModels\Equipment\IEquipmentListViewModel.cs" />
-    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Wrappers\ComponentWrapper.cs" />
-    <Compile Include="EquipmentWrapper.cs" />
-    <Page Include="LoginView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Compile Include="Wrappers\EquipmentWrapper.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

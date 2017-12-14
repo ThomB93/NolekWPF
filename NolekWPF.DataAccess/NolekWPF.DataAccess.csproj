@@ -54,23 +54,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Nolek.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Nolek.Designer.cs">
+    <Compile Include="dbNolek.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Nolek.edmx</DependentUpon>
+      <DependentUpon>dbNolek.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Nolek.edmx">
+    <EntityDeploy Include="dbNolek.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Nolek.Designer.cs</LastGenOutput>
+      <LastGenOutput>dbNolek.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="Nolek.edmx.diagram">
-      <DependentUpon>Nolek.edmx</DependentUpon>
+    <None Include="dbNolek.edmx.diagram">
+      <DependentUpon>dbNolek.edmx</DependentUpon>
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
@@ -79,7 +79,7 @@
     <Content Include="Nolek.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Nolek.Context.cs</LastGenOutput>
-      <DependentUpon>Nolek.edmx</DependentUpon>
+      <DependentUpon>dbNolek.edmx</DependentUpon>
     </Content>
   </ItemGroup>
   <ItemGroup>

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace NolekWPF.Events
 {
-    public class AfterUserLogin : PubSubEvent<User>
+    public class AfterUserLogin : PubSubEvent<Login>
     {
     }
 }

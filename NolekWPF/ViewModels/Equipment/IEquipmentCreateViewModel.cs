@@ -10,6 +10,7 @@ namespace NolekWPF.Equipment.ViewModels
     {
         ICommand CreateEquipmentCommand { get; }
         EquipmentWrapper Equipment { get; }
+        Login CurrentUser { get; set; }
         Task LoadTypesAsync();
         Task LoadConfigurationsAsync();
         Task LoadCategoriesAsync();

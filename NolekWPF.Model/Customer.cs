@@ -12,22 +12,23 @@ namespace NolekWPF.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Nolek
+    public partial class Customer
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Nolek()
+        public Customer()
         {
-            this.Technicians = new HashSet<Technician>();
+            this.CustomerDepartments = new HashSet<CustomerDepartment>();
+            this.Equipments = new HashSet<Equipment>();
         }
     
-        public int NolekId { get; set; }
-        public int CountryId { get; set; }
-        public string DepartmentName { get; set; }
+        public int CustomerId { get; set; }
+        public string CustomerName { get; set; }
         public int ContactPersonId { get; set; }
     
         public virtual ContactPerson ContactPerson { get; set; }
-        public virtual Country Country { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Technician> Technicians { get; set; }
+        public virtual ICollection<CustomerDepartment> CustomerDepartments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Equipment> Equipments { get; set; }
     }
 }

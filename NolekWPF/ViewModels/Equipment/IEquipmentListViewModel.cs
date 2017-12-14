@@ -9,7 +9,7 @@ namespace NolekWPF.Equipment.ViewModels
         IEquipmentDetailViewModel EquipmentDetailViewModel { get; }
         ObservableCollection<EquipmentLookup> Equipments { get; }
         EquipmentLookup SelectedEquipment { get; set; }
-        User CurrentUser { get; set; }
+        Login CurrentUser { get; set; }
 
         Task LoadAsync();
     }

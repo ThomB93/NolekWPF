@@ -55,12 +55,12 @@ namespace NolekWPF.Equipment.ViewModels
             await LoadAsync();
         }
 
-        private void OnLogin(User user)
+        private void OnLogin(Login user)
         {
             CurrentUser = user;
         }
 
-        public User CurrentUser { get; set; }      
+        public Login CurrentUser { get; set; }      
 
         public async Task LoadAsync()
         {
