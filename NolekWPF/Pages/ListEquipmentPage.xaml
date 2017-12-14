@@ -24,7 +24,7 @@
                 <DataGridTemplateColumn Header="Image">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Image Height="25" Width="50" Source="{Binding Converter={StaticResource convert}}"/>
+                            <Image Height="100" Width="100" Source="{Binding ImagePath}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

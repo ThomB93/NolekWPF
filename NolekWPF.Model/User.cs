@@ -10,7 +10,7 @@ namespace NolekWPF.Model
     {
         public string Username { get; set; }
         public string Password { get; set; }
-        public int SecurityLevel { get; set; }
+        public string Role { get; set; }
         public bool LoggedIn { get; set; }
     }
 }

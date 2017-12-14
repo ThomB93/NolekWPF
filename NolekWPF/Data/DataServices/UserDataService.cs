@@ -13,8 +13,8 @@ namespace NolekWPF.Data.DataServices
         {
             //TODO: Load data from real database
             List<User> Users = new List<User>();
-            Users.Add(new User { Username = "UserAdmin", Password = "123", SecurityLevel = 1, LoggedIn = false});
-            Users.Add(new User { Username = "UserRegular", Password = "123", SecurityLevel = 2, LoggedIn = false });
+            Users.Add(new User { Username = "UserAdmin", Password = "123", Role = "Secretary", LoggedIn = false});
+            Users.Add(new User { Username = "UserRegular", Password = "123", Role = "Technician", LoggedIn = false });
             return Users;
         }
 
@@ -28,7 +28,7 @@ namespace NolekWPF.Data.DataServices
                 {
                     u.LoggedIn = true;
                     user.Username = u.Username;
-                    user.SecurityLevel = u.SecurityLevel;
+                    user.Role = u.Role;
                     user.LoggedIn = u.LoggedIn;
                     break;
                 }

@@ -155,7 +155,7 @@
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Wrappers\ComponentWrapper.cs" />
-    <Compile Include="Wrappers\EquipmentWrapper.cs" />
+    <Compile Include="EquipmentWrapper.cs" />
     <Page Include="LoginView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

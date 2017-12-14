@@ -27,6 +27,7 @@ namespace NolekWPF.Equipment.ViewModels
         private IErrorDataService _errorDataService;
         private IEventAggregator _eventAggregator;
         private bool _hasChanges;
+        public User CurrentUser { get; set; }
 
         public EquipmentCreateViewModel(IEquipmentRepository equipmentRepository, IErrorDataService errorDataService, IEventAggregator eventAggregator)
         {
@@ -35,6 +36,12 @@ namespace NolekWPF.Equipment.ViewModels
             _errorDataService = errorDataService;
             Equipment = CreateNewEquipment(); //assign the equipment to add to the Equipment property   
             _eventAggregator = eventAggregator;
+            _eventAggregator.GetEvent<AfterUserLogin>().Subscribe(OnLogin);
+        }
+
+        private void OnLogin(User user)
+        {
+            CurrentUser = user;
         }
 
         //load up data for the combo boxes
@@ -95,7 +102,14 @@ namespace NolekWPF.Equipment.ViewModels
         private bool OnEquipmentCreateCanExecute()
         {
             //validate fields to disable/enable buton
-            return Equipment != null && !Equipment.HasErrors;
+            if (Equipment != null && !Equipment.HasErrors && CurrentUser.Role == "Secretary")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         private async void OnCreateEquipmentExecute()
@@ -107,7 +121,7 @@ namespace NolekWPF.Equipment.ViewModels
                 MessageBox.Show("Equipment was successfully created.");
                 _eventAggregator.GetEvent<AfterEquipmentCreated>().Publish();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 MessageBox.Show(e.Message, "An error occurred", MessageBoxButton.OK, MessageBoxImage.Warning);
                 //create new error object from the exception and add to DB

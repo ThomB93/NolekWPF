@@ -48,7 +48,7 @@ namespace NolekWPF.ViewModels
 
             _userDataService = userDataService;
             
-            MenuVisibility = "Collapsed";
+            //MenuVisibility = "Collapsed";
             Username = "UserAdmin";
             Password = "123";
 
@@ -176,20 +176,7 @@ namespace NolekWPF.ViewModels
                 {
                     isAuthenticated = true;
                     Visibility = "Collapsed";
-                    MenuVisibility = "Visible";
                     FrameVisibility = "Visible";
-
-                    //Very not smart way to do user permissions
-                    if (user.SecurityLevel == 1)
-                    {
-                        ComponentVisibility = "Visible";
-                    }
-                    else
-                    {
-                        ComponentVisibility = "Collapsed";
-                    }
-
-                    //MessageBox.Show("Good job");
                     break;
                 }
             }

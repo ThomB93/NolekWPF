@@ -49,8 +49,10 @@ namespace NolekWPF.Startup
 
             builder.RegisterType<MainViewModel>().AsSelf();
 
-            //register event aggregators
+            //register event aggregators, det er en singleton
             builder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();
+            //Eventaggregator skal være singleinstance. De snakker jo alle igennem den samme event
+            //builder.RegisterType<EventAggregator>().As<IEventAggregator>();
 
             return builder.Build();
         }

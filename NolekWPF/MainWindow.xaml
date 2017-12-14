@@ -39,7 +39,6 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
-
                 </Grid.ColumnDefinitions>
                 <Frame x:Name="mainframe" Visibility="{Binding FrameVisibility}">
                 </Frame>

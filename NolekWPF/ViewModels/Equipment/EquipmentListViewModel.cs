@@ -13,6 +13,7 @@ using NolekWPF.ViewModels;
 using NolekWPF.Data.DataServices;
 using NolekWPF.Helpers;
 using System.Drawing;
+using System.Windows.Media.Imaging;
 
 namespace NolekWPF.Equipment.ViewModels
 {
@@ -23,6 +24,7 @@ namespace NolekWPF.Equipment.ViewModels
         private IEventAggregator _eventAggregator;
         private IErrorDataService _errorDataService;
         public IEquipmentDetailViewModel EquipmentDetailViewModel { get; }
+        ConvertTextToImage cv = new ConvertTextToImage();
 
         public EquipmentListViewModel(IEquipmentLookupDataService equipmentLookupDataService,
             IEventAggregator eventAggregator, IErrorDataService errorDataService, IEquipmentDetailViewModel equipmentDetailViewModel)
@@ -35,7 +37,9 @@ namespace NolekWPF.Equipment.ViewModels
             _eventAggregator.GetEvent<AfterEquipmentCreated>().Subscribe(RefreshList);
             _eventAggregator.GetEvent<AfterUserLogin>().Subscribe(OnLogin);
             EquipmentDetailViewModel = equipmentDetailViewModel;
-            LoadDetailData();            
+            LoadDetailData();
+            
+            //var convert = cv.Convert(Equipments[0].ImagePath);
         }
 
         private async void LoadDetailData()
@@ -63,11 +67,13 @@ namespace NolekWPF.Equipment.ViewModels
             try
             {
                 var lookup = await _equipmentLookupDataService.GetEquipmentLookupAsync();
-                
+                int i = 0;
                 Equipments.Clear();
                 foreach (var item in lookup)
                 {
                     Equipments.Add(item);
+                    //var convert = cv.Convert(Equipments[i].ImagePath);
+                    i++;
                 }
             }
             catch (Exception e)
@@ -92,7 +98,7 @@ namespace NolekWPF.Equipment.ViewModels
             set
             {
                 _selectedEquipment = value;
-                if (_selectedEquipment != null && CurrentUser.SecurityLevel == 1)
+                if (_selectedEquipment != null && CurrentUser.Role == "Secretary")
                 {
                     _eventAggregator.GetEvent<OpenEquipmentDetailViewEvent>()
                         .Publish(_selectedEquipment.EquipmentId);
