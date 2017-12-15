@@ -15,5 +15,6 @@ namespace NolekWPF.Model.Dto
         public string ComponentSerialNumber { get; set; }
         public int ComponentQuantity { get; set; }
         public string ComponentSupplyNumber { get; set; }
+        
     }
 }

@@ -1,11 +1,12 @@
 ﻿<Page x:Class="NolekWPF.Pages.AddRemoveComponentPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:NolekWPF.Pages"
-      mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      mc:Ignorable="d"
+      d:DesignHeight="300"
+      d:DesignWidth="300"
       Title="AddRemoveComponentPage"
       Loaded='Page_Loaded'>
 
@@ -28,26 +29,46 @@
 
         <ComboBox ItemsSource="{Binding Components}"
                   DisplayMemberPath="ComponentName"
-                  SelectedValuePath="ComponentId"
-                  SelectedValue="{Binding Component.ComponentId, Mode=TwoWay}"
+                  SelectedItem="{Binding SelectedComponent}"
                   Grid.Column="0"></ComboBox>
-        <Button Name="BtnAdd" Content="Add"
+        <Button Name="BtnAdd"
+                Content="Add"
                 Grid.Column="1"
+                Command="{Binding AddComponent}"
                 Margin="10 0 0 0"></Button>
       </Grid>
       <ScrollViewer Margin="0 10 0 0">
-        <ListBox MinHeight="180"></ListBox>
+        <ListBox MinHeight="180"
+                 ItemsSource="{Binding ComponentsForEquipment}"
+                 SelectedIndex="{Binding SelectedListComponentIndex}">
+          <ListBox.ItemTemplate>
+            <DataTemplate>
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*"></ColumnDefinition>
+                  <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"></TextBlock>
+                <TextBlock Grid.Column="1"></TextBlock>
+              </Grid>
+            </DataTemplate>
+          </ListBox.ItemTemplate>
+        </ListBox>
       </ScrollViewer>
       <Grid>
         <Grid.ColumnDefinitions>
           <ColumnDefinition Width="*"></ColumnDefinition>
           <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Button Name="BtnSave" Content="Save"
-                Margin="0 10 5 0"></Button>
-        <Button Name="BtnRemove" Grid.Column="1"
+        <Button Name="BtnSave"
+                Content="Save"
+                Margin="0 10 5 0"
+                Command="{Binding SaveChanges}"></Button>
+        <Button Name="BtnRemove"
+                Grid.Column="1"
                 Content="Remove"
-                Margin=" 5 10 0 0"></Button>
+                Margin=" 5 10 0 0"
+                Command="{Binding RemoveComponent}"></Button>
       </Grid>
     </StackPanel>
   </Grid>

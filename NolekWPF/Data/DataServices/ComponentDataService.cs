@@ -18,6 +18,7 @@ namespace NolekWPF.Data.DataServices
         {
             _contextCreator = contextCreator;
         }
+
         public async Task<Component> GetByIdAsync(int componentId)
         {
             using (var ctx = _contextCreator())
@@ -40,6 +41,30 @@ namespace NolekWPF.Data.DataServices
                     ComponentSerialNumber = f.ComponentSerialNumber,
                     ComponentSupplyNumber = f.ComponentSupplyNumber
                 }).ToListAsync();
+            }
+        }
+
+        public async Task<IEnumerable<ComponentDto>> GetComponentsByEquipmentIdAsync(int equipmentId)
+        {
+            using (var ctx = _contextCreator())
+            {
+                var result = from equipment in ctx.Equipments
+                        .Where(equipment => equipment.EquipmentId == equipmentId)
+                    join equipmentmodel in ctx.EquipmentComponents
+                        on equipment.EquipmentId equals equipmentmodel.EquipmentID
+                    join model in ctx.Components
+                        on equipmentmodel.ComponentID equals model.ComponentId
+                    select new ComponentDto()
+                    {
+                        ComponentId = model.ComponentId,
+                        ComponentName = model.ComponentName,
+                        ComponentDescription = model.ComponentDescription,
+                        ComponentOrderNumber = model.ComponentOrderNumber,
+                        ComponentQuantity = model.ComponentQuantity,
+                        ComponentSerialNumber = model.ComponentSerialNumber,
+                        ComponentSupplyNumber = model.ComponentSupplyNumber
+                    };
+                return await result.ToListAsync(); // or whatever non-deferred you want
             }
         }
     }

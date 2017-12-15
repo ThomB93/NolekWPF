@@ -9,5 +9,6 @@ namespace NolekWPF.Data.DataServices
     {
         Task<Component> GetByIdAsync(int componentId);
         Task<IEnumerable<ComponentDto>> GetComponentLookupAsync();
+        Task<IEnumerable<ComponentDto>> GetComponentsByEquipmentIdAsync(int equipmentId);
     }
 }
