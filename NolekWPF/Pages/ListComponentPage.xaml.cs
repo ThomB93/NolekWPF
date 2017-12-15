@@ -36,5 +36,11 @@ namespace NolekWPF.Pages
                 this.NavigationService.Navigate(new DetailComponentPage(_viewmodel.ComponentDetailViewModel));
             }
         }
+
+        private void Row_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            
+            this.NavigationService.Navigate(new DetailComponentPage(_viewmodel.ComponentDetailViewModel));
+        }
     }
 }
