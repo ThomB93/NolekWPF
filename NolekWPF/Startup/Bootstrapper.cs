@@ -11,6 +11,7 @@ using NolekWPF.Data.DataServices;
 using NolekWPF.Data.Repositories;
 using NolekWPF.Equipment.ViewModels;
 using NolekWPF.ViewModels.Component;
+using NolekWPF.ViewModels.Equipment;
 
 namespace NolekWPF.Startup
 {
@@ -47,6 +48,8 @@ namespace NolekWPF.Startup
             builder.RegisterType<ComponentListViewModel>().As<IComponentListViewModel>();
             builder.RegisterType<ComponentCreateViewModel>().As<IComponentCreateViewModel>();
             builder.RegisterType<ComponentDetailViewModel>().As<IComponentDetailViewModel>();
+
+            builder.RegisterType<AddRemoveComponentViewModel>().As<IAddRemoveComponentViewModel>();
 
             builder.RegisterType<MainViewModel>().AsSelf();
 

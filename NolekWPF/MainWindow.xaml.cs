@@ -68,5 +68,10 @@ namespace NolekWPF
             Process.Start(Application.ResourceAssembly.Location);
             Application.Current.Shutdown();
         }
+
+        private void mnu_addRemoveComp_Click(object sender, RoutedEventArgs e)
+        {
+            mainframe.Navigate(new AddRemoveComponentPage(_viewModel.AddRemoveComponentViewModel));
+        }
     }
 }

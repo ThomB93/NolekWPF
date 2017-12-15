@@ -98,6 +98,9 @@
     <Compile Include="Helpers\AccessLevelToVisibilityConverter.cs" />
     <Compile Include="Helpers\BoolToVisibleOrCollapsed.cs" />
     <Compile Include="Helpers\ConvertTextToImage.cs" />
+    <Compile Include="Pages\AddRemoveComponentPage.xaml.cs">
+      <DependentUpon>AddRemoveComponentPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\CreateComponentPage.xaml.cs">
       <DependentUpon>CreateComponentPage.xaml</DependentUpon>
     </Compile>
@@ -144,9 +147,11 @@
     <Compile Include="ViewModels\Component\IComponentCreateViewModel.cs" />
     <Compile Include="ViewModels\Component\IComponentDetailViewModel.cs" />
     <Compile Include="ViewModels\Component\IComponentListViewModel.cs" />
+    <Compile Include="ViewModels\Equipment\AddRemoveComponentViewModel.cs" />
     <Compile Include="ViewModels\Equipment\EquipmentCreateViewModel.cs" />
     <Compile Include="ViewModels\Equipment\EquipmentDetailViewModel.cs" />
     <Compile Include="ViewModels\Equipment\EquipmentListViewModel.cs" />
+    <Compile Include="ViewModels\Equipment\IAddRemoveComponentViewModel.cs" />
     <Compile Include="ViewModels\Equipment\IEquipmentCreateViewModel.cs" />
     <Compile Include="ViewModels\Equipment\IEquipmentDetailViewModel.cs" />
     <Compile Include="ViewModels\Equipment\IEquipmentListViewModel.cs" />
@@ -166,6 +171,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\AddRemoveComponentPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Pages\CreateComponentPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

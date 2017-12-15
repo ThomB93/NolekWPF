@@ -10,6 +10,7 @@ using System.Windows.Input;
 using NolekWPF.Helpers;
 using Prism.Events;
 using NolekWPF.Events;
+using NolekWPF.ViewModels.Equipment;
 
 namespace NolekWPF.ViewModels
 {
@@ -28,6 +29,7 @@ namespace NolekWPF.ViewModels
         public IComponentListViewModel ComponentListViewModel { get; }
         public IComponentDetailViewModel ComponentDetailViewModel { get; }
         public IComponentCreateViewModel ComponentCreateViewModel { get; }
+        public IAddRemoveComponentViewModel AddRemoveComponentViewModel { get; }
         private IUserLookupDataService _userLookupDataService;
         private IUserDataService _userDataService;
         private IEventAggregator _eventAggregator;
@@ -36,7 +38,8 @@ namespace NolekWPF.ViewModels
             IEquipmentCreateViewModel equipmentCreateViewModel,
             IEquipmentDetailViewModel equipmentDetailViewModel, IComponentDetailViewModel componentDetailViewModel,
             IComponentCreateViewModel componentCreateViewModel, IComponentListViewModel componentListViewModel,
-            IUserLookupDataService userLookupDataService, IEventAggregator eventAggregator, IUserDataService userDataService)
+            IUserLookupDataService userLookupDataService, IEventAggregator eventAggregator, IUserDataService userDataService,
+            IAddRemoveComponentViewModel addRemoveComponentViewModel)
         {
             EquipmentListViewModel = equipmentListViewModel;
             EquipmentCreateViewModel = equipmentCreateViewModel;
@@ -44,6 +47,7 @@ namespace NolekWPF.ViewModels
             ComponentListViewModel = componentListViewModel;
             ComponentDetailViewModel = componentDetailViewModel;
             ComponentCreateViewModel = componentCreateViewModel;
+            AddRemoveComponentViewModel = addRemoveComponentViewModel;
 
             _eventAggregator = eventAggregator;
 
