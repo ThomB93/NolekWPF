@@ -7,12 +7,16 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="ListComponentPage">
-
     <StackPanel>
-        <ListBox Height="300" Width="200" ItemsSource="{Binding Components}"
-              SelectedItem="{Binding SelectedComponent, Mode=TwoWay}"
-              DisplayMemberPath="ComponentName" PreviewMouseDown="PlaceholdersListBox_OnPreviewMouseDown">
-
-        </ListBox>
+        <DataGrid Height="300" Width="auto" ItemsSource="{Binding Components}"
+                  SelectedItem="{Binding SelectedComponent, Mode=TwoWay}"
+                  IsReadOnly="True">
+            <DataGrid.ItemContainerStyle>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick"/>
+                </Style>
+            </DataGrid.ItemContainerStyle>
+        </DataGrid>
     </StackPanel>
+    
 </Page>
