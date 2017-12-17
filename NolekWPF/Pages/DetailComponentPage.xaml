@@ -9,6 +9,7 @@
       Title="DetailComponentPage">
 
     <StackPanel Grid.Column="1">
+        <Label Content="Component Details" FontSize="20"></Label>
         <StackPanel Orientation="Horizontal" Margin="0 0 0 12">
             <Label Width="125">Name*:</Label>
             <TextBox x:Name='txtName'

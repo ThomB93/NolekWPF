@@ -74,21 +74,26 @@ namespace NolekWPF.Data.Repositories
             {
                 return;
             }
-            _context.Entry(model).CurrentValues.SetValues(model);
+            //_context.Entry(model).CurrentValues.SetValues(model);
         }
-        public void UpdateComponents(Model.Component model, int equipmentId)
+
+        public void UpdateComponents(Model.Component model, int equipmentId, int quantity)
         {
+            //add new relations between component and equipment
+            //Entity is not null if relation already exists
             var Entity = _context.EquipmentComponents.Find(model.ComponentId, equipmentId);
-            if (Entity == null) //Component is not already added to equipment
+
+            //create new relation
+            if (Entity == null)
             {
                 _context.EquipmentComponents.Add(new EquipmentComponent()
                 {
                     ComponentID = model.ComponentId,
                     EquipmentID = equipmentId,
-                    EquipmentComponentQuantity = 10 //default
+                    EquipmentComponentQuantity = quantity
                 });
             }
-            _context.Entry(model).CurrentValues.SetValues(model);
+
         }
 
         public async Task SaveAsync()

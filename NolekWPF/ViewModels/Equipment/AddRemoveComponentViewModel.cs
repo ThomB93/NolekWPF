@@ -22,7 +22,7 @@ namespace NolekWPF.ViewModels.Equipment
         private IErrorDataService _errorDataService;
         private IComponentDataService _componentDataService;
         private IEquipmentRepository _equipmentRepository;
-        
+
         public ObservableCollection<EquipmentLookup> Equipments { get; }
         public ObservableCollection<ComponentDto> Components { get; }
         public ObservableCollection<ComponentDto> ComponentsForEquipment { get; set; }
@@ -59,11 +59,41 @@ namespace NolekWPF.ViewModels.Equipment
             return SelectedEquipment != null;
         }
 
-
-
-        private void OnChangesSaved()
+        private async void OnChangesSaved()
         {
-           
+            try
+            {
+                //loop through each component on the equipment, new and old
+                foreach (var item in ComponentsForEquipment)
+                {
+                    Model.Component component = new Model.Component() //create new model component from dto
+                    {
+                        ComponentId = item.ComponentId,
+                        ComponentName = item.ComponentName,
+                        ComponentDescription = item.ComponentDescription,
+                        ComponentOrderNumber = item.ComponentOrderNumber,
+                        ComponentQuantity = item.ComponentQuantity,
+                        ComponentSerialNumber = item.ComponentSerialNumber,
+                        ComponentSupplyNumber = item.ComponentSupplyNumber
+                    };
+                    _equipmentRepository.UpdateComponents(component, SelectedEquipment.EquipmentId, item.ComponentToEquipmentQuantity);
+                }
+                await _equipmentRepository.SaveAsync();
+                SelectedEquipment = null;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, "An error occurred", MessageBoxButton.OK, MessageBoxImage.Warning);
+                //create new error object from the exception and add to DB
+                Error error = new Error
+                {
+                    ErrorMessage = e.Message,
+                    ErrorTimeStamp = DateTime.Now,
+                    ErrorStackTrace = e.StackTrace
+                };
+                await _errorDataService.AddError(error);
+            }
+
         }
 
         private void OnComponentRemoved()
@@ -75,20 +105,29 @@ namespace NolekWPF.ViewModels.Equipment
             }
             else
             {
-                MessageBox.Show("Please select a component in the list to remove.");
+                MessageBox.Show("Please select a component in the list to remove.", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
         private void OnComponentAdded()
         {
-            if (SelectedComponent != null)
+            //check of component is already added to the list and that selected component is not null before adding
+            if(SelectedComponent != null)
             {
-                ComponentsForEquipment.Add(SelectedComponent);
-            }
-            else
+                var match = ComponentsForEquipment.FirstOrDefault(c => c.ComponentId == SelectedComponent.ComponentId);
+                if (match != null)
+                {
+                    MessageBox.Show("Component is already added.", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    ComponentsForEquipment.Add(SelectedComponent);
+                }
+            } else
             {
-                MessageBox.Show("Please select a component first before adding.");
+                MessageBox.Show("Please select a component before adding.", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
             }
+             
         }
 
         public async Task LoadAsync()
@@ -142,6 +181,7 @@ namespace NolekWPF.ViewModels.Equipment
                 ((DelegateCommand)AddComponent).RaiseCanExecuteChanged();
                 ((DelegateCommand)RemoveComponent).RaiseCanExecuteChanged();
                 ((DelegateCommand)SaveChanges).RaiseCanExecuteChanged();
+
             }
         }
 
@@ -163,6 +203,8 @@ namespace NolekWPF.ViewModels.Equipment
             {
                 _selectComponent = value;
                 OnPropertyChanged();
+
+
             }
         }
         private int? _selectListComponentIndex;

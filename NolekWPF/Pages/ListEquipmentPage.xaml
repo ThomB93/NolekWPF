@@ -11,24 +11,29 @@
     <Page.Resources>
         <helpers:ConvertTextToImage x:Key="convert"/>
     </Page.Resources>
-    <StackPanel>
-        <DataGrid Height="300" Width="auto" ItemsSource="{Binding Equipments}"
+    <StackPanel Orientation="Vertical">
+        <Label Content="Equipment List" FontSize="20"></Label>
+        <ScrollViewer  VerticalScrollBarVisibility="Auto" Height="Auto">
+            <DataGrid MaxHeight="800" ItemsSource="{Binding Equipments}"
                   SelectedItem="{Binding SelectedEquipment, Mode=TwoWay}"
-                  IsReadOnly="True">
-            <DataGrid.ItemContainerStyle>
-                <Style TargetType="DataGridRow">
-                    <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick"/>
-                </Style>
-            </DataGrid.ItemContainerStyle>
-            <DataGrid.Columns>
-                <DataGridTemplateColumn Header="Image">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Image Height="100" Width="100" Source="{Binding ImagePath}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+                  IsReadOnly="True"
+                  >
+                <DataGrid.ItemContainerStyle>
+                    <Style TargetType="DataGridRow">
+                        <EventSetter Event="MouseDoubleClick" Handler="Row_DoubleClick"/>
+                    </Style>
+                </DataGrid.ItemContainerStyle>
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Image">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Height="100" Width="100" Source="{Binding ImagePath}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </ScrollViewer>
+
     </StackPanel>
 </Page>

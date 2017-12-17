@@ -8,7 +8,8 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="ListComponentPage">
     <StackPanel>
-        <DataGrid Height="300" Width="auto" ItemsSource="{Binding Components}"
+        <Label Content="Component List" FontSize="20"></Label>
+        <DataGrid Width="auto" ItemsSource="{Binding Components}"
                   SelectedItem="{Binding SelectedComponent, Mode=TwoWay}"
                   IsReadOnly="True">
             <DataGrid.ItemContainerStyle>

@@ -9,6 +9,7 @@
       Title="CreateComponentPage">
 
     <StackPanel Grid.Column="1">
+        <Label Content="Create New Component" FontSize="20"></Label>
         <StackPanel Orientation="Horizontal" Margin="0 0 0 12">
             <Label Width="125">Name*:</Label>
             <TextBox x:Name='txtName'
