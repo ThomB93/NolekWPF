@@ -10,15 +10,15 @@
       Title="AddRemoveComponentPage"
       Loaded='Page_Loaded'>
 
-  <Grid>
-    <Grid.ColumnDefinitions>
-      <ColumnDefinition Width="*"></ColumnDefinition>
-      <ColumnDefinition Width="*"></ColumnDefinition>
-    </Grid.ColumnDefinitions>
-
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
         <DataGrid Width="auto" ItemsSource="{Binding Equipments}"
                   SelectedItem="{Binding SelectedEquipment, Mode=TwoWay}"
-                  IsReadOnly="True">
+                  IsReadOnly="True" CanUserReorderColumns="False" SelectionMode="Single" ColumnWidth="*" Height="700">
+
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Image">
                     <DataGridTemplateColumn.CellTemplate>
@@ -30,43 +30,53 @@
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Grid.Column="1">
-      <Grid>
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="*"></ColumnDefinition>
-          <ColumnDefinition Width="*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="70"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
 
-        <ComboBox ItemsSource="{Binding Components}"
+                <ComboBox ItemsSource="{Binding Components}"
                   DisplayMemberPath="ComponentName"
                   SelectedItem="{Binding SelectedComponent}"
                   Grid.Column="0"></ComboBox>
-        <Button Name="BtnAdd"
+                <Label Grid.Column="1" Content="Quantity" />
+                <TextBox Grid.Column="2" 
+                 Text="{Binding SelectedComponent.ComponentToEquipmentQuantity, 
+                 Mode=TwoWay, 
+                 UpdateSourceTrigger=PropertyChanged}"/>
+
+                <Button Name="BtnAdd"
                 Content="Add"
-                Grid.Column="1"
+                Grid.Column="3"
                 Command="{Binding AddComponent}"
                 Margin="10 0 0 0"></Button>
-      </Grid>
-      <ScrollViewer Margin="0 10 0 0">
-                <DataGrid MinHeight="180" AutoGenerateColumns="True"
+            </Grid>
+
+            <DataGrid MinHeight="180" AutoGenerateColumns="True"
+                 CanUserAddRows="False" CanUserReorderColumns="False" SelectionMode="Single"
                  ItemsSource="{Binding ComponentsForEquipment}"
-                 SelectedIndex="{Binding SelectedListComponentIndex}" Height="221">
-                </DataGrid>
-      </ScrollViewer>
-      <Grid>
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="*"></ColumnDefinition>
-          <ColumnDefinition Width="*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Button Name="BtnSave"
+                 SelectedIndex="{Binding SelectedListComponentIndex}" MaxHeight="600" Margin="10 10 10 0">
+            </DataGrid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Name="BtnSave"
                 Content="Save"
-                Margin="0 10 5 0"
+                Margin="10 10 5 0"
                 Command="{Binding SaveChanges}"></Button>
-        <Button Name="BtnRemove"
+                <Button Name="BtnRemove"
                 Grid.Column="1"
                 Content="Remove"
-                Margin=" 5 10 0 0"
+                Margin=" 20 10 0 0"
                 Command="{Binding RemoveComponent}"></Button>
-      </Grid>
-    </StackPanel>
-  </Grid>
+
+            </Grid>
+        </StackPanel>
+    </Grid>
 </Page>

@@ -76,10 +76,11 @@ namespace NolekWPF.ViewModels.Equipment
                         ComponentSerialNumber = item.ComponentSerialNumber,
                         ComponentSupplyNumber = item.ComponentSupplyNumber
                     };
+
                     _equipmentRepository.UpdateComponents(component, SelectedEquipment.EquipmentId, item.ComponentToEquipmentQuantity);
                 }
                 await _equipmentRepository.SaveAsync();
-                SelectedEquipment = null;
+               
             }
             catch (Exception e)
             {
@@ -176,12 +177,26 @@ namespace NolekWPF.ViewModels.Equipment
             get { return _selectedEquipment; }
             set
             {
-                _selectedEquipment = value;
-                LoadComponentForEquipment(_selectedEquipment.EquipmentId);
-                ((DelegateCommand)AddComponent).RaiseCanExecuteChanged();
-                ((DelegateCommand)RemoveComponent).RaiseCanExecuteChanged();
-                ((DelegateCommand)SaveChanges).RaiseCanExecuteChanged();
-
+                try
+                {
+                    _selectedEquipment = value;
+                    LoadComponentForEquipment(_selectedEquipment.EquipmentId);
+                    ((DelegateCommand)AddComponent).RaiseCanExecuteChanged();
+                    ((DelegateCommand)RemoveComponent).RaiseCanExecuteChanged();
+                    ((DelegateCommand)SaveChanges).RaiseCanExecuteChanged();
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message, "An error occurred", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    //create new error object from the exception and add to DB
+                    Error error = new Error
+                    {
+                        ErrorMessage = e.Message,
+                        ErrorTimeStamp = DateTime.Now,
+                        ErrorStackTrace = e.StackTrace
+                    };
+                     _errorDataService.AddError(error);
+                }
             }
         }
 
