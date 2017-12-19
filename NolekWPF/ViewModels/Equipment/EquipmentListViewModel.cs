@@ -40,8 +40,7 @@ namespace NolekWPF.Equipment.ViewModels
             _eventAggregator.GetEvent<AfterEquipmentCreated>().Subscribe(RefreshList);
             _eventAggregator.GetEvent<AfterUserLogin>().Subscribe(OnLogin);
             EquipmentDetailViewModel = equipmentDetailViewModel;
-            LoadDetailData();
-            
+            LoadDetailData();            
         }
 
         public ICollectionView EquipmentView { get; private set; }
@@ -147,7 +146,5 @@ namespace NolekWPF.Equipment.ViewModels
                 }
             }
         }
-
-
     }
 }

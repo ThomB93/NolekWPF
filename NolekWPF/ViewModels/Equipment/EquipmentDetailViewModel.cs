@@ -146,8 +146,8 @@ namespace NolekWPF.Equipment.ViewModels
             var equipment = new Model.Equipment();
 
             ((DelegateCommand)UpdateCommand).RaiseCanExecuteChanged();
-
-            _equipmentRepository.Update(equipment);
+            _eventAggregator.GetEvent<AfterEquipmentCreated>().Publish();
+            //_equipmentRepository.Update(equipment);
             return equipment;
         }
 
