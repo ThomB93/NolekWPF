@@ -58,6 +58,7 @@
       <DependentUpon>dbNolek.tt</DependentUpon>
     </Compile>
     <Compile Include="Dto\ComponentDto.cs" />
+    <Compile Include="Dto\CustomerDto.cs" />
     <Compile Include="Dto\EquipmentCategoryDto.cs" />
     <Compile Include="Dto\EquipmentConfigurationDto.cs" />
     <Compile Include="Equipment.cs">
@@ -109,6 +110,23 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>dbNolek.cs</LastGenOutput>
     </Content>
+    <Content Include="Images\Equipment\master_107.jpg" />
+    <Content Include="Images\Equipment\master_108.png" />
+    <Content Include="Images\Equipment\master_119.jpg" />
+    <Content Include="Images\Equipment\master_141.jpg" />
+    <Content Include="Images\Equipment\master_144.jpg" />
+    <Content Include="Images\Equipment\stacks-image-088b295.jpg" />
+    <Content Include="Images\Equipment\stacks-image-2c53cd6.png" />
+    <Content Include="Images\Equipment\stacks-image-4335107.jpg" />
+    <Content Include="Images\Equipment\stacks-image-4afe487.jpg" />
+    <Content Include="Images\Equipment\stacks-image-5372d2b.png" />
+    <Content Include="Images\Equipment\stacks-image-5a77fc4.jpg" />
+    <Content Include="Images\Equipment\stacks-image-62638e3.jpg" />
+    <Content Include="Images\Equipment\stacks-image-820871e.jpg" />
+    <Content Include="Images\Equipment\stacks-image-8bbc373.jpg" />
+    <Content Include="Images\Equipment\stacks-image-ad8ebaf.jpg" />
+    <Content Include="Images\Equipment\stacks-image-f248016.jpg" />
+    <Content Include="Images\Equipment\stacks-image-faae7d0.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
