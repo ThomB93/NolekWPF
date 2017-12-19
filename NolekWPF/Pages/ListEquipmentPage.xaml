@@ -10,15 +10,16 @@
       d:DesignWidth="300"
       Title="ListEquipmentPage">
   <Page.Resources>
-    <helpers:ConvertTextToImage x:Key="convert" />
-  </Page.Resources>
+        <helpers:ConvertTextToImage x:Key="convert" />
+    </Page.Resources>
   <StackPanel Orientation="Vertical">
     <Label Content="Equipment List"
            FontSize="20"></Label>
-    <ScrollViewer  VerticalScrollBarVisibility="Auto"
+        <TextBox Name="SearchBar" Margin="10 10 10 10" Text="{Binding FilterString, UpdateSourceTrigger=PropertyChanged}"/>
+        <ScrollViewer  VerticalScrollBarVisibility="Auto"
                    Height="Auto">
       <DataGrid MaxHeight="800"
-                ItemsSource="{Binding Equipments}"
+                ItemsSource="{Binding EquipmentView}"
                 SelectedItem="{Binding SelectedEquipment, Mode=TwoWay}"
                 IsReadOnly="True"
                 CanUserReorderColumns="False"
