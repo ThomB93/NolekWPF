@@ -17,21 +17,14 @@ namespace NolekWPF.Data.DataServices
         {
             _contextCreator = contextCreator;
         }
-        public async Task<Model.Equipment> GetByIdAsync(int equipmentId) 
-        {
-            using (var ctx = _contextCreator()) 
-            {
-                return await ctx.Equipments.AsNoTracking().SingleAsync(f => f.EquipmentId == equipmentId); 
-            }
-        }
-        public async Task<EquipmentView> GetViewByIdAsync(int equipmentId)
+        public async Task<Model.Equipment> GetByIdAsync(int equipmentId)
         {
             using (var ctx = _contextCreator())
             {
-                return await ctx.EquipmentViews.AsNoTracking().SingleAsync(
-                    f => f.EquipmentId == equipmentId);
+                return await ctx.Equipments.AsNoTracking().SingleAsync(f => f.EquipmentId == equipmentId);
             }
         }
+        
         public async Task<IEnumerable<EquipmentType>> GetTypesAsync()
         {
             using (var ctx = _contextCreator())

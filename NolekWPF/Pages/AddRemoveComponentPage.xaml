@@ -5,8 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:NolekWPF.Pages"
       mc:Ignorable="d"
-      d:DesignHeight="300"
-      d:DesignWidth="300"
+      d:DesignHeight="500"
+      d:DesignWidth="500"
       Title="AddRemoveComponentPage"
       Loaded='Page_Loaded'>
 
@@ -17,7 +17,7 @@
         </Grid.ColumnDefinitions>
         <DataGrid Width="auto" ItemsSource="{Binding Equipments}"
                   SelectedItem="{Binding SelectedEquipment, Mode=TwoWay}"
-                  IsReadOnly="True" CanUserReorderColumns="False" SelectionMode="Single" ColumnWidth="*" Height="700">
+                  IsReadOnly="True" CanUserReorderColumns="False" SelectionMode="Single" ColumnWidth="*" MaxHeight="750" MinHeight="500">
 
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Image">
@@ -29,20 +29,19 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Grid.Column="1">
+        <StackPanel Margin="10 0 0 0" Grid.Column="1">
             <Grid>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="70"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    
                 </Grid.ColumnDefinitions>
 
                 <ComboBox ItemsSource="{Binding Components}"
                   DisplayMemberPath="ComponentName"
                   SelectedItem="{Binding SelectedComponent}"
                   Grid.Column="0"></ComboBox>
-                <Label Grid.Column="1" Content="Quantity" />
+                
                 <TextBox Grid.Column="2" 
                  Text="{Binding SelectedComponent.ComponentToEquipmentQuantity, 
                  Mode=TwoWay, 
@@ -52,13 +51,15 @@
                 Content="Add"
                 Grid.Column="3"
                 Command="{Binding AddComponent}"
-                Margin="10 0 0 0"></Button>
+                Margin="10 0 0 0"
+                FontSize='14'></Button>
             </Grid>
 
             <DataGrid MinHeight="180" AutoGenerateColumns="True"
                  CanUserAddRows="False" CanUserReorderColumns="False" SelectionMode="Single"
                  ItemsSource="{Binding ComponentsForEquipment}"
-                 SelectedIndex="{Binding SelectedListComponentIndex}" MaxHeight="600" Margin="10 10 10 0">
+                      ColumnWidth="*"
+                 SelectedIndex="{Binding SelectedListComponentIndex}" MaxHeight="600" Margin="0 10 0 0">
             </DataGrid>
 
             <Grid>
@@ -68,13 +69,15 @@
                 </Grid.ColumnDefinitions>
                 <Button Name="BtnSave"
                 Content="Save"
-                Margin="10 10 5 0"
-                Command="{Binding SaveChanges}"></Button>
+                Margin="0 10 5 0"
+                Command="{Binding SaveChanges}"
+                FontSize='14'></Button>
                 <Button Name="BtnRemove"
                 Grid.Column="1"
                 Content="Remove"
                 Margin=" 20 10 0 0"
-                Command="{Binding RemoveComponent}"></Button>
+                Command="{Binding RemoveComponent}"
+                FontSize='14'></Button>
 
             </Grid>
         </StackPanel>

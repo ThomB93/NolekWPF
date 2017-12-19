@@ -32,7 +32,6 @@ namespace NolekWPF.Pages
             txtName.Text = String.Empty;
             txtDescription.Text = String.Empty;
             txtOrderNo.Text = String.Empty;
-            txtquantity.Text = String.Empty;
             txtSerialNo.Text = "";
             txtSupplyNo.Text = "";
         }

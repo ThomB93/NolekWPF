@@ -33,7 +33,7 @@ namespace NolekWPF.DataAccess
         public virtual DbSet<EquipmentConfiguration> EquipmentConfigurations { get; set; }
         public virtual DbSet<EquipmentType> EquipmentTypes { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<EquipmentView> EquipmentViews { get; set; }
+        
         public virtual DbSet<Error> Errors { get; set; }
         public virtual DbSet<ContactPerson> ContactPersons { get; set; }
         public virtual DbSet<Country> Countries { get; set; }

@@ -110,7 +110,7 @@ namespace NolekWPF.Wrappers
             switch (propertyName)
             {
                 case nameof(EquipmentDateCreated):
-                    
+
                     break;
                 case nameof(EquipmentSerialnumber):
                     if (Regex.Matches(EquipmentSerialnumber, @"[a-zA-Z]").Count != 0)
@@ -127,7 +127,7 @@ namespace NolekWPF.Wrappers
                     }
                     break;
                 case nameof(EquipmentMainEquipmentNumber):
-                    if(Regex.Matches(EquipmentMainEquipmentNumber, @"[a-zA-Z]").Count != 0)
+                    if (Regex.Matches(EquipmentMainEquipmentNumber, @"[a-zA-Z]").Count != 0)
                     {
                         AddError(propertyName, "Main Equipment Number must consist of numbers only.");
                     }
@@ -166,11 +166,11 @@ namespace NolekWPF.Wrappers
         //will add a new error to a property
         private void AddError(string propertyName, string error)
         {
-            if(!_errorsByPropertyName.ContainsKey(propertyName)) //check if there is an entry in the dictionary for the property
+            if (!_errorsByPropertyName.ContainsKey(propertyName)) //check if there is an entry in the dictionary for the property
             {
                 _errorsByPropertyName[propertyName] = new List<string>(); //clear the list of errors for the property
             }
-            if(!_errorsByPropertyName[propertyName].Contains(error)) //check if the error already exists in the list
+            if (!_errorsByPropertyName[propertyName].Contains(error)) //check if the error already exists in the list
             {
                 _errorsByPropertyName[propertyName].Add(error); //if it doesnt, add the error
                 OnErrorsChanged(error);
@@ -180,7 +180,7 @@ namespace NolekWPF.Wrappers
         //will clear all errors of a chosen property
         private void ClearErrors(string propertyName)
         {
-            if(_errorsByPropertyName.ContainsKey(propertyName))
+            if (_errorsByPropertyName.ContainsKey(propertyName))
             {
                 _errorsByPropertyName.Remove(propertyName);
                 OnErrorsChanged(propertyName);

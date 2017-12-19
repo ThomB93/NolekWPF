@@ -79,6 +79,6 @@ namespace NolekWPF.ViewModels.Component
             }
         }
 
-        
+
     }
 }

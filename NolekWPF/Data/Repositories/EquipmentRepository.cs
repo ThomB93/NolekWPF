@@ -77,7 +77,7 @@ namespace NolekWPF.Data.Repositories
             //_context.Entry(model).CurrentValues.SetValues(model);
         }
 
-        public void UpdateComponents(Model.Component model, int equipmentId, int quantity)
+        public void UpdateComponents(Model.Component model, int equipmentId)
         {
             //add new relations between component and equipment
             //Entity is not null if relation already exists
@@ -89,8 +89,7 @@ namespace NolekWPF.Data.Repositories
                 _context.EquipmentComponents.Add(new EquipmentComponent()
                 {
                     ComponentID = model.ComponentId,
-                    EquipmentID = equipmentId,
-                    EquipmentComponentQuantity = quantity
+                    EquipmentID = equipmentId
                 });
             }
 

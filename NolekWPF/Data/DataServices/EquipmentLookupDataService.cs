@@ -18,7 +18,7 @@ namespace NolekWPF.Data.DataServices
             _contextCreator = contextCreator;
         }
 
-        public async Task<IEnumerable<EquipmentLookup>> GetEquipmentLookupAsync() 
+        public async Task<IEnumerable<EquipmentLookup>> GetEquipmentLookupAsync()
         {
             using (var ctx = _contextCreator())
             {
@@ -27,8 +27,8 @@ namespace NolekWPF.Data.DataServices
                     EquipmentId = f.EquipmentId,
                     SerialNumber = f.EquipmentSerialnumber,
                     TypeName = f.EquipmentType.EquipmentTypeName,
-                    ImagePath =  f.EquipmentImagePath
-                    
+                    ImagePath = f.EquipmentImagePath
+
                 }).ToListAsync();
             }
         }

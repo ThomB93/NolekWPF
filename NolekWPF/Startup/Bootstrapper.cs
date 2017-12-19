@@ -21,7 +21,7 @@ namespace NolekWPF.Startup
         {
             var builder = new ContainerBuilder();
 
-            //views
+            //windows
             builder.RegisterType<MainWindow>().AsSelf();
 
             //db context
@@ -41,20 +41,22 @@ namespace NolekWPF.Startup
             builder.RegisterType<ErrorRepository>().As<IErrorRepository>();
 
             //view models
+            //Equipment
             builder.RegisterType<EquipmentListViewModel>().As<IEquipmentListViewModel>();
             builder.RegisterType<EquipmentCreateViewModel>().As<IEquipmentCreateViewModel>();
             builder.RegisterType<EquipmentDetailViewModel>().As<IEquipmentDetailViewModel>();
+            builder.RegisterType<AddRemoveComponentViewModel>().As<IAddRemoveComponentViewModel>();
 
+            //Component
             builder.RegisterType<ComponentListViewModel>().As<IComponentListViewModel>();
             builder.RegisterType<ComponentCreateViewModel>().As<IComponentCreateViewModel>();
             builder.RegisterType<ComponentDetailViewModel>().As<IComponentDetailViewModel>();
-
-            builder.RegisterType<AddRemoveComponentViewModel>().As<IAddRemoveComponentViewModel>();
 
             builder.RegisterType<MainViewModel>().AsSelf();
 
             //register event aggregators, det er en singleton
             builder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();
+
             //Eventaggregator skal være singleinstance. De snakker jo alle igennem den samme event
             //builder.RegisterType<EventAggregator>().As<IEventAggregator>();
 

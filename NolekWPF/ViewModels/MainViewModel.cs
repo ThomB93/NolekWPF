@@ -99,7 +99,7 @@ namespace NolekWPF.ViewModels
                 OnPropertyChanged();
             }
         }
-        
+
         public string Visibility
         {
             get { return _visibility; }
@@ -165,7 +165,7 @@ namespace NolekWPF.ViewModels
         {
             FrameVisibility = "Collapsed";
             MenuVisibility = "Collapsed";
-            _currentuser = null;      
+            _currentuser = null;
         }
 
         public async void Login()
@@ -198,7 +198,7 @@ namespace NolekWPF.ViewModels
                 _eventAggregator.GetEvent<AfterUserLogin>()
                         .Publish(_currentuser);
                 Username = string.Empty;
-                Password = string.Empty;             
+                Password = string.Empty;
             }
         }
 

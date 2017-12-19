@@ -21,11 +21,10 @@ namespace NolekWPF.Model
         }
     
         public int ComponentId { get; set; }
-        public string ComponentName { get; set; }
+        public string ComponentType { get; set; }
         public string ComponentDescription { get; set; }
         public string ComponentOrderNumber { get; set; }
         public string ComponentSerialNumber { get; set; }
-        public int ComponentQuantity { get; set; }
         public string ComponentSupplyNumber { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

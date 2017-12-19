@@ -28,13 +28,13 @@ namespace NolekWPF.Wrappers
                 Model.ComponentId = value; OnPropertyChanged();
             }
         }
-        public string ComponentName
+        public string ComponentType
         {
-            get { return Model.ComponentName; }
+            get { return Model.ComponentType; }
             set
             {
-                Model.ComponentName = value; OnPropertyChanged();
-                ValidateProperty(nameof(ComponentName));
+                Model.ComponentType = value; OnPropertyChanged();
+                ValidateProperty(nameof(ComponentType));
             }
         }
         public string ComponentDescription
@@ -64,15 +64,7 @@ namespace NolekWPF.Wrappers
                 ValidateProperty(nameof(ComponentSerialNumber));
             }
         }
-        public int ComponentQuantity
-        {
-            get { return Model.ComponentQuantity; }
-            set
-            {
-                Model.ComponentQuantity = value; OnPropertyChanged();
-                ValidateProperty(nameof(ComponentQuantity));
-            }
-        }
+        
         public string ComponentSupplyNumber
         {
             get { return Model.ComponentSupplyNumber; }
@@ -89,18 +81,13 @@ namespace NolekWPF.Wrappers
             ClearErrors(propertyName);
             switch (propertyName)
             {
-                case nameof(ComponentQuantity):
-                    if(Regex.Matches(ComponentQuantity.ToString(), @"[a-zA-Z]").Count != 0)
-                    {
-                        AddError(propertyName, "Quantity must be a whole number.");
-                    }
-                    break;
-                case nameof(ComponentName):
-                    if(ComponentName.Length > 50)
+                
+                case nameof(ComponentType):
+                    if (ComponentType.Length > 50)
                     {
                         AddError(propertyName, "Name cannot exceeed 50 characters.");
                     }
-                    if (ComponentName.ToString().Length < 1)
+                    if (ComponentType.ToString().Length < 1)
                     {
                         AddError(propertyName, "Name is required.");
                     }

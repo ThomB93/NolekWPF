@@ -35,9 +35,8 @@ namespace NolekWPF.Data.DataServices
                 {
                     ComponentId = f.ComponentId,
                     ComponentDescription = f.ComponentDescription,
-                    ComponentName = f.ComponentName,
+                    ComponentType = f.ComponentType,
                     ComponentOrderNumber = f.ComponentOrderNumber,
-                    ComponentQuantity = f.ComponentQuantity,
                     ComponentSerialNumber = f.ComponentSerialNumber,
                     ComponentSupplyNumber = f.ComponentSupplyNumber
                 }).ToListAsync();
@@ -50,20 +49,19 @@ namespace NolekWPF.Data.DataServices
             {
                 var result = from equipment in ctx.Equipments
                         .Where(equipment => equipment.EquipmentId == equipmentId)
-                    join equipmentmodel in ctx.EquipmentComponents
-                        on equipment.EquipmentId equals equipmentmodel.EquipmentID
-                    join model in ctx.Components
-                        on equipmentmodel.ComponentID equals model.ComponentId
-                    select new ComponentDto()
-                    {
-                        ComponentId = model.ComponentId,
-                        ComponentName = model.ComponentName,
-                        ComponentDescription = model.ComponentDescription,
-                        ComponentOrderNumber = model.ComponentOrderNumber,
-                        ComponentQuantity = model.ComponentQuantity,
-                        ComponentSerialNumber = model.ComponentSerialNumber,
-                        ComponentSupplyNumber = model.ComponentSupplyNumber
-                    };
+                             join equipmentmodel in ctx.EquipmentComponents
+                                 on equipment.EquipmentId equals equipmentmodel.EquipmentID
+                             join model in ctx.Components
+                                 on equipmentmodel.ComponentID equals model.ComponentId
+                             select new ComponentDto()
+                             {
+                                 ComponentId = model.ComponentId,
+                                 ComponentType = model.ComponentType,
+                                 ComponentDescription = model.ComponentDescription,
+                                 ComponentOrderNumber = model.ComponentOrderNumber,
+                                 ComponentSerialNumber = model.ComponentSerialNumber,
+                                 ComponentSupplyNumber = model.ComponentSupplyNumber
+                             };
                 return await result.ToListAsync(); // or whatever non-deferred you want
             }
         }

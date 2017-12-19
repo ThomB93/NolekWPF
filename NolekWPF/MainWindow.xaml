@@ -12,7 +12,8 @@
         >
     <StackPanel>
         <DockPanel>
-            <Menu x:Name="Menu" DockPanel.Dock="Top" Visibility="{Binding MenuVisibility, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontSize="14">
+            <Menu x:Name="Menu" DockPanel.Dock="Top" Visibility="{Binding MenuVisibility, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontSize="14"
+            FontWeight='Bold'>
                 <MenuItem Header="User">
                     <MenuItem Header="_Log out" Click="mnuLogout_Click" Command="{Binding LogoutCommand}"></MenuItem>
                     <MenuItem x:Name="mnuExit" Header="_Exit" Click="mnuExit_Click"></MenuItem>

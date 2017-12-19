@@ -38,7 +38,7 @@ namespace NolekWPF.Equipment.ViewModels
             _eventAggregator.GetEvent<AfterUserLogin>().Subscribe(OnLogin);
             EquipmentDetailViewModel = equipmentDetailViewModel;
             LoadDetailData();
-            
+
             //var convert = cv.Convert(Equipments[0].ImagePath);
         }
 
@@ -48,7 +48,7 @@ namespace NolekWPF.Equipment.ViewModels
             await EquipmentDetailViewModel.LoadConfigurationsAsync();
             await EquipmentDetailViewModel.LoadTypesAsync();
         }
-        
+
 
         private async void RefreshList()
         {
@@ -60,7 +60,7 @@ namespace NolekWPF.Equipment.ViewModels
             CurrentUser = user;
         }
 
-        public Login CurrentUser { get; set; }      
+        public Login CurrentUser { get; set; }
 
         public async Task LoadAsync()
         {
@@ -106,6 +106,6 @@ namespace NolekWPF.Equipment.ViewModels
             }
         }
 
-        
+
     }
 }

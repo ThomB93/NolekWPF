@@ -27,7 +27,7 @@ namespace NolekWPF.Data.Repositories
         {
             return await _context.Components.SingleAsync(f => f.ComponentId == compId); //return equipement with the id
         }
-        
+
 
         public bool HasChanges()
         {

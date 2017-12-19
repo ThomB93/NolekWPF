@@ -30,10 +30,10 @@ namespace NolekWPF.ViewModels.Component
             CreateComponentCommand = new DelegateCommand(OnCreateComponentExecute, OnComponentCreateCanExecute);
             _componentRepository = equipmentRepository;
             _errorDataService = errorDataService;
-            Component = CreateNewComponent();  
+            Component = CreateNewComponent();
             _eventAggregator = eventAggregator;
         }
-       
+
         public ComponentWrapper Component
         {
             get { return _component; }
@@ -103,10 +103,9 @@ namespace NolekWPF.ViewModels.Component
             ((DelegateCommand)CreateComponentCommand).RaiseCanExecuteChanged();
 
             //default values
-            component.ComponentName = "";
+            component.ComponentType = "";
             component.ComponentSupplyNumber = "";
             component.ComponentSerialNumber = "";
-            component.ComponentQuantity = 0;
 
             _componentRepository.Add(component.Model); //context is aware of the equipment to add
             return component;

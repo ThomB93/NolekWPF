@@ -10,11 +10,10 @@
             <PropertyRef Name="ComponentId" />
           </Key>
           <Property Name="ComponentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ComponentName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ComponentType" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ComponentDescription" Type="nvarchar(max)" />
           <Property Name="ComponentOrderNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="ComponentSerialNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="ComponentQuantity" Type="int" Nullable="false" />
           <Property Name="ComponentSupplyNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="ContactPerson">
@@ -74,6 +73,7 @@
           <Property Name="EquipmentConfigurationID" Type="int" Nullable="false" />
           <Property Name="EquipmentStatus" Type="bit" Nullable="false" />
           <Property Name="EquipmentCategoryId" Type="int" Nullable="false" />
+          <Property Name="ContactPersonId" Type="int" />
         </EntityType>
         <EntityType Name="EquipmentCategory">
           <Key>
@@ -89,7 +89,7 @@
           </Key>
           <Property Name="ComponentID" Type="int" Nullable="false" />
           <Property Name="EquipmentID" Type="int" Nullable="false" />
-          <Property Name="EquipmentComponentQuantity" Type="int" Nullable="false" />
+          <Property Name="ComponentName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="EquipmentConfiguration">
           <Key>
@@ -152,30 +152,6 @@
           <Property Name="TechnicianFirstName" Type="nvarchar" MaxLength="50" />
           <Property Name="TechnicianLastName" Type="nvarchar" MaxLength="50" />
           <Property Name="LoginId" Type="int" Nullable="false" />
-        </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'wiki_nolek_dk_db.dbo.EquipmentView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="EquipmentView">
-          <Key>
-            <PropertyRef Name="EquipmentId" />
-            <PropertyRef Name="EquipmentDateCreated" />
-            <PropertyRef Name="EquipmentSerialnumber" />
-            <PropertyRef Name="EquipmentMainEquipmentNumber" />
-            <PropertyRef Name="EquipmentStatus" />
-            <PropertyRef Name="EquipmentConfigurationDescription" />
-            <PropertyRef Name="EquipmentTypeName" />
-            <PropertyRef Name="EquipmentTypeDescription" />
-          </Key>
-          <Property Name="EquipmentId" Type="int" Nullable="false" />
-          <Property Name="EquipmentDateCreated" Type="date" Nullable="false" />
-          <Property Name="EquipmentImagePath" Type="nvarchar(max)" />
-          <Property Name="EquipmentSerialnumber" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="EquipmentMainEquipmentNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="EquipmentStatus" Type="bit" Nullable="false" />
-          <Property Name="CategoryName" Type="nvarchar" MaxLength="50" />
-          <Property Name="EquipmentConfigurationDescription" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="EquipmentTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="EquipmentTypeDescription" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <Association Name="FK__Equipment__Compo__04AFB25B">
           <End Role="Component" Type="Self.Component" Multiplicity="1" />
@@ -362,20 +338,6 @@ warning 6002: The table/view 'wiki_nolek_dk_db.dbo.EquipmentView' does not have 
           <EntitySet Name="Nolek" EntityType="Self.Nolek" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Technician" EntityType="Self.Technician" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="EquipmentView" EntityType="Self.EquipmentView" store:Type="Views" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [EquipmentView].[EquipmentId] AS [EquipmentId], 
-    [EquipmentView].[EquipmentDateCreated] AS [EquipmentDateCreated], 
-    [EquipmentView].[EquipmentImagePath] AS [EquipmentImagePath], 
-    [EquipmentView].[EquipmentSerialnumber] AS [EquipmentSerialnumber], 
-    [EquipmentView].[EquipmentMainEquipmentNumber] AS [EquipmentMainEquipmentNumber], 
-    [EquipmentView].[EquipmentStatus] AS [EquipmentStatus], 
-    [EquipmentView].[CategoryName] AS [CategoryName], 
-    [EquipmentView].[EquipmentConfigurationDescription] AS [EquipmentConfigurationDescription], 
-    [EquipmentView].[EquipmentTypeName] AS [EquipmentTypeName], 
-    [EquipmentView].[EquipmentTypeDescription] AS [EquipmentTypeDescription]
-    FROM [dbo].[EquipmentView] AS [EquipmentView]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK__Equipment__Compo__04AFB25B" Association="Self.FK__Equipment__Compo__04AFB25B">
             <End Role="Component" EntitySet="Component" />
             <End Role="EquipmentComponent" EntitySet="EquipmentComponent" />
@@ -437,19 +399,6 @@ warning 6002: The table/view 'wiki_nolek_dk_db.dbo.EquipmentView' does not have 
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="wiki_nolek_dk_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Component">
-          <Key>
-            <PropertyRef Name="ComponentId" />
-          </Key>
-          <Property Name="ComponentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ComponentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ComponentDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="ComponentOrderNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ComponentSerialNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ComponentQuantity" Type="Int32" Nullable="false" />
-          <Property Name="ComponentSupplyNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="EquipmentComponents" Relationship="Self.FK__Equipment__Compo__04AFB25B" FromRole="Component" ToRole="EquipmentComponent" />
-        </EntityType>
         <EntityType Name="Equipment">
           <Key>
             <PropertyRef Name="EquipmentId" />
@@ -463,11 +412,12 @@ warning 6002: The table/view 'wiki_nolek_dk_db.dbo.EquipmentView' does not have 
           <Property Name="EquipmentConfigurationID" Type="Int32" Nullable="false" />
           <Property Name="EquipmentStatus" Type="Boolean" Nullable="false" />
           <Property Name="EquipmentCategoryId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="EquipmentComponents" Relationship="Self.FK__Equipment__Equip__05A3D694" FromRole="Equipment" ToRole="EquipmentComponent" />
           <NavigationProperty Name="EquipmentCategory" Relationship="Self.FK_Equipment_EquipmentCategory" FromRole="Equipment" ToRole="EquipmentCategory" />
           <NavigationProperty Name="EquipmentConfiguration" Relationship="Self.FK_Equipment_EquipmentConfiguration" FromRole="Equipment" ToRole="EquipmentConfiguration" />
           <NavigationProperty Name="EquipmentType" Relationship="Self.FK_Equipment_EquipmentType" FromRole="Equipment" ToRole="EquipmentType" />
           <NavigationProperty Name="Customers" Relationship="wiki_nolek_dk_dbModel.CustomerEquipment" FromRole="Equipment" ToRole="Customer" />
+          <Property Name="ContactPersonId" Type="Int32" />
+          <NavigationProperty Name="EquipmentComponents" Relationship="wiki_nolek_dk_dbModel.FK__Equipment__Equip__05A3D694" FromRole="Equipment" ToRole="EquipmentComponent" />
         </EntityType>
         <EntityType Name="EquipmentCategory">
           <Key>
@@ -476,17 +426,6 @@ warning 6002: The table/view 'wiki_nolek_dk_db.dbo.EquipmentView' does not have 
           <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Equipments" Relationship="Self.FK_Equipment_EquipmentCategory" FromRole="EquipmentCategory" ToRole="Equipment" />
-        </EntityType>
-        <EntityType Name="EquipmentComponent">
-          <Key>
-            <PropertyRef Name="ComponentID" />
-            <PropertyRef Name="EquipmentID" />
-          </Key>
-          <Property Name="ComponentID" Type="Int32" Nullable="false" />
-          <Property Name="EquipmentID" Type="Int32" Nullable="false" />
-          <Property Name="EquipmentComponentQuantity" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Component" Relationship="Self.FK__Equipment__Compo__04AFB25B" FromRole="EquipmentComponent" ToRole="Component" />
-          <NavigationProperty Name="Equipment" Relationship="Self.FK__Equipment__Equip__05A3D694" FromRole="EquipmentComponent" ToRole="Equipment" />
         </EntityType>
         <EntityType Name="EquipmentConfiguration">
           <Key>
@@ -515,52 +454,6 @@ warning 6002: The table/view 'wiki_nolek_dk_db.dbo.EquipmentView' does not have 
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="EquipmentView">
-          <Key>
-            <PropertyRef Name="EquipmentId" />
-            <PropertyRef Name="EquipmentDateCreated" />
-            <PropertyRef Name="EquipmentSerialnumber" />
-            <PropertyRef Name="EquipmentMainEquipmentNumber" />
-            <PropertyRef Name="EquipmentStatus" />
-            <PropertyRef Name="EquipmentConfigurationDescription" />
-            <PropertyRef Name="EquipmentTypeName" />
-            <PropertyRef Name="EquipmentTypeDescription" />
-          </Key>
-          <Property Name="EquipmentId" Type="Int32" Nullable="false" />
-          <Property Name="EquipmentDateCreated" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="EquipmentImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="EquipmentSerialnumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="EquipmentMainEquipmentNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="EquipmentStatus" Type="Boolean" Nullable="false" />
-          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="EquipmentConfigurationDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="EquipmentTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="EquipmentTypeDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
-        <Association Name="FK__Equipment__Compo__04AFB25B">
-          <End Role="Component" Type="Self.Component" Multiplicity="1" />
-          <End Role="EquipmentComponent" Type="Self.EquipmentComponent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Component">
-              <PropertyRef Name="ComponentId" />
-            </Principal>
-            <Dependent Role="EquipmentComponent">
-              <PropertyRef Name="ComponentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Equipment__Equip__05A3D694">
-          <End Role="Equipment" Type="Self.Equipment" Multiplicity="1" />
-          <End Role="EquipmentComponent" Type="Self.EquipmentComponent" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Equipment">
-              <PropertyRef Name="EquipmentId" />
-            </Principal>
-            <Dependent Role="EquipmentComponent">
-              <PropertyRef Name="EquipmentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Equipment_EquipmentCategory">
           <End Role="EquipmentCategory" Type="Self.EquipmentCategory" Multiplicity="1" />
           <End Role="Equipment" Type="Self.Equipment" Multiplicity="*" />
@@ -598,22 +491,11 @@ warning 6002: The table/view 'wiki_nolek_dk_db.dbo.EquipmentView' does not have 
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="wiki_nolek_dk_dbEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Components" EntityType="Self.Component" />
           <EntitySet Name="Equipments" EntityType="Self.Equipment" />
           <EntitySet Name="EquipmentCategories" EntityType="Self.EquipmentCategory" />
-          <EntitySet Name="EquipmentComponents" EntityType="Self.EquipmentComponent" />
           <EntitySet Name="EquipmentConfigurations" EntityType="Self.EquipmentConfiguration" />
           <EntitySet Name="EquipmentTypes" EntityType="Self.EquipmentType" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="EquipmentViews" EntityType="Self.EquipmentView" />
-          <AssociationSet Name="FK__Equipment__Compo__04AFB25B" Association="Self.FK__Equipment__Compo__04AFB25B">
-            <End Role="Component" EntitySet="Components" />
-            <End Role="EquipmentComponent" EntitySet="EquipmentComponents" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Equipment__Equip__05A3D694" Association="Self.FK__Equipment__Equip__05A3D694">
-            <End Role="Equipment" EntitySet="Equipments" />
-            <End Role="EquipmentComponent" EntitySet="EquipmentComponents" />
-          </AssociationSet>
           <AssociationSet Name="FK_Equipment_EquipmentCategory" Association="Self.FK_Equipment_EquipmentCategory">
             <End Role="EquipmentCategory" EntitySet="EquipmentCategories" />
             <End Role="Equipment" EntitySet="Equipments" />
@@ -665,6 +547,16 @@ warning 6002: The table/view 'wiki_nolek_dk_db.dbo.EquipmentView' does not have 
           <AssociationSet Name="CustomerEquipment" Association="wiki_nolek_dk_dbModel.CustomerEquipment">
             <End Role="Customer" EntitySet="Customers" />
             <End Role="Equipment" EntitySet="Equipments" />
+          </AssociationSet>
+          <EntitySet Name="Components" EntityType="wiki_nolek_dk_dbModel.Component" />
+          <EntitySet Name="EquipmentComponents" EntityType="wiki_nolek_dk_dbModel.EquipmentComponent" />
+          <AssociationSet Name="FK__Equipment__Compo__04AFB25B" Association="wiki_nolek_dk_dbModel.FK__Equipment__Compo__04AFB25B">
+            <End Role="Component" EntitySet="Components" />
+            <End Role="EquipmentComponent" EntitySet="EquipmentComponents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Equipment__Equip__05A3D694" Association="wiki_nolek_dk_dbModel.FK__Equipment__Equip__05A3D694">
+            <End Role="Equipment" EntitySet="Equipments" />
+            <End Role="EquipmentComponent" EntitySet="EquipmentComponents" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Error">
@@ -843,28 +735,63 @@ warning 6002: The table/view 'wiki_nolek_dk_db.dbo.EquipmentView' does not have 
           <End Type="wiki_nolek_dk_dbModel.Customer" Role="Customer" Multiplicity="*" />
           <End Type="wiki_nolek_dk_dbModel.Equipment" Role="Equipment" Multiplicity="*" />
         </Association>
+        <EntityType Name="Component">
+          <Key>
+            <PropertyRef Name="ComponentId" />
+          </Key>
+          <Property Name="ComponentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ComponentType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ComponentDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ComponentOrderNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ComponentSerialNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ComponentSupplyNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EquipmentComponents" Relationship="wiki_nolek_dk_dbModel.FK__Equipment__Compo__04AFB25B" FromRole="Component" ToRole="EquipmentComponent" />
+        </EntityType>
+        <EntityType Name="EquipmentComponent">
+          <Key>
+            <PropertyRef Name="ComponentID" />
+            <PropertyRef Name="EquipmentID" />
+          </Key>
+          <Property Name="ComponentID" Type="Int32" Nullable="false" />
+          <Property Name="EquipmentID" Type="Int32" Nullable="false" />
+          <Property Name="ComponentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Component" Relationship="wiki_nolek_dk_dbModel.FK__Equipment__Compo__04AFB25B" FromRole="EquipmentComponent" ToRole="Component" />
+          <NavigationProperty Name="Equipment" Relationship="wiki_nolek_dk_dbModel.FK__Equipment__Equip__05A3D694" FromRole="EquipmentComponent" ToRole="Equipment" />
+        </EntityType>
+        <Association Name="FK__Equipment__Compo__04AFB25B">
+          <End Type="wiki_nolek_dk_dbModel.Component" Role="Component" Multiplicity="1" />
+          <End Type="wiki_nolek_dk_dbModel.EquipmentComponent" Role="EquipmentComponent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Component">
+              <PropertyRef Name="ComponentId" />
+            </Principal>
+            <Dependent Role="EquipmentComponent">
+              <PropertyRef Name="ComponentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Equipment__Equip__05A3D694">
+          <End Type="wiki_nolek_dk_dbModel.Equipment" Role="Equipment" Multiplicity="1" />
+          <End Type="wiki_nolek_dk_dbModel.EquipmentComponent" Role="EquipmentComponent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Equipment">
+              <PropertyRef Name="EquipmentId" />
+            </Principal>
+            <Dependent Role="EquipmentComponent">
+              <PropertyRef Name="EquipmentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="wiki_nolek_dk_dbModelStoreContainer" CdmEntityContainer="wiki_nolek_dk_dbEntities">
-          <EntitySetMapping Name="Components">
-            <EntityTypeMapping TypeName="wiki_nolek_dk_dbModel.Component">
-              <MappingFragment StoreEntitySet="Component">
-                <ScalarProperty Name="ComponentId" ColumnName="ComponentId" />
-                <ScalarProperty Name="ComponentName" ColumnName="ComponentName" />
-                <ScalarProperty Name="ComponentDescription" ColumnName="ComponentDescription" />
-                <ScalarProperty Name="ComponentOrderNumber" ColumnName="ComponentOrderNumber" />
-                <ScalarProperty Name="ComponentSerialNumber" ColumnName="ComponentSerialNumber" />
-                <ScalarProperty Name="ComponentQuantity" ColumnName="ComponentQuantity" />
-                <ScalarProperty Name="ComponentSupplyNumber" ColumnName="ComponentSupplyNumber" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Equipments">
             <EntityTypeMapping TypeName="wiki_nolek_dk_dbModel.Equipment">
               <MappingFragment StoreEntitySet="Equipment">
+                <ScalarProperty Name="ContactPersonId" ColumnName="ContactPersonId" />
                 <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
                 <ScalarProperty Name="EquipmentDateCreated" ColumnName="EquipmentDateCreated" />
                 <ScalarProperty Name="EquipmentImagePath" ColumnName="EquipmentImagePath" />
@@ -882,15 +809,6 @@ warning 6002: The table/view 'wiki_nolek_dk_db.dbo.EquipmentView' does not have 
               <MappingFragment StoreEntitySet="EquipmentCategory">
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EquipmentComponents">
-            <EntityTypeMapping TypeName="wiki_nolek_dk_dbModel.EquipmentComponent">
-              <MappingFragment StoreEntitySet="EquipmentComponent">
-                <ScalarProperty Name="ComponentID" ColumnName="ComponentID" />
-                <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
-                <ScalarProperty Name="EquipmentComponentQuantity" ColumnName="EquipmentComponentQuantity" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -919,22 +837,6 @@ warning 6002: The table/view 'wiki_nolek_dk_db.dbo.EquipmentView' does not have 
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EquipmentViews">
-            <EntityTypeMapping TypeName="wiki_nolek_dk_dbModel.EquipmentView">
-              <MappingFragment StoreEntitySet="EquipmentView">
-                <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
-                <ScalarProperty Name="EquipmentDateCreated" ColumnName="EquipmentDateCreated" />
-                <ScalarProperty Name="EquipmentImagePath" ColumnName="EquipmentImagePath" />
-                <ScalarProperty Name="EquipmentSerialnumber" ColumnName="EquipmentSerialnumber" />
-                <ScalarProperty Name="EquipmentMainEquipmentNumber" ColumnName="EquipmentMainEquipmentNumber" />
-                <ScalarProperty Name="EquipmentStatus" ColumnName="EquipmentStatus" />
-                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
-                <ScalarProperty Name="EquipmentConfigurationDescription" ColumnName="EquipmentConfigurationDescription" />
-                <ScalarProperty Name="EquipmentTypeName" ColumnName="EquipmentTypeName" />
-                <ScalarProperty Name="EquipmentTypeDescription" ColumnName="EquipmentTypeDescription" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1027,6 +929,27 @@ warning 6002: The table/view 'wiki_nolek_dk_db.dbo.EquipmentView' does not have 
               <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Components">
+            <EntityTypeMapping TypeName="wiki_nolek_dk_dbModel.Component">
+              <MappingFragment StoreEntitySet="Component">
+                <ScalarProperty Name="ComponentSupplyNumber" ColumnName="ComponentSupplyNumber" />
+                <ScalarProperty Name="ComponentSerialNumber" ColumnName="ComponentSerialNumber" />
+                <ScalarProperty Name="ComponentOrderNumber" ColumnName="ComponentOrderNumber" />
+                <ScalarProperty Name="ComponentDescription" ColumnName="ComponentDescription" />
+                <ScalarProperty Name="ComponentType" ColumnName="ComponentType" />
+                <ScalarProperty Name="ComponentId" ColumnName="ComponentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EquipmentComponents">
+            <EntityTypeMapping TypeName="wiki_nolek_dk_dbModel.EquipmentComponent">
+              <MappingFragment StoreEntitySet="EquipmentComponent">
+                <ScalarProperty Name="ComponentName" ColumnName="ComponentName" />
+                <ScalarProperty Name="EquipmentID" ColumnName="EquipmentID" />
+                <ScalarProperty Name="ComponentID" ColumnName="ComponentID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

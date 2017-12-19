@@ -19,7 +19,7 @@ namespace NolekWPF.Data.DataServices
 
         public async Task AddError(Error error)
         {
-            using(var ctx = _contextCreator())
+            using (var ctx = _contextCreator())
             {
                 ctx.Errors.Add(error);
                 await ctx.SaveChangesAsync();

@@ -5,27 +5,22 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="e4d872f48c3945659ce30c5359e14b53" Name="Diagram1">
-        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.Component" Width="1.5" PointX="4.125" PointY="6.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.Equipment" Width="1.5" PointX="4.5" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.EquipmentCategory" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.EquipmentComponent" Width="1.5" PointX="7.25" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.EquipmentConfiguration" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.EquipmentType" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.sysdiagram" Width="1.5" PointX="10.625" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.EquipmentView" Width="1.5" PointX="10.625" PointY="1.625" IsExpanded="true" />
-        <AssociationConnector Association="wiki_nolek_dk_dbModel.FK__Equipment__Compo__04AFB25B" ManuallyRouted="false" />
-        <AssociationConnector Association="wiki_nolek_dk_dbModel.FK__Equipment__Equip__05A3D694" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.Equipment" Width="1.5" PointX="8.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.EquipmentCategory" Width="1.5" PointX="6" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.EquipmentConfiguration" Width="1.5" PointX="6" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.EquipmentType" Width="1.5" PointX="6" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.sysdiagram" Width="1.5" PointX="12.125" PointY="3.375" IsExpanded="true" />
         <AssociationConnector Association="wiki_nolek_dk_dbModel.FK_Equipment_EquipmentCategory" ManuallyRouted="false" />
         <AssociationConnector Association="wiki_nolek_dk_dbModel.FK_Equipment_EquipmentConfiguration" ManuallyRouted="false" />
         <AssociationConnector Association="wiki_nolek_dk_dbModel.FK_Equipment_EquipmentType" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.Error" Width="1.5" PointX="8.25" PointY="1.375" />
-        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.ContactPerson" Width="1.5" PointX="0.75" PointY="4.75" />
-        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.Country" Width="1.5" PointX="0.75" PointY="16.375" />
-        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.Customer" Width="1.5" PointX="2.875" PointY="5.625" />
-        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.CustomerDepartment" Width="1.5" PointX="5.25" PointY="4.625" />
-        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.Login" Width="1.5" PointX="3" PointY="17.375" />
-        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.Nolek" Width="1.5" PointX="3" PointY="2.75" />
-        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.Technician" Width="1.5" PointX="6.25" PointY="0.625" />
+        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.Error" Width="1.5" PointX="0.75" PointY="11.75" />
+        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.ContactPerson" Width="1.5" PointX="0.75" PointY="5.375" />
+        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.Country" Width="1.5" PointX="0.75" PointY="2.625" />
+        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.Customer" Width="1.5" PointX="3" PointY="8.5" />
+        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.CustomerDepartment" Width="1.5" PointX="5.25" PointY="8.375" />
+        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.Login" Width="1.5" PointX="3" PointY="2.5" />
+        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.Nolek" Width="1.5" PointX="3" PointY="5.375" />
+        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.Technician" Width="1.5" PointX="5.25" PointY="4.375" />
         <AssociationConnector Association="wiki_nolek_dk_dbModel.FK_Customer_ContactPerson" />
         <AssociationConnector Association="wiki_nolek_dk_dbModel.FK_Nolek_ContactPerson" />
         <AssociationConnector Association="wiki_nolek_dk_dbModel.FK_CustomerDepartment_Country" />
@@ -34,6 +29,10 @@
         <AssociationConnector Association="wiki_nolek_dk_dbModel.FK_Technician_Login" />
         <AssociationConnector Association="wiki_nolek_dk_dbModel.FK_Technician_Nolek" />
         <AssociationConnector Association="wiki_nolek_dk_dbModel.CustomerEquipment" />
+        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.Component" Width="1.5" PointX="7.375" PointY="4" />
+        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.EquipmentComponent" Width="1.5" PointX="10.5" PointY="6.75" />
+        <AssociationConnector Association="wiki_nolek_dk_dbModel.FK__Equipment__Compo__04AFB25B" />
+        <AssociationConnector Association="wiki_nolek_dk_dbModel.FK__Equipment__Equip__05A3D694" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

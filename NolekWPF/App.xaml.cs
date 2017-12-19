@@ -41,7 +41,7 @@ namespace NolekWPF
                 ErrorTimeStamp = DateTime.Now,
                 ErrorStackTrace = e.Exception.StackTrace
             };
-            
+
             errorRepository.Add(error);
             errorRepository.SaveAsync();
         }

@@ -69,18 +69,17 @@ namespace NolekWPF.ViewModels.Equipment
                     Model.Component component = new Model.Component() //create new model component from dto
                     {
                         ComponentId = item.ComponentId,
-                        ComponentName = item.ComponentName,
+                        ComponentType = item.ComponentType,
                         ComponentDescription = item.ComponentDescription,
                         ComponentOrderNumber = item.ComponentOrderNumber,
-                        ComponentQuantity = item.ComponentQuantity,
                         ComponentSerialNumber = item.ComponentSerialNumber,
                         ComponentSupplyNumber = item.ComponentSupplyNumber
                     };
 
-                    _equipmentRepository.UpdateComponents(component, SelectedEquipment.EquipmentId, item.ComponentToEquipmentQuantity);
+                    _equipmentRepository.UpdateComponents(component, SelectedEquipment.EquipmentId);
                 }
                 await _equipmentRepository.SaveAsync();
-               
+
             }
             catch (Exception e)
             {
@@ -113,7 +112,7 @@ namespace NolekWPF.ViewModels.Equipment
         private void OnComponentAdded()
         {
             //check of component is already added to the list and that selected component is not null before adding
-            if(SelectedComponent != null)
+            if (SelectedComponent != null)
             {
                 var match = ComponentsForEquipment.FirstOrDefault(c => c.ComponentId == SelectedComponent.ComponentId);
                 if (match != null)
@@ -124,11 +123,12 @@ namespace NolekWPF.ViewModels.Equipment
                 {
                     ComponentsForEquipment.Add(SelectedComponent);
                 }
-            } else
+            }
+            else
             {
                 MessageBox.Show("Please select a component before adding.", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-             
+
         }
 
         public async Task LoadAsync()
@@ -195,7 +195,7 @@ namespace NolekWPF.ViewModels.Equipment
                         ErrorTimeStamp = DateTime.Now,
                         ErrorStackTrace = e.StackTrace
                     };
-                     _errorDataService.AddError(error);
+                    _errorDataService.AddError(error);
                 }
             }
         }

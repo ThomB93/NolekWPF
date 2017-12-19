@@ -16,7 +16,7 @@ namespace NolekWPF.Model
     {
         public int ComponentID { get; set; }
         public int EquipmentID { get; set; }
-        public int EquipmentComponentQuantity { get; set; }
+        public string ComponentName { get; set; }
     
         public virtual Component Component { get; set; }
         public virtual Equipment Equipment { get; set; }

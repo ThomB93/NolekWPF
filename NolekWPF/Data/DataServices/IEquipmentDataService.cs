@@ -8,6 +8,6 @@ namespace NolekWPF.Data.DataServices
     {
         Task<Model.Equipment> GetByIdAsync(int equipmentId);
         Task<IEnumerable<EquipmentType>> GetTypesAsync();
-        Task<EquipmentView> GetViewByIdAsync(int equipmentId);
+        
     }
 }
