@@ -17,7 +17,7 @@ namespace NolekWPF.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Login()
         {
-            this.Technicians = new HashSet<Technician>();
+            this.Errors = new HashSet<Error>();
         }
     
         public int LoginId { get; set; }
@@ -26,6 +26,6 @@ namespace NolekWPF.Model
         public string Role { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Technician> Technicians { get; set; }
+        public virtual ICollection<Error> Errors { get; set; }
     }
 }

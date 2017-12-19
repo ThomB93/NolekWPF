@@ -41,6 +41,6 @@ namespace NolekWPF.DataAccess
         public virtual DbSet<CustomerDepartment> CustomerDepartments { get; set; }
         public virtual DbSet<Login> Logins { get; set; }
         public virtual DbSet<Nolek> Noleks { get; set; }
-        public virtual DbSet<Technician> Technicians { get; set; }
+        
     }
 }

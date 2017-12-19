@@ -8,6 +8,6 @@ namespace NolekWPF.Data.DataServices
     interface ICustomerDataService
     {
         Task<Customer> GetByIdAsync(int customerId);
-        Task<IEnumerable<CustomerDto>> GetCustomerLookupAsync();
+        Task<IEnumerable<CustomerDto>> GetCustomers();
     }
 }

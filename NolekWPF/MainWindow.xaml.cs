@@ -73,5 +73,10 @@ namespace NolekWPF
         {
             mainframe.Navigate(new AddRemoveComponentPage(_viewModel.AddRemoveComponentViewModel));
         }
+
+        private void mnu_createCust_Click(object sender, RoutedEventArgs e)
+        {
+            mainframe.Navigate(new CreateCustomerPage(_viewModel.CustomerCreateViewModel));
+        }
     }
 }

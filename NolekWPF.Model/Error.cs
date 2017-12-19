@@ -18,5 +18,8 @@ namespace NolekWPF.Model
         public string ErrorMessage { get; set; }
         public Nullable<System.DateTime> ErrorTimeStamp { get; set; }
         public string ErrorStackTrace { get; set; }
+        public Nullable<int> LoginId { get; set; }
+    
+        public virtual Login Login { get; set; }
     }
 }

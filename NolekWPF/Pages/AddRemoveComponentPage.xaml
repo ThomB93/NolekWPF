@@ -38,7 +38,7 @@
                 </Grid.ColumnDefinitions>
 
                 <ComboBox ItemsSource="{Binding Components}"
-                  DisplayMemberPath="ComponentName"
+                  DisplayMemberPath="ComponentType"
                   SelectedItem="{Binding SelectedComponent}"
                   Grid.Column="0"></ComboBox>
                 

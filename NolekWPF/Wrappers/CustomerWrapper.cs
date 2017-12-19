@@ -8,24 +8,25 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using NolekWPF.Model.Dto;
 
 namespace NolekWPF.Wrappers
 {
    public class CustomerWrapper : ViewModelBase, INotifyDataErrorInfo
     {
-        public CustomerWrapper(Model.Customer model)
+        public CustomerWrapper(CustomerDto model)
         {
             Model = model;
         }
 
-        public Model.Customer Model { get; }
+        public CustomerDto Model { get; }
 
         public int CustomerId
         {
-            get { return Model.CustomerId; }
+            get { return CustomerId; }
             set
             {
-                Model.CustomerId = value; OnPropertyChanged();
+                CustomerId = value; OnPropertyChanged();
             }
         }
         public string CustomerName
@@ -37,16 +38,25 @@ namespace NolekWPF.Wrappers
                 ValidateProperty(nameof(CustomerName));
             }
         }
-        public int ContactPersonId
+        public List<CustomerDepartment> Departments
         {
-            get { return Model.ContactPersonId; }
+            get { return Model.Departments; }
             set
             {
-                Model.ContactPersonId = value; OnPropertyChanged();
-                ValidateProperty(nameof(ContactPersonId));
+                Model.Departments = value; OnPropertyChanged();
+                ValidateProperty(nameof(Departments));
             }
         }
-        
+        public List<Model.Equipment> Equipments
+        {
+            get { return Model.Equipments; }
+            set
+            {
+                Model.Equipments = value; OnPropertyChanged();
+                ValidateProperty(nameof(Equipments));
+            }
+        }
+
 
         //--------------------------------------------------------------VALIDATION LOGIC-----------------------------------------------------------------------------
         private void ValidateProperty(string propertyName)
@@ -54,8 +64,6 @@ namespace NolekWPF.Wrappers
             ClearErrors(propertyName);
             switch (propertyName)
             {
-                
-                 
                 case nameof(CustomerName):
                     if (CustomerName.Length > 50)
                     {

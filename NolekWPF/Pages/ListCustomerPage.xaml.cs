@@ -12,19 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using NolekWPF.ViewModels.Customers;
 
 namespace NolekWPF.Pages
 {
     /// <summary>
-    /// Interaction logic for CreateCustomerPage.xaml
+    /// Interaction logic for ListCustomerPage.xaml
     /// </summary>
-    public partial class CreateCustomerPage : Page
+    public partial class ListCustomerPage : Page
     {
-        public CreateCustomerPage(ICustomerCreateViewModel viewmodel)
+        public ListCustomerPage()
         {
             InitializeComponent();
-            DataContext = viewmodel;
         }
     }
 }

@@ -77,21 +77,21 @@ namespace NolekWPF.Data.Repositories
             //_context.Entry(model).CurrentValues.SetValues(model);
         }
 
-        public void UpdateComponents(Model.Component model, int equipmentId)
+        public void UpdateComponents(Model.Component model, int equipmentId, int counter)
         {
             //add new relations between component and equipment
             //Entity is not null if relation already exists
-            var Entity = _context.EquipmentComponents.Find(model.ComponentId, equipmentId);
+            //var Entity = _context.EquipmentComponents.Find(model.ComponentId, equipmentId);
 
             //create new relation
-            if (Entity == null)
-            {
+            
                 _context.EquipmentComponents.Add(new EquipmentComponent()
                 {
                     ComponentID = model.ComponentId,
-                    EquipmentID = equipmentId
+                    EquipmentID = equipmentId,
+                    ComponentName = model.ComponentType + counter.ToString()
                 });
-            }
+            
 
         }
 

@@ -14,7 +14,7 @@
            FontSize="20"></Label>
     <StackPanel Orientation="Horizontal"
                 Margin="0 0 0 12">
-      <Label Width="125">Name*:</Label>
+      <Label Width="125">Type*:</Label>
       <TextBox x:Name='txtName'
                Width='150'
                Padding="2"

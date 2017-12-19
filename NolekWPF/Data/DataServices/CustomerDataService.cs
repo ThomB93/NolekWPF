@@ -27,7 +27,7 @@ namespace NolekWPF.Data.DataServices
             }
         }
 
-        public async Task<IEnumerable<CustomerDto>> GetCustomerLookupAsync()
+        public async Task<IEnumerable<CustomerDto>> GetCustomers()
         {
             using (var ctx = _contextCreator())
             {
@@ -35,7 +35,8 @@ namespace NolekWPF.Data.DataServices
                 {
                     CustomerID = f.CustomerId,
                     CustomerName = f.CustomerName,
-                    CustomerContactPersonID = f.ContactPersonId
+                    Equipments = f.Equipments.ToList(),
+                    Departments = f.CustomerDepartments.ToList()
                 }).ToListAsync();
             }
         }

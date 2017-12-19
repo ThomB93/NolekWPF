@@ -12,9 +12,11 @@ using System.Windows;
 using NolekWPF.Events;
 using NolekWPF.Data.Repositories;
 using NolekWPF.Data.DataServices;
+using NolekWPF.Model.Dto;
+
 namespace NolekWPF.ViewModels.Customers
 {
-    class CustomerCreateViewModel : ViewModelBase
+    class CustomerCreateViewModel : ViewModelBase, ICustomerCreateViewModel
     {
         private CustomerWrapper _customer;
 
@@ -54,7 +56,7 @@ namespace NolekWPF.ViewModels.Customers
             {
                 await _customerRepository.SaveAsync();
                 Customer = CreateNewCustomer();
-                MessageBox.Show("Component was successfully created.");
+                MessageBox.Show("Customer was successfully created.");
                 _eventAggregator.GetEvent<AfterComponentCreated>().Publish();
             }
             catch (Exception e)
@@ -88,7 +90,7 @@ namespace NolekWPF.ViewModels.Customers
 
         private CustomerWrapper CreateNewCustomer() //calls the add method in the repository to insert new equipment and return it
         {
-            var customer = new CustomerWrapper(new Model.Customer());
+            var customer = new CustomerWrapper(new CustomerDto());
 
             //when property in equipment changes, and it has errors, disable the create button
             customer.PropertyChanged += (s, e) =>
@@ -102,9 +104,11 @@ namespace NolekWPF.ViewModels.Customers
 
             //default values
             customer.CustomerName = "";
+            customer.Equipments = new List<Model.Equipment>();
+            customer.Departments = new List<CustomerDepartment>();
            
 
-            _customerRepository.Add(customer.Model); //context is aware of the equipment to add
+            //_customerRepository.Add(customer.Model); //context is aware of the equipment to add
             return customer;
         }
     }

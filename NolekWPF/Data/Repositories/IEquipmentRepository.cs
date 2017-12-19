@@ -16,6 +16,6 @@ namespace NolekWPF.Data.Repositories
         void Remove(Model.Equipment model);
         Task SaveAsync();
         void Update(Model.Equipment model);
-        void UpdateComponents(Model.Component model, int equipmentId);
+        void UpdateComponents(Model.Component model, int equipmentId, int counter);
     }
 }

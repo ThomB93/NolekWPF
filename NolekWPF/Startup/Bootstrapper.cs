@@ -11,6 +11,7 @@ using NolekWPF.Data.DataServices;
 using NolekWPF.Data.Repositories;
 using NolekWPF.Equipment.ViewModels;
 using NolekWPF.ViewModels.Component;
+using NolekWPF.ViewModels.Customers;
 using NolekWPF.ViewModels.Equipment;
 
 namespace NolekWPF.Startup
@@ -34,11 +35,13 @@ namespace NolekWPF.Startup
             builder.RegisterType<ComponentDataService>().As<IComponentDataService>();
             builder.RegisterType<UserDataService>().As<IUserDataService>();
             builder.RegisterType<UserLookupDataService>().As<IUserLookupDataService>();
+            builder.RegisterType<CustomerDataService>().As<ICustomerDataService>();
 
             //repositories
             builder.RegisterType<EquipmentRepository>().As<IEquipmentRepository>();
             builder.RegisterType<ComponentRepository>().As<IComponentRepository>();
             builder.RegisterType<ErrorRepository>().As<IErrorRepository>();
+            builder.RegisterType<CustomerReporsitory>().As<ICustomerReporsitory>();
 
             //view models
             //Equipment
@@ -51,6 +54,9 @@ namespace NolekWPF.Startup
             builder.RegisterType<ComponentListViewModel>().As<IComponentListViewModel>();
             builder.RegisterType<ComponentCreateViewModel>().As<IComponentCreateViewModel>();
             builder.RegisterType<ComponentDetailViewModel>().As<IComponentDetailViewModel>();
+
+            //Customer
+            builder.RegisterType<CustomerCreateViewModel>().As<ICustomerCreateViewModel>();
 
             builder.RegisterType<MainViewModel>().AsSelf();
 

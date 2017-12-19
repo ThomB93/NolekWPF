@@ -23,9 +23,7 @@ namespace NolekWPF.Model
     
         public int CustomerId { get; set; }
         public string CustomerName { get; set; }
-        public int ContactPersonId { get; set; }
     
-        public virtual ContactPerson ContactPerson { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CustomerDepartment> CustomerDepartments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

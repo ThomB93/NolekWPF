@@ -61,6 +61,7 @@
     <Compile Include="Dto\CustomerDto.cs" />
     <Compile Include="Dto\EquipmentCategoryDto.cs" />
     <Compile Include="Dto\EquipmentConfigurationDto.cs" />
+    <Compile Include="Dto\EquipmentDto.cs" />
     <Compile Include="Equipment.cs">
       <DependentUpon>dbNolek.tt</DependentUpon>
     </Compile>
@@ -94,9 +95,6 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="sysdiagram.cs">
-      <DependentUpon>dbNolek.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Technician.cs">
       <DependentUpon>dbNolek.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />

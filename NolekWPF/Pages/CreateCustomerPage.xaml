@@ -8,60 +8,21 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="CreateCustomerPage">
 
-    <!--<StackPanel Grid.Column="1">
-        <Label Content="Create New Customer" FontSize="20"></Label>
-        <StackPanel Orientation="Horizontal" Margin="0 0 0 12">
-            <Label Width="125">Name*:</Label>
-            <TextBox x:Name='txtName'
-               Width='150' Padding="2"
+  <StackPanel Grid.Column="1">
+    <Label Content="Create New Customer"
+           FontSize="20"></Label>
+    <StackPanel Orientation="Horizontal"
+                Margin="0 0 0 12">
+      <Label Width="125">Name*:</Label>
+      <TextBox x:Name='txtName'
+               Width='150'
+               Padding="2"
                Text="{Binding Customer.CustomerName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-        </StackPanel>
-        <StackPanel Orientation="
-               Horizontal" Margin="0 0 0 12">
-            <Label Width="125">Description:</Label>
-            <TextBox x:Name='txtDescription' TextWrapping="Wrap"
-               Height="50" Width='150' Padding="2"
-               Text="{Binding Customer.ComponentDescription, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-        </StackPanel>
-        <StackPanel Orientation="
-               Horizontal" Margin="0 0 0 12">
-            <Label Width="125">Order No:</Label>
-            <TextBox x:Name='txtOrderNo'
-               Width='150' Padding="2"
-               Text="{Binding Component.ComponentOrderNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-        </StackPanel>
-        <StackPanel Orientation="
-               Horizontal" Margin="0 0 0 12">
-            <Label Width="125">Serial No*:</Label>
-            <TextBox x:Name='txtSerialNo'
-               Width='150' Padding="2"
-               Text="{Binding Component.ComponentSerialNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-        </StackPanel>
-        <StackPanel Orientation="
-               Horizontal" Margin="0 0 0 12">
-            <Label Width="125">Quantity*:</Label>
-            <TextBox x:Name='txtquantity'
-               Width='150' Padding="2"
-               Text="{Binding Component.ComponentQuantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-        </StackPanel>
-        <StackPanel Orientation="
-               Horizontal" Margin="0 0 0 12">
-            <Label Width="125">Supply No*:</Label>
-            <TextBox x:Name='txtSupplyNo'
-               Width='150' Padding="2"
-               Text="{Binding Component.ComponentSupplyNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-        </StackPanel>
-        <StackPanel Orientation="
-               Horizontal">
-            <Button Width='100' Height="30"
-              Content='Create'
-              Command='{Binding CreateComponentCommand}'
-              Click='Button_Click_1' />
-            <Button Width='100'
-              Height="30"
-              Content='Clear' Margin="100 0 0 0"
-              Click='Button_Click' />
-        </StackPanel>
+    </StackPanel>
+    <DataGrid AutoGenerateColumns="True" ItemsSource="{Binding Customer.Departments, Mode=TwoWay}"></DataGrid>
+    
+    <DataGrid AutoGenerateColumns="True" ItemsSource="{Binding Customer.Equipments, Mode=TwoWay}"></DataGrid>
+    
 
-    </StackPanel>-->
+  </StackPanel>
 </Page>

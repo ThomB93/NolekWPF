@@ -63,6 +63,7 @@ namespace NolekWPF.ViewModels.Equipment
         {
             try
             {
+                int counter = 0;
                 //loop through each component on the equipment, new and old
                 foreach (var item in ComponentsForEquipment)
                 {
@@ -76,7 +77,8 @@ namespace NolekWPF.ViewModels.Equipment
                         ComponentSupplyNumber = item.ComponentSupplyNumber
                     };
 
-                    _equipmentRepository.UpdateComponents(component, SelectedEquipment.EquipmentId);
+                    _equipmentRepository.UpdateComponents(component, SelectedEquipment.EquipmentId, counter);
+                    counter++;
                 }
                 await _equipmentRepository.SaveAsync();
 
@@ -114,15 +116,9 @@ namespace NolekWPF.ViewModels.Equipment
             //check of component is already added to the list and that selected component is not null before adding
             if (SelectedComponent != null)
             {
-                var match = ComponentsForEquipment.FirstOrDefault(c => c.ComponentId == SelectedComponent.ComponentId);
-                if (match != null)
-                {
-                    MessageBox.Show("Component is already added.", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                else
-                {
-                    ComponentsForEquipment.Add(SelectedComponent);
-                }
+                
+                ComponentsForEquipment.Add(SelectedComponent);
+                
             }
             else
             {

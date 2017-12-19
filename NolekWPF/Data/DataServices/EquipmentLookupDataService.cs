@@ -27,7 +27,12 @@ namespace NolekWPF.Data.DataServices
                     EquipmentId = f.EquipmentId,
                     SerialNumber = f.EquipmentSerialnumber,
                     TypeName = f.EquipmentType.EquipmentTypeName,
-                    ImagePath = f.EquipmentImagePath
+                    DateCreated = f.EquipmentDateCreated,
+                    MainEquipmentNumber = f.EquipmentMainEquipmentNumber,
+                    Status = f.EquipmentStatus,
+                    Category = f.EquipmentCategory.CategoryName,
+                    Configuration = f.EquipmentConfiguration.EquipmentConfigurationDescription,
+                    ContactPersonId = f.ContactPersonId
 
                 }).ToListAsync();
             }

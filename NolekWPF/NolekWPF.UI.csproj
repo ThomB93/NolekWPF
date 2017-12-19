@@ -125,6 +125,9 @@
     <Compile Include="Pages\ListComponentPage.xaml.cs">
       <DependentUpon>ListComponentPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ListCustomerPage.xaml.cs">
+      <DependentUpon>ListCustomerPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ListEquipmentPage.xaml.cs">
       <DependentUpon>ListEquipmentPage.xaml</DependentUpon>
     </Compile>
@@ -159,6 +162,7 @@
     <Compile Include="ViewModels\Customers\CustomerCreateViewModel.cs" />
     <Compile Include="ViewModels\Customers\CustomerDetailViewModel.cs" />
     <Compile Include="ViewModels\Customers\CustomerListViewModel.cs" />
+    <Compile Include="ViewModels\Customers\ICustomerCreateViewModel.cs" />
     <Compile Include="ViewModels\Equipment\AddRemoveComponentViewModel.cs" />
     <Compile Include="ViewModels\Equipment\EquipmentCreateViewModel.cs" />
     <Compile Include="ViewModels\Equipment\EquipmentDetailViewModel.cs" />
@@ -209,6 +213,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\ListComponentPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ListCustomerPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

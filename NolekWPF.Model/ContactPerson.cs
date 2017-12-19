@@ -17,8 +17,8 @@ namespace NolekWPF.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ContactPerson()
         {
-            this.Customers = new HashSet<Customer>();
             this.Noleks = new HashSet<Nolek>();
+            this.Equipments = new HashSet<Equipment>();
         }
     
         public int ContactPersonId { get; set; }
@@ -28,8 +28,8 @@ namespace NolekWPF.Model
         public string ContactPersonTlf { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Customer> Customers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Nolek> Noleks { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Equipment> Equipments { get; set; }
     }
 }

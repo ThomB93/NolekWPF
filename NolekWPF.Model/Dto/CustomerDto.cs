@@ -10,8 +10,8 @@ namespace NolekWPF.Model.Dto
     {
         public int CustomerID { get; set; }
         public string CustomerName { get; set; }
-        public int CustomerContactPersonID { get; set; }
-       
+        public List<CustomerDepartment> Departments { get; set; }
+        public List<Equipment> Equipments { get; set; }
 
     }
 }
