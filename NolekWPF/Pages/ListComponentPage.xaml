@@ -11,7 +11,8 @@
   <StackPanel>
     <Label Content="Component List"
            FontSize="20"></Label>
-    <DataGrid Width="auto"
+        <TextBox Name="SearchBar" Margin="10 10 10 10" Text="{Binding FilterString, UpdateSourceTrigger=PropertyChanged}"/>
+        <DataGrid Width="auto"
               ItemsSource="{Binding Components}"
               SelectedItem="{Binding SelectedComponent, Mode=TwoWay}"
               IsReadOnly="True"

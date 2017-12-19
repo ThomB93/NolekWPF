@@ -10,6 +10,8 @@ using Prism.Events;
 using NolekWPF.Events;
 using System.Windows;
 using NolekWPF.Model.Dto;
+using System.ComponentModel;
+using System.Windows.Data;
 
 namespace NolekWPF.ViewModels.Component
 {
@@ -33,6 +35,43 @@ namespace NolekWPF.ViewModels.Component
             ComponentDetailViewModel = componentDetailViewModel;
         }
 
+        public ICollectionView ComponentView { get; private set; }
+
+        private string _filterString;
+        public string FilterString
+        {
+            get { return _filterString; }
+            set
+            {
+                _filterString = value;
+                FilterCollection();
+            }
+        }
+
+        private void FilterCollection()
+        {
+            if (ComponentView != null)
+            {
+                ComponentView.Refresh();
+            }
+        }
+
+        public bool Filter(object obj)
+        {
+            var data = obj as ComponentDto;
+
+            if (ComponentView != null)
+            {
+                if (!string.IsNullOrEmpty(_filterString))
+                {
+                    string allcaps = _filterString.ToUpper();
+                    return data.ComponentType.Contains(_filterString) || data.ComponentType.Contains(allcaps);
+                }
+                return true;
+            }
+            return false;
+        }
+
         private async void RefreshList()
         {
             await LoadAsync();
@@ -48,6 +87,8 @@ namespace NolekWPF.ViewModels.Component
                 {
                     Components.Add(item);
                 }
+                ComponentView = CollectionViewSource.GetDefaultView(Components);
+                ComponentView.Filter = new Predicate<object>(Filter);
             }
             catch (Exception e)
             {

@@ -14,6 +14,8 @@ using NolekWPF.Data.DataServices;
 using NolekWPF.Helpers;
 using System.Drawing;
 using System.Windows.Media.Imaging;
+using System.ComponentModel;
+using System.Windows.Data;
 
 namespace NolekWPF.Equipment.ViewModels
 {
@@ -21,6 +23,7 @@ namespace NolekWPF.Equipment.ViewModels
     {
         private IEquipmentLookupDataService _equipmentLookupDataService;
         public ObservableCollection<EquipmentLookup> Equipments { get; }
+        
         private IEventAggregator _eventAggregator;
         private IErrorDataService _errorDataService;
         public IEquipmentDetailViewModel EquipmentDetailViewModel { get; }
@@ -37,10 +40,46 @@ namespace NolekWPF.Equipment.ViewModels
             _eventAggregator.GetEvent<AfterEquipmentCreated>().Subscribe(RefreshList);
             _eventAggregator.GetEvent<AfterUserLogin>().Subscribe(OnLogin);
             EquipmentDetailViewModel = equipmentDetailViewModel;
-            LoadDetailData();
-
-            //var convert = cv.Convert(Equipments[0].ImagePath);
+            LoadDetailData();            
         }
+
+        public ICollectionView EquipmentView { get; private set; }
+
+        private string _filterString;
+        public string FilterString
+        {
+            get { return _filterString; }
+            set
+            {
+                _filterString = value;
+                FilterCollection();
+            }
+        }
+
+        private void FilterCollection()
+        {
+            if (EquipmentView != null)
+            {
+                EquipmentView.Refresh();
+            }
+        }
+
+        public bool Filter(object obj)
+        {
+            var data = obj as EquipmentLookup;
+            
+            if (EquipmentView != null)
+            {
+                if (!string.IsNullOrEmpty(_filterString))
+                {
+                    string allcaps = _filterString.ToUpper();
+                    return data.TypeName.Contains(_filterString) || data.TypeName.Contains(allcaps);
+                }
+                return true;
+            }
+            return false;
+        }
+
 
         private async void LoadDetailData()
         {
@@ -75,6 +114,8 @@ namespace NolekWPF.Equipment.ViewModels
                     //var convert = cv.Convert(Equipments[i].ImagePath);
                     i++;
                 }
+                EquipmentView = CollectionViewSource.GetDefaultView(Equipments);
+                EquipmentView.Filter = new Predicate<object>(Filter);
             }
             catch (Exception e)
             {
@@ -105,7 +146,5 @@ namespace NolekWPF.Equipment.ViewModels
                 }
             }
         }
-
-
     }
 }
