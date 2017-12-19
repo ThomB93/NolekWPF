@@ -1,5 +1,4 @@
-﻿
-using NolekWPF.Wrappers;
+﻿using NolekWPF.Wrappers;
 using Prism.Commands;
 using Prism.Events;
 using System;
@@ -13,49 +12,48 @@ using System.Windows;
 using NolekWPF.Events;
 using NolekWPF.Data.Repositories;
 using NolekWPF.Data.DataServices;
-
-namespace NolekWPF.ViewModels.Component
+namespace NolekWPF.ViewModels.Customers
 {
-    public class ComponentCreateViewModel : ViewModelBase, IComponentCreateViewModel
+    class CustomerCreateViewModel : ViewModelBase
     {
-        private ComponentWrapper _component;
+        private CustomerWrapper _customer;
 
-        private IComponentRepository _componentRepository;
+        private ICustomerReporsitory _customerRepository;
         private IErrorDataService _errorDataService;
         private IEventAggregator _eventAggregator;
         private bool _hasChanges;
 
-        public ComponentCreateViewModel(IComponentRepository componentRepository, IErrorDataService errorDataService, IEventAggregator eventAggregator)
+        public CustomerCreateViewModel(ICustomerReporsitory customerRepository, IErrorDataService errorDataService, IEventAggregator eventAggregator)
         {
-            CreateComponentCommand = new DelegateCommand(OnCreateComponentExecute, OnComponentCreateCanExecute);
-            _componentRepository = componentRepository;
+            CreateCustomerCommand = new DelegateCommand(OnCreateCustomerExecute, OnCustomerCreateCanExecute);
+            _customerRepository = customerRepository;
             _errorDataService = errorDataService;
-            Component = CreateNewComponent();  
+            Customer = CreateNewCustomer();
             _eventAggregator = eventAggregator;
         }
-       
-        public ComponentWrapper Component
+
+        public CustomerWrapper Customer
         {
-            get { return _component; }
+            get { return _customer; }
             private set
             {
-                _component = value;
+                _customer = value;
                 OnPropertyChanged();
             }
         }
 
-        private bool OnComponentCreateCanExecute()
+        private bool OnCustomerCreateCanExecute()
         {
             //validate fields to disable/enable buton
-            return Component != null && !Component.HasErrors;
+            return Customer != null && !Customer.HasErrors;
         }
 
-        private async void OnCreateComponentExecute()
+        private async void OnCreateCustomerExecute()
         {
             try
             {
-                await _componentRepository.SaveAsync();
-                Component = CreateNewComponent();
+                await _customerRepository.SaveAsync();
+                Customer = CreateNewCustomer();
                 MessageBox.Show("Component was successfully created.");
                 _eventAggregator.GetEvent<AfterComponentCreated>().Publish();
             }
@@ -73,7 +71,7 @@ namespace NolekWPF.ViewModels.Component
             }
         }
 
-        public ICommand CreateComponentCommand { get; }
+        public ICommand CreateCustomerCommand { get; }
 
         public bool HasChanges //is true if changes has been made to equipment
         {
@@ -88,28 +86,26 @@ namespace NolekWPF.ViewModels.Component
             }
         }
 
-        private ComponentWrapper CreateNewComponent() //calls the add method in the repository to insert new equipment and return it
+        private CustomerWrapper CreateNewCustomer() //calls the add method in the repository to insert new equipment and return it
         {
-            var component = new ComponentWrapper(new Model.Component());
+            var customer = new CustomerWrapper(new Model.Customer());
 
             //when property in equipment changes, and it has errors, disable the create button
-            component.PropertyChanged += (s, e) =>
+            customer.PropertyChanged += (s, e) =>
             {
-                if (e.PropertyName == nameof(Component.HasErrors))
+                if (e.PropertyName == nameof(Customer.HasErrors))
                 {
-                    ((DelegateCommand)CreateComponentCommand).RaiseCanExecuteChanged();
+                    ((DelegateCommand)CreateCustomerCommand).RaiseCanExecuteChanged();
                 }
             };
-            ((DelegateCommand)CreateComponentCommand).RaiseCanExecuteChanged();
+            ((DelegateCommand)CreateCustomerCommand).RaiseCanExecuteChanged();
 
             //default values
-            component.ComponentName = "";
-            component.ComponentSupplyNumber = "";
-            component.ComponentSerialNumber = "";
-            component.ComponentQuantity = 0;
+            customer.CustomerName = "";
+           
 
-            _componentRepository.Add(component.Model); //context is aware of the equipment to add
-            return component;
+            _customerRepository.Add(customer.Model); //context is aware of the equipment to add
+            return customer;
         }
     }
 }
