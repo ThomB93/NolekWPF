@@ -87,11 +87,11 @@
     <Compile Include="Data\DataServices\UserDataService.cs" />
     <Compile Include="Data\DataServices\UserLookupDataService.cs" />
     <Compile Include="Data\Repositories\ComponentRepository.cs" />
-    <Compile Include="Data\Repositories\CustomerReporsitory.cs" />
+    <Compile Include="Data\Repositories\CustomerRepository.cs" />
     <Compile Include="Data\Repositories\EquipmentRepository.cs" />
     <Compile Include="Data\Repositories\ErrorRepository.cs" />
     <Compile Include="Data\Repositories\IComponentRepository.cs" />
-    <Compile Include="Data\Repositories\ICustomerReporsitory.cs" />
+    <Compile Include="Data\Repositories\ICustomerRepository.cs" />
     <Compile Include="Data\Repositories\IEquipmentRepository.cs" />
     <Compile Include="Data\Repositories\IErrorRepository.cs" />
     <Compile Include="Events\AfterComponentCreated.cs" />
@@ -163,6 +163,7 @@
     <Compile Include="ViewModels\Customers\CustomerDetailViewModel.cs" />
     <Compile Include="ViewModels\Customers\CustomerListViewModel.cs" />
     <Compile Include="ViewModels\Customers\ICustomerCreateViewModel.cs" />
+    <Compile Include="ViewModels\Customers\ICustomerListViewModel.cs" />
     <Compile Include="ViewModels\Equipment\AddRemoveComponentViewModel.cs" />
     <Compile Include="ViewModels\Equipment\EquipmentCreateViewModel.cs" />
     <Compile Include="ViewModels\Equipment\EquipmentDetailViewModel.cs" />

@@ -57,7 +57,13 @@
     <Compile Include="CustomerDepartment.cs">
       <DependentUpon>dbNolek.tt</DependentUpon>
     </Compile>
+    <Compile Include="dbNolek.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbNolek.tt</DependentUpon>
+    </Compile>
     <Compile Include="Dto\ComponentDto.cs" />
+    <Compile Include="Dto\CustomerDepartmentDto.cs" />
     <Compile Include="Dto\CustomerDto.cs" />
     <Compile Include="Dto\EquipmentCategoryDto.cs" />
     <Compile Include="Dto\EquipmentConfigurationDto.cs" />
@@ -84,11 +90,6 @@
     </Compile>
     <Compile Include="Login.cs">
       <DependentUpon>dbNolek.tt</DependentUpon>
-    </Compile>
-    <Compile Include="dbNolek.cs">
-      <DependentUpon>dbNolek.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Nolek.cs">
       <DependentUpon>dbNolek.tt</DependentUpon>

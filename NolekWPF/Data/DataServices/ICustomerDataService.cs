@@ -5,7 +5,7 @@ using NolekWPF.Model.Dto;
 
 namespace NolekWPF.Data.DataServices
 {
-    interface ICustomerDataService
+    public interface ICustomerDataService
     {
         Task<Customer> GetByIdAsync(int customerId);
         Task<IEnumerable<CustomerDto>> GetCustomers();

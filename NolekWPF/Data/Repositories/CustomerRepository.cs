@@ -6,13 +6,15 @@ using System.Text;
 using System.Threading.Tasks;
 using NolekWPF.Model;
 using System.Data.Entity;
+using NolekWPF.Model.Dto;
+
 namespace NolekWPF.Data.Repositories
 {
-    class CustomerReporsitory : ICustomerReporsitory
+    public class CustomerRepository : ICustomerRepository
     {
         private wiki_nolek_dk_dbEntities _context;
 
-        public CustomerReporsitory(wiki_nolek_dk_dbEntities context)
+        public CustomerRepository(wiki_nolek_dk_dbEntities context)
         {
             _context = context; //context is kept alive throughout the application lifetime
         }
@@ -25,6 +27,16 @@ namespace NolekWPF.Data.Repositories
         public async Task<Customer> GetByIdAsync(int customId)
         {
             return await _context.Customers.SingleAsync(f => f.CustomerId == customId); //return equipement with the id
+        }
+        public async Task<IEnumerable<CustomerDto>> GetCustomers()
+        {
+                return await _context.Customers.Select(f => new CustomerDto
+                {
+                    CustomerID = f.CustomerId,
+                    CustomerName = f.CustomerName,
+                    EquipmentsList = f.Equipments.ToList(),
+                    DepartmentsList = f.CustomerDepartments.ToList()
+                }).ToListAsync();
         }
 
 

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace NolekWPF.Data.DataServices
 {
-    class CustomerDataService : ICustomerDataService
+    public class CustomerDataService : ICustomerDataService
     {
         private Func<wiki_nolek_dk_dbEntities> _contextCreator;
 
@@ -27,6 +27,7 @@ namespace NolekWPF.Data.DataServices
             }
         }
 
+        //return all customers with associated departments and equipment, save to customerDto class instances
         public async Task<IEnumerable<CustomerDto>> GetCustomers()
         {
             using (var ctx = _contextCreator())
@@ -35,34 +36,12 @@ namespace NolekWPF.Data.DataServices
                 {
                     CustomerID = f.CustomerId,
                     CustomerName = f.CustomerName,
-                    Equipments = f.Equipments.ToList(),
-                    Departments = f.CustomerDepartments.ToList()
+                    EquipmentsList = f.Equipments.ToList(),
+                    DepartmentsList = f.CustomerDepartments.ToList()
                 }).ToListAsync();
             }
         }
 
-        //public async Task<IEnumerable<ComponentDto>> GetComponentsByEquipmentIdAsync(int equipmentId)
-        //{
-        //    using (var ctx = _contextCreator())
-        //    {
-        //        var result = from equipment in ctx.Equipments
-        //                .Where(equipment => equipment.EquipmentId == equipmentId)
-        //                     join equipmentmodel in ctx.EquipmentComponents
-        //                         on equipment.EquipmentId equals equipmentmodel.EquipmentID
-        //                     join model in ctx.Components
-        //                         on equipmentmodel.ComponentID equals model.ComponentId
-        //                     select new ComponentDto()
-        //                     {
-        //                         ComponentId = model.ComponentId,
-        //                         ComponentName = model.ComponentName,
-        //                         ComponentDescription = model.ComponentDescription,
-        //                         ComponentOrderNumber = model.ComponentOrderNumber,
-        //                         ComponentQuantity = model.ComponentQuantity,
-        //                         ComponentSerialNumber = model.ComponentSerialNumber,
-        //                         ComponentSupplyNumber = model.ComponentSupplyNumber
-        //                     };
-        //        return await result.ToListAsync(); // or whatever non-deferred you want
-        //    }
-        //}
+        
     }
 }

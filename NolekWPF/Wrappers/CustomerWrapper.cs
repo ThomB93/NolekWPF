@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using NolekWPF.Model.Dto;
+using System.Collections.ObjectModel;
 
 namespace NolekWPF.Wrappers
 {
@@ -38,21 +39,21 @@ namespace NolekWPF.Wrappers
                 ValidateProperty(nameof(CustomerName));
             }
         }
-        public List<CustomerDepartment> Departments
+        public ObservableCollection<CustomerDepartmentDto> Departments
         {
-            get { return Model.Departments; }
+            get { return Model.DepartmentsCollection; }
             set
             {
-                Model.Departments = value; OnPropertyChanged();
+                Model.DepartmentsCollection = value; OnPropertyChanged();
                 ValidateProperty(nameof(Departments));
             }
         }
-        public List<Model.Equipment> Equipments
+        public ObservableCollection<EquipmentDto> Equipments
         {
-            get { return Model.Equipments; }
+            get { return Equipments; }
             set
             {
-                Model.Equipments = value; OnPropertyChanged();
+                Model.EquipmentCollection = value; OnPropertyChanged();
                 ValidateProperty(nameof(Equipments));
             }
         }

@@ -19,9 +19,21 @@
                Padding="2"
                Text="{Binding Customer.CustomerName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
     </StackPanel>
-    <DataGrid AutoGenerateColumns="True" ItemsSource="{Binding Customer.Departments, Mode=TwoWay}"></DataGrid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <Label Content="Departments:"></Label>
+                <DataGrid Margin="0 0 10 0" AutoGenerateColumns="True" ItemsSource="{Binding Customer.Departments, Mode=TwoWay}"></DataGrid>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Vertical">
+                <Label Content="Equipment:"></Label>
+                <DataGrid Margin="10 0 0 0" Grid.Column="1" AutoGenerateColumns="True" ItemsSource="{Binding Customer.Equipments, Mode=TwoWay}"></DataGrid>
+            </StackPanel>
+        </Grid>
     
-    <DataGrid AutoGenerateColumns="True" ItemsSource="{Binding Customer.Equipments, Mode=TwoWay}"></DataGrid>
     
 
   </StackPanel>

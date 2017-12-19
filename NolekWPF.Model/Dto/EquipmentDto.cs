@@ -9,11 +9,11 @@ namespace NolekWPF.Model.Dto
     public class EquipmentDto
     {
         public int EquipmentId { get; set; }
-        public System.DateTime EquipmentDateCreated { get; set; }
-        public string EquipmentImagePath { get; set; }
-        public string EquipmentSerialnumber { get; set; }
-        public string EquipmentMainEquipmentNumber { get; set; }
-        public bool EquipmentStatus { get; set; }
+        public System.DateTime DateCreated { get; set; }
+        public string ImagePath { get; set; }
+        public string Serialnumber { get; set; }
+        public string MainEquipmentNumber { get; set; }
+        public bool Status { get; set; }
         public Nullable<int> ContactPersonId { get; set; }
         public string TypeName { get; set; }
         public string Category { get; set; }

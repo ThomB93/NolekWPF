@@ -13,6 +13,7 @@ using NolekWPF.Events;
 using NolekWPF.Data.Repositories;
 using NolekWPF.Data.DataServices;
 using NolekWPF.Model.Dto;
+using System.Collections.ObjectModel;
 
 namespace NolekWPF.ViewModels.Customers
 {
@@ -20,12 +21,12 @@ namespace NolekWPF.ViewModels.Customers
     {
         private CustomerWrapper _customer;
 
-        private ICustomerReporsitory _customerRepository;
+        private ICustomerRepository _customerRepository;
         private IErrorDataService _errorDataService;
         private IEventAggregator _eventAggregator;
         private bool _hasChanges;
 
-        public CustomerCreateViewModel(ICustomerReporsitory customerRepository, IErrorDataService errorDataService, IEventAggregator eventAggregator)
+        public CustomerCreateViewModel(ICustomerRepository customerRepository, IErrorDataService errorDataService, IEventAggregator eventAggregator)
         {
             CreateCustomerCommand = new DelegateCommand(OnCreateCustomerExecute, OnCustomerCreateCanExecute);
             _customerRepository = customerRepository;
@@ -104,8 +105,8 @@ namespace NolekWPF.ViewModels.Customers
 
             //default values
             customer.CustomerName = "";
-            customer.Equipments = new List<Model.Equipment>();
-            customer.Departments = new List<CustomerDepartment>();
+            customer.Equipments = new ObservableCollection<EquipmentDto>();
+            customer.Departments = new ObservableCollection<CustomerDepartmentDto>();
            
 
             //_customerRepository.Add(customer.Model); //context is aware of the equipment to add

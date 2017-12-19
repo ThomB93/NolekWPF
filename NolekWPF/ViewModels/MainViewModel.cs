@@ -17,6 +17,7 @@ namespace NolekWPF.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
+        //login properties
         private bool _isAuthenticated;
         private string _visibility;
         private string _menuvisibility;
@@ -24,6 +25,7 @@ namespace NolekWPF.ViewModels
         private string _Framevisibility;
         private Login _currentuser;
 
+        //viewmodels to inject into pages
         public IEquipmentListViewModel EquipmentListViewModel { get; }
         public IEquipmentCreateViewModel EquipmentCreateViewModel { get; }
         public IEquipmentDetailViewModel EquipmentDetailViewModel { get; }
@@ -32,6 +34,7 @@ namespace NolekWPF.ViewModels
         public IComponentCreateViewModel ComponentCreateViewModel { get; }
         public IAddRemoveComponentViewModel AddRemoveComponentViewModel { get; }
         public ICustomerCreateViewModel CustomerCreateViewModel { get; }
+        public ICustomerListViewModel CustomerListViewModel { get; }
 
         private IUserLookupDataService _userLookupDataService;
         private IUserDataService _userDataService;
@@ -42,7 +45,7 @@ namespace NolekWPF.ViewModels
             IEquipmentDetailViewModel equipmentDetailViewModel, IComponentDetailViewModel componentDetailViewModel,
             IComponentCreateViewModel componentCreateViewModel, IComponentListViewModel componentListViewModel,
             IUserLookupDataService userLookupDataService, IEventAggregator eventAggregator, IUserDataService userDataService,
-            IAddRemoveComponentViewModel addRemoveComponentViewModel, ICustomerCreateViewModel customerCreateViewModel)
+            IAddRemoveComponentViewModel addRemoveComponentViewModel, ICustomerCreateViewModel customerCreateViewModel, ICustomerListViewModel customerListViewModel)
         {
             EquipmentListViewModel = equipmentListViewModel;
             EquipmentCreateViewModel = equipmentCreateViewModel;
@@ -52,6 +55,7 @@ namespace NolekWPF.ViewModels
             ComponentCreateViewModel = componentCreateViewModel;
             AddRemoveComponentViewModel = addRemoveComponentViewModel;
             CustomerCreateViewModel = customerCreateViewModel;
+            CustomerListViewModel = customerListViewModel;
 
             _eventAggregator = eventAggregator;
 
@@ -71,6 +75,7 @@ namespace NolekWPF.ViewModels
             //load list data
             await EquipmentListViewModel.LoadAsync();
             await ComponentListViewModel.LoadAsync();
+            await CustomerListViewModel.LoadAsync();
 
             await EquipmentCreateViewModel.LoadTypesAsync();
             await EquipmentCreateViewModel.LoadConfigurationsAsync();

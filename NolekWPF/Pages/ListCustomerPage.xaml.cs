@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NolekWPF.ViewModels.Customers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,10 @@ namespace NolekWPF.Pages
     /// </summary>
     public partial class ListCustomerPage : Page
     {
-        public ListCustomerPage()
+        public ListCustomerPage(ICustomerListViewModel viewmodel)
         {
             InitializeComponent();
+            DataContext = viewmodel;
         }
     }
 }

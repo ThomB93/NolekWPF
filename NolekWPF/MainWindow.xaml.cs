@@ -78,5 +78,10 @@ namespace NolekWPF
         {
             mainframe.Navigate(new CreateCustomerPage(_viewModel.CustomerCreateViewModel));
         }
+
+        private void mnu_listCust_Click(object sender, RoutedEventArgs e)
+        {
+            mainframe.Navigate(new ListCustomerPage(_viewModel.CustomerListViewModel));
+        }
     }
 }

@@ -41,9 +41,10 @@ namespace NolekWPF.Startup
             builder.RegisterType<EquipmentRepository>().As<IEquipmentRepository>();
             builder.RegisterType<ComponentRepository>().As<IComponentRepository>();
             builder.RegisterType<ErrorRepository>().As<IErrorRepository>();
-            builder.RegisterType<CustomerReporsitory>().As<ICustomerReporsitory>();
+            builder.RegisterType<CustomerRepository>().As<ICustomerRepository>();
 
             //view models
+
             //Equipment
             builder.RegisterType<EquipmentListViewModel>().As<IEquipmentListViewModel>();
             builder.RegisterType<EquipmentCreateViewModel>().As<IEquipmentCreateViewModel>();
@@ -57,6 +58,7 @@ namespace NolekWPF.Startup
 
             //Customer
             builder.RegisterType<CustomerCreateViewModel>().As<ICustomerCreateViewModel>();
+            builder.RegisterType<CustomerListViewModel>().As<ICustomerListViewModel>();
 
             builder.RegisterType<MainViewModel>().AsSelf();
 

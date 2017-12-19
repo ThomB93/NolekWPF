@@ -8,7 +8,47 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="ListCustomerPage">
 
-    <Grid>
+    <StackPanel>
         
-    </Grid>
+        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <Label Content="Customers"></Label>
+                <DataGrid ItemsSource="{Binding Customers}" IsReadOnly="True"
+              CanUserReorderColumns="False" ColumnWidth="*"
+              SelectionMode="Single" AutoGenerateColumns="False" SelectedItem="{Binding SelectedCustomer, Mode=TwoWay}">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="Id">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding CustomerID}"></TextBlock>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Name">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding CustomerName}"></TextBlock>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Vertical">
+                <Label Content="Departments"></Label>
+                <DataGrid ItemsSource="{Binding Departments}" ColumnWidth="*"></DataGrid>
+            </StackPanel>
+            <StackPanel Grid.Column="2" Orientation="Vertical">
+                <Label Content="Equipment"></Label>
+                <DataGrid ItemsSource="{Binding Equipments}" ColumnWidth="*"></DataGrid>
+            </StackPanel>
+        </Grid>
+    </StackPanel>
 </Page>
