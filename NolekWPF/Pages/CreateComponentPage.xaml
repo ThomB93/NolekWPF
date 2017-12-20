@@ -18,7 +18,7 @@
       <TextBox x:Name='txtName'
                Width='150'
                Padding="2"
-               Text="{Binding Component.ComponentName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+               Text="{Binding Component.ComponentType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
     </StackPanel>
     <StackPanel Orientation="
                Horizontal"

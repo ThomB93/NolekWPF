@@ -22,6 +22,7 @@ namespace NolekWPF.ViewModels.Component
         private IEventAggregator _eventAggregator;
         private IErrorDataService _errorDataService;
         public IComponentDetailViewModel ComponentDetailViewModel { get; }
+        public Login CurrentUser { get; set; }
 
         public ComponentListViewModel(IComponentDataService componentDataService,
             IEventAggregator eventAggregator, IErrorDataService errorDataService, IComponentDetailViewModel componentDetailViewModel)
@@ -33,6 +34,12 @@ namespace NolekWPF.ViewModels.Component
             _errorDataService = errorDataService;
             _eventAggregator.GetEvent<AfterComponentCreated>().Subscribe(RefreshList);
             ComponentDetailViewModel = componentDetailViewModel;
+            _eventAggregator.GetEvent<AfterUserLogin>().Subscribe(OnLogin);
+        }
+
+        private void OnLogin(Login user)
+        {
+            CurrentUser = user;
         }
 
         public ICollectionView ComponentView { get; private set; }
@@ -98,7 +105,8 @@ namespace NolekWPF.ViewModels.Component
                 {
                     ErrorMessage = e.Message,
                     ErrorTimeStamp = DateTime.Now,
-                    ErrorStackTrace = e.StackTrace
+                    ErrorStackTrace = e.StackTrace,
+                    LoginId = CurrentUser.LoginId
                 };
                 await _errorDataService.AddError(error);
             }

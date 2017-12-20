@@ -25,6 +25,7 @@ namespace NolekWPF.ViewModels.Customers
         private IErrorDataService _errorDataService;
         private IEventAggregator _eventAggregator;
         private bool _hasChanges;
+        public Login CurrentUser { get; set; }
 
         public CustomerCreateViewModel(ICustomerRepository customerRepository, IErrorDataService errorDataService, IEventAggregator eventAggregator)
         {
@@ -33,6 +34,12 @@ namespace NolekWPF.ViewModels.Customers
             _errorDataService = errorDataService;
             Customer = CreateNewCustomer();
             _eventAggregator = eventAggregator;
+            _eventAggregator.GetEvent<AfterUserLogin>().Subscribe(OnLogin);
+        }
+
+        private void OnLogin(Login user)
+        {
+            CurrentUser = user;
         }
 
         public CustomerWrapper Customer
@@ -68,7 +75,8 @@ namespace NolekWPF.ViewModels.Customers
                 {
                     ErrorMessage = e.Message,
                     ErrorTimeStamp = DateTime.Now,
-                    ErrorStackTrace = e.StackTrace
+                    ErrorStackTrace = e.StackTrace,
+                    LoginId = CurrentUser.LoginId
                 };
                 await _errorDataService.AddError(error);
             }

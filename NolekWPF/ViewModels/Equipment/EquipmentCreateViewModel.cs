@@ -129,7 +129,8 @@ namespace NolekWPF.Equipment.ViewModels
                 {
                     ErrorMessage = e.Message,
                     ErrorTimeStamp = DateTime.Now,
-                    ErrorStackTrace = e.StackTrace
+                    ErrorStackTrace = e.StackTrace,
+                    LoginId = CurrentUser.LoginId
                 };
                 await _errorDataService.AddError(error);
             }

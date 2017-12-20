@@ -13,6 +13,7 @@ using NolekWPF.Events;
 using NolekWPF.Model;
 using NolekWPF.Model.Dto;
 using Prism.Commands;
+using Prism.Events;
 
 namespace NolekWPF.ViewModels.Equipment
 {
@@ -27,8 +28,11 @@ namespace NolekWPF.ViewModels.Equipment
         public ObservableCollection<ComponentDto> Components { get; }
         public ObservableCollection<ComponentDto> ComponentsForEquipment { get; set; }
 
+        private IEventAggregator _eventAggregator;
+        public Login CurrentUser { get; set; }
+
         public AddRemoveComponentViewModel(IEquipmentLookupDataService equipmentLookupDataService, IErrorDataService errorDataService,
-            IComponentDataService componentDataService, IEquipmentRepository equipmentRepository)
+            IComponentDataService componentDataService, IEquipmentRepository equipmentRepository, IEventAggregator eventAggregator)
         {
             _equipmentLookupDataService = equipmentLookupDataService;
             _componentDataService = componentDataService;
@@ -41,6 +45,14 @@ namespace NolekWPF.ViewModels.Equipment
             AddComponent = new DelegateCommand(OnComponentAdded, OnComponentCanAdded);
             RemoveComponent = new DelegateCommand(OnComponentRemoved, OnComponentCanRemoved);
             SaveChanges = new DelegateCommand(OnChangesSaved, OnChangesCanSaved);
+
+            _eventAggregator = eventAggregator;
+            _eventAggregator.GetEvent<AfterUserLogin>().Subscribe(OnLogin);
+        }
+
+        private void OnLogin(Login user)
+        {
+            CurrentUser = user;
         }
 
         //DISABLE BUTTONS BEFORE CHOOSNG EQUIPMENT
@@ -91,7 +103,8 @@ namespace NolekWPF.ViewModels.Equipment
                 {
                     ErrorMessage = e.Message,
                     ErrorTimeStamp = DateTime.Now,
-                    ErrorStackTrace = e.StackTrace
+                    ErrorStackTrace = e.StackTrace,
+                    LoginId = CurrentUser.LoginId
                 };
                 await _errorDataService.AddError(error);
             }

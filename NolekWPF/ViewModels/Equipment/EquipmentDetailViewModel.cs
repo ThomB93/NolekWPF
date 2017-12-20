@@ -21,6 +21,7 @@ namespace NolekWPF.Equipment.ViewModels
     {
         private IEquipmentRepository _equipmentRepository;
         private IEventAggregator _eventAggregator;
+        public Login CurrentUser { get; set; }
 
         public EquipmentDetailViewModel(IEventAggregator eventAggregator, IErrorDataService errorDataService, IEquipmentRepository equipmentRepository)
         {
@@ -29,9 +30,15 @@ namespace NolekWPF.Equipment.ViewModels
             _eventAggregator.GetEvent<OpenEquipmentDetailViewEvent>()
                 .Subscribe(OnOpenEquipmentDetailView);
             _errorDataService = errorDataService;
+            _eventAggregator.GetEvent<AfterUserLogin>().Subscribe(OnLogin);
 
             UpdateCommand = new DelegateCommand(OnUpdateExecute);
             Equipment = UpdateEquipment();
+        }
+
+        private void OnLogin(Login user)
+        {
+            CurrentUser = user;
         }
 
         private async void OnUpdateExecute()
@@ -47,7 +54,8 @@ namespace NolekWPF.Equipment.ViewModels
                 {
                     ErrorMessage = e.Message,
                     ErrorTimeStamp = DateTime.Now,
-                    ErrorStackTrace = e.StackTrace
+                    ErrorStackTrace = e.StackTrace,
+                    LoginId = CurrentUser.LoginId
                 };
                 await _errorDataService.AddError(error);
             }
@@ -72,7 +80,8 @@ namespace NolekWPF.Equipment.ViewModels
                 {
                     ErrorMessage = e.Message,
                     ErrorTimeStamp = DateTime.Now,
-                    ErrorStackTrace = e.StackTrace
+                    ErrorStackTrace = e.StackTrace,
+                    LoginId = CurrentUser.LoginId
                 };
                 await _errorDataService.AddError(error);
             }
