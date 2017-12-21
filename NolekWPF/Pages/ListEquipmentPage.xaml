@@ -19,7 +19,7 @@
         <ScrollViewer  VerticalScrollBarVisibility="Auto"
                    Height="Auto">
       <DataGrid MaxHeight="800"
-                ItemsSource="{Binding EquipmentView}"
+                ItemsSource="{Binding Equipments}"
                 SelectedItem="{Binding SelectedEquipment, Mode=TwoWay}"
                 IsReadOnly="True"
                 CanUserReorderColumns="False"

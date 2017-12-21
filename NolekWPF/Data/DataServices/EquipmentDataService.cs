@@ -25,6 +25,7 @@ namespace NolekWPF.Data.DataServices
             }
         }
         
+        
         public async Task<IEnumerable<EquipmentType>> GetTypesAsync()
         {
             using (var ctx = _contextCreator())

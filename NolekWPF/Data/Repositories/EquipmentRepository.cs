@@ -8,6 +8,7 @@ using NolekWPF.DataAccess;
 using NolekWPF.Model;
 using NolekWPF.Model.Dto;
 using NolekWPF.Wrappers;
+using System.Collections.ObjectModel;
 
 namespace NolekWPF.Data.Repositories
 {
@@ -57,6 +58,12 @@ namespace NolekWPF.Data.Repositories
             }).ToListAsync();
         }
 
+        public List<EquipmentComponent> GetEquipmentComponents(int equipmentId)
+        {
+            return _context.EquipmentComponents.Where(c => c.EquipmentID == equipmentId).ToList();
+            
+        }
+
         public bool HasChanges()
         {
             return _context.ChangeTracker.HasChanges(); //return true if current equipement has changes
@@ -65,6 +72,11 @@ namespace NolekWPF.Data.Repositories
         public void Remove(Model.Equipment model)
         {
             _context.Equipments.Remove(model); //delete equipment from the db
+        }
+
+        public void RemoveEquipmentComponent(EquipmentComponent model)
+        {
+            _context.EquipmentComponents.Remove(model); 
         }
 
         public void Update(Model.Equipment model)
@@ -77,7 +89,7 @@ namespace NolekWPF.Data.Repositories
             //_context.Entry(model).CurrentValues.SetValues(model);
         }
 
-        public void UpdateComponents(Model.Component model, int equipmentId, int counter)
+        public void UpdateComponents(ComponentDto model, int equipmentId)
         {
             //add new relations between component and equipment
             //Entity is not null if relation already exists
@@ -85,11 +97,12 @@ namespace NolekWPF.Data.Repositories
 
             //create new relation
             
+            
                 _context.EquipmentComponents.Add(new EquipmentComponent()
                 {
                     ComponentID = model.ComponentId,
                     EquipmentID = equipmentId,
-                    ComponentName = model.ComponentType + counter.ToString()
+                    ComponentName = model.ComponentName
                 });
             
 

@@ -10,7 +10,6 @@ namespace NolekWPF.Model.Dto
     {
         public int EquipmentId { get; set; }
         public System.DateTime DateCreated { get; set; }
-        public string ImagePath { get; set; }
         public string Serialnumber { get; set; }
         public string MainEquipmentNumber { get; set; }
         public bool Status { get; set; }

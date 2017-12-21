@@ -43,11 +43,11 @@
             </StackPanel>
             <StackPanel Grid.Column="1" Orientation="Vertical">
                 <Label Content="Departments"></Label>
-                <DataGrid ItemsSource="{Binding Departments}" ColumnWidth="*"></DataGrid>
+                <DataGrid ItemsSource="{Binding Departments}" ColumnWidth="*" IsReadOnly="True" CanUserAddRows="False"></DataGrid>
             </StackPanel>
             <StackPanel Grid.Column="2" Orientation="Vertical">
                 <Label Content="Equipment"></Label>
-                <DataGrid ItemsSource="{Binding Equipments}" ColumnWidth="*"></DataGrid>
+                <DataGrid ItemsSource="{Binding Equipments}" ColumnWidth="*" CanUserAddRows="False" IsReadOnly="True"></DataGrid>
             </StackPanel>
         </Grid>
     </StackPanel>

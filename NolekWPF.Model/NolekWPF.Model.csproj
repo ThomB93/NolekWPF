@@ -66,6 +66,7 @@
     <Compile Include="Dto\CustomerDepartmentDto.cs" />
     <Compile Include="Dto\CustomerDto.cs" />
     <Compile Include="Dto\EquipmentCategoryDto.cs" />
+    <Compile Include="Dto\EquipmentComponentDto.cs" />
     <Compile Include="Dto\EquipmentConfigurationDto.cs" />
     <Compile Include="Dto\EquipmentDto.cs" />
     <Compile Include="Equipment.cs">

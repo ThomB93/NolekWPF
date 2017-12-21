@@ -42,7 +42,9 @@ namespace NolekWPF.Data.DataServices
                 }).ToListAsync();
             }
         }
+        
 
+        //Get all components for a specific equipment
         public async Task<IEnumerable<ComponentDto>> GetComponentsByEquipmentIdAsync(int equipmentId)
         {
             using (var ctx = _contextCreator())

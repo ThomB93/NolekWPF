@@ -19,9 +19,19 @@ namespace NolekWPF.Data.Repositories
             _context = context; //context is kept alive throughout the application lifetime
         }
 
-        public void Add(Customer customer)
+        public void AddCustomer(Customer customer)
         {
-            _context.Customers.Add(customer); //call insert to add new equipement to table
+             _context.Customers.Add(customer); //call insert to add new equipement to table
+        }
+
+        public void AddCustomerDepartment(CustomerDepartment customerDepartment)
+        {
+             _context.CustomerDepartments.Add(customerDepartment);
+        }
+
+        public void AddCustomerEquipment(Model.Equipment equipment, int customerId)
+        {
+             _context.Customers.Where(c => c.CustomerId == customerId).FirstOrDefault().Equipments.Add(equipment);
         }
 
         public async Task<Customer> GetByIdAsync(int customId)

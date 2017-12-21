@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NolekWPF.Model;
-
 using System.Collections.ObjectModel;
 using Prism.Events;
 using NolekWPF.Events;

@@ -5,34 +5,41 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:NolekWPF.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300"
+      d:DesignHeight="300" d:DesignWidth="500"
       Title="CreateCustomerPage">
 
-  <StackPanel Grid.Column="1">
+  <StackPanel>
     <Label Content="Create New Customer"
            FontSize="20"></Label>
-    <StackPanel Orientation="Horizontal"
-                Margin="0 0 0 12">
-      <Label Width="125">Name*:</Label>
-      <TextBox x:Name='txtName'
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Width="125">Name*:</Label>
+            <TextBox Grid.Column="1" x:Name='txtName'
                Width='150'
                Padding="2"
                Text="{Binding Customer.CustomerName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-    </StackPanel>
+            <Button Command="{Binding CreateCustomerCommand}" Padding="5" Width="100" Margin="5 0 0 0" Grid.Column="2" Content="Create"></Button>
+        </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" Orientation="Vertical">
-                <Label Content="Departments:"></Label>
-                <DataGrid Margin="0 0 10 0" AutoGenerateColumns="True" ItemsSource="{Binding Customer.Departments, Mode=TwoWay}"></DataGrid>
+                <Label Content="Add Departments:"></Label>
+                <DataGrid Margin="0 0 10 0" AutoGenerateColumns="True" ItemsSource="{Binding Departments, Mode=TwoWay}"></DataGrid>
             </StackPanel>
             <StackPanel Grid.Column="1" Orientation="Vertical">
-                <Label Content="Equipment:"></Label>
-                <DataGrid Margin="10 0 0 0" Grid.Column="1" AutoGenerateColumns="True" ItemsSource="{Binding Customer.Equipments, Mode=TwoWay}"></DataGrid>
+                <Label Content="Choose Equipment:"></Label>
+                <DataGrid x:Name="dt_equipment" Margin="10 0 0 0" Grid.Column="1" AutoGenerateColumns="True" ItemsSource="{Binding Equipments, Mode=TwoWay}" SelectionChanged="dt_equipment_SelectionChanged" CanUserAddRows="False"></DataGrid>
             </StackPanel>
         </Grid>
+        
+        
     
     
 

@@ -57,7 +57,7 @@
 
             <DataGrid MinHeight="180" AutoGenerateColumns="True"
                  CanUserAddRows="False" CanUserReorderColumns="False" SelectionMode="Single"
-                 ItemsSource="{Binding ComponentsForEquipment}"
+                 ItemsSource="{Binding EquipmentComponents}"
                       ColumnWidth="*"
                  SelectedIndex="{Binding SelectedListComponentIndex}" MaxHeight="600" Margin="0 10 0 0">
             </DataGrid>

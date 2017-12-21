@@ -7,7 +7,9 @@ namespace NolekWPF.Data.Repositories
 {
     public interface ICustomerRepository
     {
-        void Add(Customer customer);
+        void AddCustomer(Customer customer);
+        void AddCustomerDepartment(CustomerDepartment customerDepartment);
+        void AddCustomerEquipment(Model.Equipment equipment, int customerId);
         Task<Customer> GetByIdAsync(int customId);
         Task<IEnumerable<CustomerDto>> GetCustomers();
         bool HasChanges();

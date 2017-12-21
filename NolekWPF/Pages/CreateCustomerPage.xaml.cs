@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using NolekWPF.ViewModels.Customers;
+using System.Collections.ObjectModel;
 
 namespace NolekWPF.Pages
 {
@@ -21,10 +22,22 @@ namespace NolekWPF.Pages
     /// </summary>
     public partial class CreateCustomerPage : Page
     {
+        private ICustomerCreateViewModel _viewmodel;
         public CreateCustomerPage(ICustomerCreateViewModel viewmodel)
         {
             InitializeComponent();
-            DataContext = viewmodel;
+            _viewmodel = viewmodel;
+            DataContext = _viewmodel;
+        }
+        private void dt_equipment_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // ... Get SelectedItems from DataGrid.
+            var grid = sender as DataGrid;
+            var selected = grid.SelectedItems;
+
+            List<Model.Equipment> selectedObjects = selected.OfType<Model.Equipment>().ToList();
+
+            _viewmodel.SelectedEquipments = selectedObjects;
         }
     }
 }

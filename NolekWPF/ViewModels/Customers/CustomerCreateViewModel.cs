@@ -17,24 +17,33 @@ using System.Collections.ObjectModel;
 
 namespace NolekWPF.ViewModels.Customers
 {
-    class CustomerCreateViewModel : ViewModelBase, ICustomerCreateViewModel
+    public class CustomerCreateViewModel : ViewModelBase, ICustomerCreateViewModel
     {
         private CustomerWrapper _customer;
 
         private ICustomerRepository _customerRepository;
         private IErrorDataService _errorDataService;
         private IEventAggregator _eventAggregator;
+        private IEquipmentLookupDataService _equipmentLookupDataService;
         private bool _hasChanges;
         public Login CurrentUser { get; set; }
+        public ObservableCollection<CustomerDepartment> Departments { get; set; }
+        public ObservableCollection<EquipmentLookup> Equipments { get; set; }
+        public List<Model.Equipment> SelectedEquipments { get; set; }
 
-        public CustomerCreateViewModel(ICustomerRepository customerRepository, IErrorDataService errorDataService, IEventAggregator eventAggregator)
+        public CustomerCreateViewModel(ICustomerRepository customerRepository, IErrorDataService errorDataService, IEventAggregator eventAggregator,
+            IEquipmentLookupDataService equipmentLookupDataService)
         {
             CreateCustomerCommand = new DelegateCommand(OnCreateCustomerExecute, OnCustomerCreateCanExecute);
             _customerRepository = customerRepository;
             _errorDataService = errorDataService;
-            Customer = CreateNewCustomer();
+            _equipmentLookupDataService = equipmentLookupDataService;
+            //Customer = CreateNewCustomer();
             _eventAggregator = eventAggregator;
             _eventAggregator.GetEvent<AfterUserLogin>().Subscribe(OnLogin);
+            Departments = new ObservableCollection<CustomerDepartment>();
+            SelectedEquipments = new List<Model.Equipment>();
+            Equipments = new ObservableCollection<EquipmentLookup>();
         }
 
         private void OnLogin(Login user)
@@ -62,8 +71,20 @@ namespace NolekWPF.ViewModels.Customers
         {
             try
             {
+                _customerRepository.AddCustomer(new Model.Customer() { CustomerName = Customer.CustomerName });
+                await _customerRepository.SaveAsync(); //save customer with id
+                
+                foreach (var item in Departments)
+                {
+                    _customerRepository.AddCustomerDepartment(item);
+                }
+
+                /*foreach (var item in SelectedEquipments)
+                {
+                    _customerRepository.AddCustomerEquipment(item, Customer.)
+                }*/
                 await _customerRepository.SaveAsync();
-                Customer = CreateNewCustomer();
+                //Customer = CreateNewCustomer();
                 MessageBox.Show("Customer was successfully created.");
                 _eventAggregator.GetEvent<AfterComponentCreated>().Publish();
             }
@@ -97,7 +118,17 @@ namespace NolekWPF.ViewModels.Customers
             }
         }
 
-        private CustomerWrapper CreateNewCustomer() //calls the add method in the repository to insert new equipment and return it
+        public async Task LoadEquipment()
+        {
+            var lookup = await _equipmentLookupDataService.GetEquipmentLookupAsync();
+            Equipments.Clear();
+            foreach (var item in lookup)
+            {
+                Equipments.Add(item);
+            }
+        }
+
+        /*private CustomerWrapper CreateNewCustomer() //calls the add method in the repository to insert new equipment and return it
         {
             var customer = new CustomerWrapper(new CustomerDto());
 
@@ -119,6 +150,6 @@ namespace NolekWPF.ViewModels.Customers
 
             //_customerRepository.Add(customer.Model); //context is aware of the equipment to add
             return customer;
-        }
+        }*/
     }
 }

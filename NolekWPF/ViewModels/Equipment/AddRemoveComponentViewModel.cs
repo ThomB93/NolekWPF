@@ -27,6 +27,7 @@ namespace NolekWPF.ViewModels.Equipment
         public ObservableCollection<EquipmentLookup> Equipments { get; }
         public ObservableCollection<ComponentDto> Components { get; }
         public ObservableCollection<ComponentDto> ComponentsForEquipment { get; set; }
+        public ObservableCollection<EquipmentComponent> EquipmentComponents { get; set; }
 
         private IEventAggregator _eventAggregator;
         public Login CurrentUser { get; set; }
@@ -41,6 +42,7 @@ namespace NolekWPF.ViewModels.Equipment
             Equipments = new ObservableCollection<EquipmentLookup>();
             Components = new ObservableCollection<ComponentDto>();
             ComponentsForEquipment = new ObservableCollection<ComponentDto>();
+            EquipmentComponents = new ObservableCollection<EquipmentComponent>();
 
             AddComponent = new DelegateCommand(OnComponentAdded, OnComponentCanAdded);
             RemoveComponent = new DelegateCommand(OnComponentRemoved, OnComponentCanRemoved);
@@ -65,7 +67,7 @@ namespace NolekWPF.ViewModels.Equipment
         {
             return SelectedEquipment != null;
         }
-
+         
         private bool OnComponentCanAdded()
         {
             return SelectedEquipment != null;
@@ -73,9 +75,8 @@ namespace NolekWPF.ViewModels.Equipment
 
         private async void OnChangesSaved()
         {
-            try
+            /*try
             {
-                int counter = 0;
                 //loop through each component on the equipment, new and old
                 foreach (var item in ComponentsForEquipment)
                 {
@@ -89,8 +90,8 @@ namespace NolekWPF.ViewModels.Equipment
                         ComponentSupplyNumber = item.ComponentSupplyNumber
                     };
 
-                    _equipmentRepository.UpdateComponents(component, SelectedEquipment.EquipmentId, counter);
-                    counter++;
+                    _equipmentRepository.UpdateComponents(item, SelectedEquipment.EquipmentId);
+
                 }
                 await _equipmentRepository.SaveAsync();
 
@@ -107,15 +108,16 @@ namespace NolekWPF.ViewModels.Equipment
                     LoginId = CurrentUser.LoginId
                 };
                 await _errorDataService.AddError(error);
-            }
-
+            }*/
+            await _equipmentRepository.SaveAsync();
         }
 
         private void OnComponentRemoved()
         {
             if (SelectedListComponentIndex != null)
             {
-                ComponentsForEquipment.RemoveAt((int)_selectListComponentIndex);
+                _equipmentRepository.RemoveEquipmentComponent(EquipmentComponents[(int)SelectedListComponentIndex]);
+                EquipmentComponents.RemoveAt((int)_selectListComponentIndex);
                 SelectedListComponentIndex = null;
             }
             else
@@ -123,21 +125,30 @@ namespace NolekWPF.ViewModels.Equipment
                 MessageBox.Show("Please select a component in the list to remove.", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
+        //private string lastAddedComponentName;
 
         private void OnComponentAdded()
         {
+            
             //check of component is already added to the list and that selected component is not null before adding
             if (SelectedComponent != null)
             {
-                
+                var numberOfDuplicates = 0;
+                foreach (var item in ComponentsForEquipment)
+                {
+                    if (item.ComponentId == SelectedComponent.ComponentId)
+                    {
+                        numberOfDuplicates++;
+                    }
+                }
+                numberOfDuplicates++;
+                SelectedComponent.ComponentName = SelectedComponent.ComponentType + numberOfDuplicates.ToString();
                 ComponentsForEquipment.Add(SelectedComponent);
-                
             }
             else
             {
                 MessageBox.Show("Please select a component before adding.", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-
         }
 
         public async Task LoadAsync()
@@ -178,6 +189,7 @@ namespace NolekWPF.ViewModels.Equipment
         public ICommand AddComponent { get; }
         public ICommand RemoveComponent { get; }
         public ICommand SaveChanges { get; }
+
         //SELECTED EQUIPMENT AND COMPONENT
         private EquipmentLookup _selectedEquipment;
 
@@ -211,12 +223,18 @@ namespace NolekWPF.ViewModels.Equipment
 
         private async void LoadComponentForEquipment(int equipmentId)
         {
-            var components = await _componentDataService.GetComponentsByEquipmentIdAsync(equipmentId);
+            var equipmentComponents = _equipmentRepository.GetEquipmentComponents(SelectedEquipment.EquipmentId);
+            EquipmentComponents.Clear();
+            foreach (var item in equipmentComponents)
+            {
+                EquipmentComponents.Add(item);
+            }
+            /*var components = await _componentDataService.GetComponentsByEquipmentIdAsync(equipmentId);
             ComponentsForEquipment.Clear();
             foreach (var item in components)
             {
                 ComponentsForEquipment.Add(item);
-            }
+            }*/
         }
 
         private ComponentDto _selectComponent;

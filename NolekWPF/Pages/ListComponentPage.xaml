@@ -11,7 +11,11 @@
   <StackPanel>
     <Label Content="Component List"
            FontSize="20"></Label>
-        <TextBox Name="SearchBar" Margin="10 10 10 10" Text="{Binding FilterString, UpdateSourceTrigger=PropertyChanged}"/>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Search by Type:" Margin="0 0 10 5"></Label>
+            <TextBox Width="150" Name="SearchBar" Margin="10 0 0 5" Text="{Binding FilterString, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+        
         <DataGrid Width="auto"
               ItemsSource="{Binding Components}"
               SelectedItem="{Binding SelectedComponent, Mode=TwoWay}"
