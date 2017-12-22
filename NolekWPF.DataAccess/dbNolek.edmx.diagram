@@ -28,7 +28,7 @@
         <AssociationConnector Association="wiki_nolek_dk_dbModel.FK_Equipment_EquipmentType" />
         <AssociationConnector Association="wiki_nolek_dk_dbModel.CustomerEquipment" />
         <AssociationConnector Association="wiki_nolek_dk_dbModel.FK_Equipment_ContactPerson" />
-        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.EquipmentComponent" Width="1.5" PointX="8.25" PointY="5" />
+        <EntityTypeShape EntityType="wiki_nolek_dk_dbModel.EquipmentComponent" Width="3.75" PointX="8.25" PointY="5" />
         <AssociationConnector Association="wiki_nolek_dk_dbModel.FK__Equipment__Compo__04AFB25B" />
         <AssociationConnector Association="wiki_nolek_dk_dbModel.FK__Equipment__Equip__05A3D694" />
       </Diagram>

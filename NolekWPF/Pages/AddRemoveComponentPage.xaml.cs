@@ -33,5 +33,10 @@ namespace NolekWPF.Pages
         {
             await _viewmodel.LoadAsync();
         }
+
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }

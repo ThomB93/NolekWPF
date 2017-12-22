@@ -25,6 +25,7 @@ namespace NolekWPF.Data.Repositories
         {
             _context.Equipments.Add(equipment); //call insert to add new equipement to table
         }
+        
 
         public async Task<Model.Equipment> GetByIdAsync(int equipId)
         {
@@ -76,7 +77,12 @@ namespace NolekWPF.Data.Repositories
 
         public void RemoveEquipmentComponent(EquipmentComponent model)
         {
-            _context.EquipmentComponents.Remove(model); 
+            var ec = _context.EquipmentComponents.FirstOrDefault( c => c.ComponentName == model.ComponentName);
+            if (ec != null)
+            {
+                _context.EquipmentComponents.Remove(ec);
+            }
+            
         }
 
         public void Update(Model.Equipment model)
@@ -97,15 +103,12 @@ namespace NolekWPF.Data.Repositories
 
             //create new relation
             
-            
                 _context.EquipmentComponents.Add(new EquipmentComponent()
                 {
                     ComponentID = model.ComponentId,
                     EquipmentID = equipmentId,
                     ComponentName = model.ComponentName
                 });
-            
-
         }
 
         public async Task SaveAsync()
