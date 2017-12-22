@@ -33,7 +33,6 @@ namespace NolekWPF
             Loaded += MainWindow_Loaded; //event when the window first loads
             
         }
- 
 
         private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
@@ -84,6 +83,12 @@ namespace NolekWPF
         private void mnu_listCust_Click(object sender, RoutedEventArgs e)
         {
             mainframe.Navigate(new ListCustomerPage(_viewModel.CustomerListViewModel));
+        }
+
+        private void Click(object sender, RoutedEventArgs e)
+        {
+            _viewModel.HarvestPassword += (p, args) =>
+    args.Password = txtPassword.Password;
         }
     }
 }

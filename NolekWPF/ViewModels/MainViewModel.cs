@@ -12,6 +12,8 @@ using Prism.Events;
 using NolekWPF.Events;
 using NolekWPF.ViewModels.Customers;
 using NolekWPF.ViewModels.Equipment;
+using System.Windows.Controls;
+using System;
 
 namespace NolekWPF.ViewModels
 {
@@ -40,6 +42,8 @@ namespace NolekWPF.ViewModels
         private IUserDataService _userDataService;
         private IEventAggregator _eventAggregator;
 
+        public event EventHandler<HarvestPasswordEventArgs> HarvestPassword;
+
         public MainViewModel(IEquipmentListViewModel equipmentListViewModel,
             IEquipmentCreateViewModel equipmentCreateViewModel,
             IEquipmentDetailViewModel equipmentDetailViewModel, IComponentDetailViewModel componentDetailViewModel,
@@ -64,7 +68,7 @@ namespace NolekWPF.ViewModels
 
             MenuVisibility = "Collapsed";
             Username = "UserSecretary";
-            // can't set password no more sadface
+
 
             LoginCommand = new DelegateCommand(Login);
             LogoutCommand = new DelegateCommand(Logout);
@@ -85,6 +89,11 @@ namespace NolekWPF.ViewModels
             await EquipmentDetailViewModel.LoadTypesAsync();
             await EquipmentDetailViewModel.LoadConfigurationsAsync();
             await EquipmentDetailViewModel.LoadCategoriesAsync();
+        }
+
+        public class HarvestPasswordEventArgs : EventArgs
+        {
+            public string Password;
         }
 
         public bool isAuthenticated
@@ -178,11 +187,26 @@ namespace NolekWPF.ViewModels
             _currentuser = null;
         }
 
-        public async void Login()
+        public void Login()
+        {
+            if (HarvestPassword == null)
+                //bah 
+                return;
+
+            var pwargs = new HarvestPasswordEventArgs();
+            HarvestPassword(this, pwargs);
+
+            Login2(Username, pwargs.Password);
+
+        }
+
+        public async void Login2(string Username, string Password)
         {
             //TODO check username and password vs database here.
             //If using membershipprovider then just call Membership.ValidateUser(UserName, Password)
             var lookup = await _userLookupDataService.GetUserLookupAsync();
+
+            
 
             //List<User> Users = _userDataService.GetUser();
             foreach (var user in lookup)
