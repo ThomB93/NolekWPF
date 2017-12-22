@@ -75,48 +75,16 @@ namespace NolekWPF.ViewModels.Equipment
 
         private async void OnChangesSaved()
         {
-            /*try
-            {
-                //loop through each component on the equipment, new and old
-                foreach (var item in ComponentsForEquipment)
-                {
-                    Model.Component component = new Model.Component() //create new model component from dto
-                    {
-                        ComponentId = item.ComponentId,
-                        ComponentType = item.ComponentType,
-                        ComponentDescription = item.ComponentDescription,
-                        ComponentOrderNumber = item.ComponentOrderNumber,
-                        ComponentSerialNumber = item.ComponentSerialNumber,
-                        ComponentSupplyNumber = item.ComponentSupplyNumber
-                    };
-
-                    _equipmentRepository.UpdateComponents(item, SelectedEquipment.EquipmentId);
-
-                }
                 await _equipmentRepository.SaveAsync();
-
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message, "An error occurred", MessageBoxButton.OK, MessageBoxImage.Warning);
-                //create new error object from the exception and add to DB
-                Error error = new Error
-                {
-                    ErrorMessage = e.Message,
-                    ErrorTimeStamp = DateTime.Now,
-                    ErrorStackTrace = e.StackTrace,
-                    LoginId = CurrentUser.LoginId
-                };
-                await _errorDataService.AddError(error);
-            }*/
-            await _equipmentRepository.SaveAsync();
+                MessageBox.Show("Components have been updated for equipment.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                
         }
 
         private void OnComponentRemoved()
         {
             if (SelectedListComponentIndex != null)
             {
-                _equipmentRepository.RemoveEquipmentComponent(EquipmentComponents[(int)SelectedListComponentIndex]);
+                _equipmentRepository.RemoveEquipmentComponent(EquipmentComponents[(int)SelectedListComponentIndex]); //remove from context
                 EquipmentComponents.RemoveAt((int)_selectListComponentIndex);
                 SelectedListComponentIndex = null;
             }
@@ -129,8 +97,31 @@ namespace NolekWPF.ViewModels.Equipment
 
         private void OnComponentAdded()
         {
-            
-            //check of component is already added to the list and that selected component is not null before adding
+            if (SelectedComponent != null && SelectedComponent.ComponentName != null)
+            {
+                if (EquipmentComponents.Count(ec => ec.ComponentName == SelectedComponent.ComponentName) < 1)
+                {
+                    EquipmentComponents.Add(new EquipmentComponent()
+                    {
+                        ComponentID = SelectedComponent.ComponentId,
+                        ComponentName = SelectedComponent.ComponentName,
+                        EquipmentID = SelectedEquipment.EquipmentId
+                    });
+                    _equipmentRepository.UpdateComponents(SelectedComponent,
+                        SelectedEquipment.EquipmentId); //add to context
+                    //await _equipmentRepository.SaveAsync();
+                }
+                else
+                {
+                    MessageBox.Show("The component name already exists for this equipment.", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please select a component and specify a component name before adding.", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+
+            /*check of component is already added to the list and that selected component is not null before adding
             if (SelectedComponent != null)
             {
                 var numberOfDuplicates = 0;
@@ -147,8 +138,8 @@ namespace NolekWPF.ViewModels.Equipment
             }
             else
             {
-                MessageBox.Show("Please select a component before adding.", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
+                
+            }*/
         }
 
         public async Task LoadAsync()
