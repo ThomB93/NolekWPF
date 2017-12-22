@@ -104,6 +104,7 @@
     <Compile Include="Helpers\AccessLevelToVisibilityConverter.cs" />
     <Compile Include="Helpers\BoolToVisibleOrCollapsed.cs" />
     <Compile Include="Helpers\ConvertTextToImage.cs" />
+    <Compile Include="Helpers\PasswordHelper.cs" />
     <Compile Include="Pages\AddRemoveComponentPage.xaml.cs">
       <DependentUpon>AddRemoveComponentPage.xaml</DependentUpon>
     </Compile>

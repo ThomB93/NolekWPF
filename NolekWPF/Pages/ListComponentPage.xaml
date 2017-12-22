@@ -8,14 +8,24 @@
       d:DesignHeight="300"
       d:DesignWidth="300"
       Title="ListComponentPage">
-  <StackPanel>
-    <Label Content="Component List"
+    <StackPanel>
+        <Label Content="Component List"
            FontSize="20"></Label>
         <StackPanel Orientation="Horizontal">
-            <Label Content="Search by Type:" Margin="0 0 10 5"></Label>
-            <TextBox Width="150" Name="SearchBar" Margin="10 0 0 5" Text="{Binding FilterString, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Width="200" Name="SearchBar" Margin="10 0 0 5" Text="{Binding FilterString, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock IsHitTestVisible="False" Text="Search by ComponentType" HorizontalAlignment="Left" Margin="-197,0,0,5" Foreground="DarkGray">
+                <TextBlock.Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=SearchBar}" Value="">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
         </StackPanel>
-        
         <DataGrid Width="auto"
               ItemsSource="{Binding Components}"
               SelectedItem="{Binding SelectedComponent, Mode=TwoWay}"
@@ -23,13 +33,12 @@
               CanUserReorderColumns="False"
               SelectionMode="Single"
               ColumnWidth="*">
-      <DataGrid.ItemContainerStyle>
-        <Style TargetType="DataGridRow">
-          <EventSetter Event="MouseDoubleClick"
+            <DataGrid.ItemContainerStyle>
+                <Style TargetType="DataGridRow">
+                    <EventSetter Event="MouseDoubleClick"
                        Handler="Row_DoubleClick" />
-        </Style>
-      </DataGrid.ItemContainerStyle>
-    </DataGrid>
-  </StackPanel>
-
+                </Style>
+            </DataGrid.ItemContainerStyle>
+        </DataGrid>
+    </StackPanel>
 </Page>

@@ -64,7 +64,7 @@ namespace NolekWPF.ViewModels
 
             MenuVisibility = "Collapsed";
             Username = "UserSecretary";
-            Password = "123";
+            // can't set password no more sadface
 
             LoginCommand = new DelegateCommand(Login);
             LogoutCommand = new DelegateCommand(Logout);

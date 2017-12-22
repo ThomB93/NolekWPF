@@ -31,7 +31,9 @@ namespace NolekWPF
             _viewModel = viewModel; //assign injected view model to local property
             DataContext = viewModel; //set the data context for the view to the viewmodel
             Loaded += MainWindow_Loaded; //event when the window first loads
+            
         }
+ 
 
         private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
