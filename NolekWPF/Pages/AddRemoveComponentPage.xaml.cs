@@ -38,5 +38,7 @@ namespace NolekWPF.Pages
         {
             
         }
+
+        
     }
 }

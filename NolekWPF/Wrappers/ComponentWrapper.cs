@@ -85,11 +85,11 @@ namespace NolekWPF.Wrappers
                 case nameof(ComponentType):
                     if (ComponentType.Length > 50)
                     {
-                        AddError(propertyName, "Name cannot exceeed 50 characters.");
+                        AddError(propertyName, "Type Name cannot exceeed 50 characters.");
                     }
                     if (ComponentType.ToString().Length < 1)
                     {
-                        AddError(propertyName, "Name is required.");
+                        AddError(propertyName, "Type Name is required.");
                     }
                     break;
                 case nameof(ComponentOrderNumber):
@@ -112,6 +112,10 @@ namespace NolekWPF.Wrappers
                     if (ComponentSupplyNumber.Length > 50)
                     {
                         AddError(propertyName, "Supply No. cannot exceeed 50 characters.");
+                    }
+                    if (Regex.Matches(ComponentSupplyNumber, @"[a-zA-Z]").Count != 0)
+                    {
+                        AddError(propertyName, "Supply Number must consist of numbers only.");
                     }
                     if (ComponentSupplyNumber.ToString().Length < 1)
                     {

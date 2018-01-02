@@ -110,7 +110,10 @@ namespace NolekWPF.Wrappers
             switch (propertyName)
             {
                 case nameof(EquipmentDateCreated):
-
+                    if(EquipmentDateCreated.ToString().Length < 1)
+                    {
+                        AddError(propertyName, "Date Created is required.");
+                    }
                     break;
                 case nameof(EquipmentSerialnumber):
                     if (Regex.Matches(EquipmentSerialnumber, @"[a-zA-Z]").Count != 0)

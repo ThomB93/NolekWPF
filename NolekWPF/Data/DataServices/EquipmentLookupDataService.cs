@@ -32,8 +32,12 @@ namespace NolekWPF.Data.DataServices
                     Status = f.EquipmentStatus,
                     Category = f.EquipmentCategory.CategoryName,
                     Configuration = f.EquipmentConfiguration.EquipmentConfigurationDescription,
-                    ContactPersonId = f.ContactPersonId
-
+                    ContactPersonId = f.ContactPersonId,
+                    ImagePath = f.EquipmentImagePath,
+                    ContactPersonFirstName = f.ContactPerson.ContactPersonFirstName,
+                    ContactPersonLastName = f.ContactPerson.ContactPersonLastName,
+                    ContactPersonEmail = f.ContactPerson.ContactPersonEmail,
+                    ContactPersonTelephone = f.ContactPerson.ContactPersonTlf
                 }).ToListAsync();
             }
         }

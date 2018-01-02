@@ -93,7 +93,7 @@ namespace NolekWPF.ViewModels.Equipment
                 MessageBox.Show("Please select a component in the list to remove.", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
-        //private string lastAddedComponentName;
+        
 
         private void OnComponentAdded()
         {
@@ -121,25 +121,7 @@ namespace NolekWPF.ViewModels.Equipment
                 MessageBox.Show("Please select a component and specify a component name before adding.", "Message", MessageBoxButton.OK, MessageBoxImage.Information);
             }
 
-            /*check of component is already added to the list and that selected component is not null before adding
-            if (SelectedComponent != null)
-            {
-                var numberOfDuplicates = 0;
-                foreach (var item in ComponentsForEquipment)
-                {
-                    if (item.ComponentId == SelectedComponent.ComponentId)
-                    {
-                        numberOfDuplicates++;
-                    }
-                }
-                numberOfDuplicates++;
-                SelectedComponent.ComponentName = SelectedComponent.ComponentType + numberOfDuplicates.ToString();
-                ComponentsForEquipment.Add(SelectedComponent);
-            }
-            else
-            {
-                
-            }*/
+            
         }
 
         public async Task LoadAsync()

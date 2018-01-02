@@ -17,7 +17,7 @@
         </Grid.ColumnDefinitions>
         <DataGrid Width="auto" ItemsSource="{Binding Equipments}"
                   SelectedItem="{Binding SelectedEquipment, Mode=TwoWay}"
-                  IsReadOnly="True" CanUserReorderColumns="False" SelectionMode="Single" ColumnWidth="*" MaxHeight="750" MinHeight="500">
+                  IsReadOnly="True" CanUserReorderColumns="False" SelectionMode="Single" ColumnWidth="*" MaxHeight="750" MinHeight="500" AutoGenerateColumns="False">
 
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Image">
@@ -27,6 +27,20 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Serial Number" Binding="{Binding SerialNumber}"/>
+                <DataGridTextColumn Header="Main Equip. No" Binding="{Binding MainEquipmentNumber}"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
+                <DataGridTextColumn Header="Type Name" Binding="{Binding TypeName}"/>
+                <DataGridTextColumn Header="Configuration" Binding="{Binding Configuration}"/>
+                <DataGridTemplateColumn Header="Birthday">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding DateCreated}" BorderThickness="0" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Category" Binding="{Binding Category}"/>
+
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Margin="10 0 0 0" Grid.Column="1">
@@ -38,18 +52,19 @@
                     
                 </Grid.ColumnDefinitions>
 
-                <ComboBox ItemsSource="{Binding Components}"
+                <ComboBox x:Name="combo_comp" ItemsSource="{Binding Components}"
                   DisplayMemberPath="ComponentType"
                   SelectedItem="{Binding SelectedComponent}"
-                  Grid.Column="0"></ComboBox>
+                  Grid.Column="0"
+                          SelectedIndex="0"></ComboBox>
 
-        
-        <TextBox x:Name='txt_componentName'
+
+                <TextBox x:Name='txt_componentName'
                  Grid.Column="1" 
                  Text="{Binding SelectedComponent.ComponentName, 
                  Mode=TwoWay, 
                  UpdateSourceTrigger=PropertyChanged}" Margin="5 0 5 0"/>
-        <TextBlock Grid.Column="1" IsHitTestVisible="False"
+        <TextBlock x:Name="txt_compName" Grid.Column="1" IsHitTestVisible="False"
                    Text="Input Component Name"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Left"
@@ -85,29 +100,28 @@
                       ColumnWidth="*"
                  SelectedIndex="{Binding SelectedListComponentIndex}" MaxHeight="300" Margin="0 10 0 0">
         <DataGrid.Columns>
-          <DataGridTemplateColumn Header="ComponentId">
+          <DataGridTemplateColumn Header="Component Id">
             <DataGridTemplateColumn.CellTemplate>
               <DataTemplate>
                 <TextBlock Text="{Binding ComponentID}"></TextBlock>
               </DataTemplate>
             </DataGridTemplateColumn.CellTemplate>
           </DataGridTemplateColumn>
-          <DataGridTemplateColumn Header="EquipmentId">
+          <DataGridTemplateColumn Header="Equipment Id">
             <DataGridTemplateColumn.CellTemplate>
               <DataTemplate>
                 <TextBlock Text="{Binding EquipmentID}"></TextBlock>
               </DataTemplate>
             </DataGridTemplateColumn.CellTemplate>
           </DataGridTemplateColumn>
-          <DataGridTemplateColumn Header="ComponentName">
+          <DataGridTemplateColumn Header="Unique Name">
             <DataGridTemplateColumn.CellTemplate>
               <DataTemplate>
                 <TextBlock Text="{Binding ComponentName}"></TextBlock>
               </DataTemplate>
             </DataGridTemplateColumn.CellTemplate>
           </DataGridTemplateColumn>
-
-        </DataGrid.Columns>
+                </DataGrid.Columns>
       </DataGrid>
 
             <Grid>

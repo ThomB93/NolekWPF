@@ -63,6 +63,7 @@
       <DependentUpon>dbNolek.tt</DependentUpon>
     </Compile>
     <Compile Include="Dto\ComponentDto.cs" />
+    <Compile Include="Dto\ContactPersonDto.cs" />
     <Compile Include="Dto\CustomerDepartmentDto.cs" />
     <Compile Include="Dto\CustomerDto.cs" />
     <Compile Include="Dto\EquipmentCategoryDto.cs" />

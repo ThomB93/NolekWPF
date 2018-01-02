@@ -222,7 +222,7 @@ namespace NolekWPF.ViewModels
             }
             if (isAuthenticated == false)
             {
-                MessageBox.Show("Wrong username/password");
+                MessageBox.Show("Wrong username/password", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Warning);
                 Username = string.Empty;
                 Password = string.Empty;
             }

@@ -16,7 +16,7 @@
         <Label Content="Equipment List"
            FontSize="20"></Label>
         <TextBox x:Name="SearchBar" HorizontalAlignment="Left" Margin="10,0,0,10"  Text="{Binding FilterString, UpdateSourceTrigger=PropertyChanged}" Width="200"/>
-        <TextBlock IsHitTestVisible="False" Text="Search by TypeName" HorizontalAlignment="Left" Margin="13,-28,0,0" Foreground="DarkGray">
+        <TextBlock IsHitTestVisible="False" Text="Search by Type Name" HorizontalAlignment="Left" Margin="13,-28,0,0" Foreground="DarkGray">
             <TextBlock.Style>
                 <Style TargetType="{x:Type TextBlock}">
                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -36,7 +36,7 @@
                 IsReadOnly="True"
                 CanUserReorderColumns="False"
                 SelectionMode="Single"
-                ColumnWidth="*">
+                ColumnWidth="*" AutoGenerateColumns="False">
                 <DataGrid.ItemContainerStyle>
                     <Style TargetType="DataGridRow">
                         <EventSetter Event="MouseDoubleClick"
@@ -47,12 +47,50 @@
                     <DataGridTemplateColumn Header="Image">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Image Height="100"
-                       Width="100"
-                       Source="{Binding ImagePath}" />
+                                <Image Height="100" Width="100" Source="{Binding ImagePath}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Serial Number" Binding="{Binding SerialNumber}"/>
+                    <DataGridTextColumn Header="Main Equip. No" Binding="{Binding MainEquipmentNumber}"/>
+                    <DataGridTextColumn Header="Status" Binding="{Binding Status}"/>
+                    <DataGridTextColumn Header="Type Name" Binding="{Binding TypeName}"/>
+                    <DataGridTextColumn Header="Configuration" Binding="{Binding Configuration}"/>
+                    <DataGridTemplateColumn Header="Date Created">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <DatePicker SelectedDate="{Binding DateCreated}" BorderThickness="0" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Category" Binding="{Binding Category}"/>
+                    <DataGridTemplateColumn Header="Contact Person">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Orientation="Vertical" Grid.Column="0">
+                                        <TextBlock FontWeight="Bold" Text="First Name:"></TextBlock>
+                                        <TextBlock FontWeight="Bold" Text="Last Name:"></TextBlock>
+                                        <TextBlock FontWeight="Bold" Text="Email:"></TextBlock>
+                                        <TextBlock FontWeight="Bold" Text="Telephone:"></TextBlock>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical" Grid.Column="1">
+                                        <TextBlock Text="{Binding ContactPersonFirstName}"></TextBlock>
+
+                                        <TextBlock Text="{Binding ContactPersonLastName}"></TextBlock>
+                                        <TextBlock Text="{Binding ContactPersonEmail}"></TextBlock>
+                                        <TextBlock Text="{Binding ContactPersonTelephone}"></TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                                
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    
                 </DataGrid.Columns>
             </DataGrid>
         </ScrollViewer>

@@ -14,11 +14,11 @@
            FontSize="20"></Label>
     <StackPanel Orientation="Horizontal"
                 Margin="0 0 0 12">
-      <Label Width="125">Type*:</Label>
+      <Label Width="125">Type Name*:</Label>
       <TextBox x:Name='txtName'
-               Width='150'
+               Width='200'
                Padding="2"
-               Text="{Binding Component.ComponentName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+               Text="{Binding Component.ComponentType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
     </StackPanel>
     <StackPanel Orientation="
                Horizontal"
@@ -27,7 +27,7 @@
       <TextBox x:Name='txtDescription'
                TextWrapping="Wrap"
                Height="50"
-               Width='150'
+               Width='200'
                Padding="2"
                Text="{Binding Component.ComponentDescription, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
     </StackPanel>
@@ -40,30 +40,21 @@
                Padding="2"
                Text="{Binding Component.ComponentOrderNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
     </StackPanel>
-    <StackPanel Orientation="
+        <StackPanel Orientation="
                Horizontal"
                 Margin="0 0 0 12">
-      <Label Width="125">Serial No*:</Label>
-      <TextBox x:Name='txtSerialNo'
-               Width='150'
+            <Label Width="125">Serial No*:</Label>
+            <TextBox x:Name='txtSerialNo'
+               Width='200'
                Padding="2"
                Text="{Binding Component.ComponentSerialNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-    </StackPanel>
-    <StackPanel Orientation="
-               Horizontal"
-                Margin="0 0 0 12">
-      <Label Width="125">Quantity*:</Label>
-      <TextBox x:Name='txtquantity'
-               Width='150'
-               Padding="2"
-               Text="{Binding Component.ComponentQuantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-    </StackPanel>
-    <StackPanel Orientation="
+        </StackPanel>
+        <StackPanel Orientation="
                Horizontal"
                 Margin="0 0 0 12">
       <Label Width="125">Supply No*:</Label>
       <TextBox x:Name='txtSupplyNo'
-               Width='150'
+               Width='200'
                Padding="2"
                Text="{Binding Component.ComponentSupplyNumber    , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
     </StackPanel>

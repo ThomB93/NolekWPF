@@ -17,6 +17,10 @@ namespace NolekWPF.Model
         public string TypeName { get; set; }
         public string Category { get; set; }
         public string Configuration { get; set; }
-
+        public string ImagePath { get; set; }
+        public string ContactPersonFirstName { get; set; }
+        public string ContactPersonLastName { get; set; }
+        public string ContactPersonEmail { get; set; }
+        public string ContactPersonTelephone{ get; set; }
     }
 }

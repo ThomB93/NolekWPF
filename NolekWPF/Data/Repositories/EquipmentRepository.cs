@@ -58,6 +58,16 @@ namespace NolekWPF.Data.Repositories
                 CategoryName = c.CategoryName
             }).ToListAsync();
         }
+        public async Task<IEnumerable<ContactPersonDto>> GetEquipmentContactPersonsAsync()
+        {
+            return await _context.ContactPersons.Select(c => new ContactPersonDto()
+            {
+                FirstName = c.ContactPersonFirstName,
+                LastName = c.ContactPersonLastName,
+                Email = c.ContactPersonEmail,
+                Telephone = c.ContactPersonTlf
+            }).ToListAsync();
+        }
 
         public List<EquipmentComponent> GetEquipmentComponents(int equipmentId)
         {

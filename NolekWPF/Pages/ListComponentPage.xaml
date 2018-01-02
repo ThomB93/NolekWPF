@@ -13,7 +13,7 @@
            FontSize="20"></Label>
         <StackPanel Orientation="Horizontal">
             <TextBox Width="200" Name="SearchBar" Margin="10 0 0 5" Text="{Binding FilterString, UpdateSourceTrigger=PropertyChanged}"/>
-            <TextBlock IsHitTestVisible="False" Text="Search by ComponentType" HorizontalAlignment="Left" Margin="-197,0,0,5" Foreground="DarkGray">
+            <TextBlock IsHitTestVisible="False" Text="Search by Component Type" HorizontalAlignment="Left" Margin="-197,0,0,5" Foreground="DarkGray">
                 <TextBlock.Style>
                     <Style TargetType="{x:Type TextBlock}">
                         <Setter Property="Visibility" Value="Collapsed"/>
@@ -32,7 +32,15 @@
               IsReadOnly="True"
               CanUserReorderColumns="False"
               SelectionMode="Single"
-              ColumnWidth="*">
+              ColumnWidth="*"
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Type Name" Binding="{Binding ComponentType}" />
+                <DataGridTextColumn Header="Description" Binding="{Binding ComponentDescription}" />
+                <DataGridTextColumn Header="Order Number" Binding="{Binding ComponentOrderNumber}" />
+                <DataGridTextColumn Header="Serial Number" Binding="{Binding ComponentSerialNumber}" />
+                <DataGridTextColumn Header="Supply Number" Binding="{Binding ComponentSupplyNumber}" />
+            </DataGrid.Columns>
             <DataGrid.ItemContainerStyle>
                 <Style TargetType="DataGridRow">
                     <EventSetter Event="MouseDoubleClick"

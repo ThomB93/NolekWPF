@@ -13,6 +13,7 @@ namespace NolekWPF.Data.Repositories
         Task<IEnumerable<EquipmentCategoryDto>> GetEquipmentCategoriesAsync();
         Task<IEnumerable<EquipmentConfigurationDto>> GetEquipmentConfigurationsAsync();
         Task<IEnumerable<EquipmentTypeDto>> GetEquipmentTypesAsync();
+        Task<IEnumerable<ContactPersonDto>> GetEquipmentContactPersonsAsync();
         void RemoveEquipmentComponent(EquipmentComponent model);
         bool HasChanges();
         void Remove(Model.Equipment model);
